@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-brand">
+                <span class="logo-icon">🎉</span>
+                <span class="logo-text">COUSERIASEMOR</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">← Back</a></li>
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li id="authLinks">
+                    <a href="login.html" class="nav-link">Login</a>
+                    <a href="register.html" class="nav-link">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
         <div class="registration-box">
             <div class="logo">
@@ -37,5 +53,14 @@
     </div>
 
     <script src="login-script.js"></script>
+    <script>
+        const authLinks = document.getElementById('authLinks');
+        const token = localStorage.getItem('authToken');
+        const welcomeName = localStorage.getItem('welcomeName');
+
+        if (token && welcomeName) {
+            authLinks.innerHTML = `<a href="#" class="nav-link logout-link">Logout</a> <span class="nav-link">${welcomeName}</span>`;
+        }
+    </script>
 </body>
 </html>

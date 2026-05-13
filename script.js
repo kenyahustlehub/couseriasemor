@@ -1,3 +1,6 @@
+let registrationData = {};
+
+// Registration Form Handler
 document.getElementById('registrationForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -40,15 +43,67 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
         const data = await response.json();
 
         if (response.ok) {
-            showMessage('Registration successful! Redirecting to login...', 'success');
-            setTimeout(() => {
-                window.location.href = 'login.html';
-            }, 2000);
+            // Store registration data for verification
+            registrationData = { fullName, email, password, expertise };
+            
+            // Show verification form
+            document.getElementById('registrationSection').style.display = 'none';
+            document.getElementById('verificationSection').style.display = 'block';
+            document.getElementById('verifyEmail').textContent = email;
+            document.getElementById('verificationCode').focus();
+            
+            showVerificationMessage('✅ Check your email for the verification code!', 'success');
         } else {
             showMessage(data.message || 'Registration failed', 'error');
         }
     } catch (error) {
         showMessage('Error: ' + error.message, 'error');
+    }
+});
+
+// Email Verification Form Handler
+document.getElementById('verificationForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = registrationData.email;
+    const verificationCode = document.getElementById('verificationCode').value.trim();
+
+    if (!verificationCode || verificationCode.length !== 6) {
+        showVerificationMessage('Please enter a valid 6-digit code', 'error');
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/verify-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email,
+                verificationCode,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Store token and welcome details
+            if (data.token) {
+                localStorage.setItem('authToken', data.token);
+            }
+            localStorage.setItem('welcomeName', data.user.fullName || 'Learner');
+            
+            showVerificationMessage('🎉 Email verified! Redirecting to your welcome page...', 'success');
+            
+            setTimeout(() => {
+                window.location.href = 'welcome.html';
+            }, 1800);
+        } else {
+            showVerificationMessage(data.message || 'Verification failed', 'error');
+        }
+    } catch (error) {
+        showVerificationMessage('Error: ' + error.message, 'error');
     }
 });
 
@@ -58,7 +113,56 @@ function showMessage(message, type) {
     messageDiv.className = 'message ' + type;
 }
 
-function isValidEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
+function showVerificationMessage(message, type) {
+    const messageDiv = document.getElementById('verificationMessage');
+    messageDiv.textContent = message;
+    messageDiv.className = 'message ' + type;
 }
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function goBackToRegister(e) {
+    e.preventDefault();
+    document.getElementById('registrationSection').style.display = 'block';
+    document.getElementById('verificationSection').style.display = 'none';
+    document.getElementById('registrationForm').reset();
+    document.getElementById('message').textContent = '';
+}
+
+function resendCode(e) {
+    e.preventDefault();
+    showVerificationMessage('📧 Resending code to ' + registrationData.email + '...', 'info');
+    
+    // Re-register to get a new code
+    fetch('/api/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(registrationData),
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.requiresVerification) {
+            showVerificationMessage('✅ New code sent! Check your email.', 'success');
+        } else {
+            showVerificationMessage('Failed to resend code', 'error');
+        }
+    })
+    .catch(error => {
+        showVerificationMessage('Error: ' + error.message, 'error');
+    });
+}
+
+// Logout functionality
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('logout-link')) {
+        e.preventDefault();
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('welcomeName');
+        window.location.href = 'login.html';
+    }
+});

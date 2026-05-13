@@ -30,7 +30,15 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
                 window.location.href = 'index.html';
             }, 2000);
         } else {
-            showMessage(data.message || 'Login failed', 'error');
+            // Check if this is an email verification error
+            if (response.status === 403 && data.requiresVerification) {
+                showMessage(
+                    '📧 ' + data.message + '\n\nCheck your inbox and spam folder for the verification email.',
+                    'error'
+                );
+            } else {
+                showMessage(data.message || 'Login failed', 'error');
+            }
         }
     } catch (error) {
         showMessage('Error: ' + error.message, 'error');
@@ -39,6 +47,17 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
 function showMessage(message, type) {
     const messageDiv = document.getElementById('message');
-    messageDiv.textContent = message;
+    messageDiv.innerHTML = message.replace(/\n/g, '<br>');
     messageDiv.className = 'message ' + type;
 }
+
+// Logout functionality
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('logout-link')) {
+        e.preventDefault();
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('welcomeName');
+        window.location.href = 'login.html';
+    }
+});
+

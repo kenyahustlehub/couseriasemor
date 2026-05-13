@@ -114,6 +114,10 @@ body {
     align-items: center;
 }
 
+#authLinks {
+    gap: 16px;
+}
+
 .nav-link {
     position: relative;
     color: var(--text);
@@ -250,6 +254,135 @@ body {
     overflow-x: auto;
 }
 
+.hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.hero-badges span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #f8fafc;
+    background: rgba(248, 113, 20, 0.12);
+    border: 1px solid rgba(248, 113, 20, 0.18);
+    border-radius: 999px;
+    padding: 10px 14px;
+    font-size: 13px;
+}
+
+.launch-card {
+    background: rgba(11, 18, 40, 0.98);
+    border: 1px solid rgba(249, 115, 22, 0.18);
+    border-radius: 28px;
+    padding: 28px;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: 0 30px 80px rgba(15, 23, 42, 0.35);
+}
+
+.launch-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #f97316, #facc15);
+    color: #020617;
+    font-size: 13px;
+    font-weight: 700;
+    width: fit-content;
+}
+
+.launch-header p {
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.launch-grid {
+    display: grid;
+    gap: 18px;
+}
+
+.launch-grid h4 {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.launch-grid p {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+.solutions {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 20px;
+}
+
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.solution-card {
+    background: rgba(11, 18, 40, 0.96);
+    border: 1px solid rgba(34, 197, 94, 0.12);
+    border-radius: 24px;
+    padding: 28px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.solution-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 28px 70px rgba(15, 23, 42, 0.22);
+}
+
+.solution-card h3 {
+    font-size: 22px;
+    margin-bottom: 14px;
+}
+
+.solution-card p {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.welcome-hero .hero-content {
+    gap: 16px;
+}
+
+.welcome-image .code-box {
+    max-width: 360px;
+}
+
+.hero-note {
+    margin-top: 18px;
+    color: var(--text-light);
+    font-size: 14px;
+    max-width: 560px;
+}
+
 /* ============ Buttons ============ */
 .btn {
     display: inline-block;
@@ -294,7 +427,7 @@ body {
 
 .btn-register {
     width: 100%;
-    padding: 14px;
+    padding: 16px;
     background: linear-gradient(135deg, var(--primary), var(--warning));
     color: #020617;
     border: none;
@@ -303,7 +436,8 @@ body {
     font-weight: 700;
     cursor: pointer;
     transition: all 0.25s ease;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
 }
 
 .btn-register:hover {
@@ -571,14 +705,14 @@ body {
     background: rgba(12, 18, 32, 0.98);
     border-radius: 24px;
     box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
-    padding: 42px;
+    padding: 48px;
     width: 100%;
     border: 1px solid rgba(249, 115, 22, 0.14);
 }
 
 .logo {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .logo h1 {
@@ -597,28 +731,30 @@ body {
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     color: #cbd5e1;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 15px;
+    letter-spacing: 0.3px;
 }
 
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 14px;
+    padding: 16px;
     border: 1px solid rgba(148, 163, 184, 0.14);
     border-radius: 12px;
-    font-size: 14px;
+    font-size: 15px;
     transition: all 0.3s;
     font-family: inherit;
     background: #081026;
     color: var(--text);
+    line-height: 1.5;
 }
 
 .form-group input:focus,
@@ -675,7 +811,9 @@ body {
     text-align: center;
     font-size: 14px;
     color: var(--text-light);
-    margin-top: 20px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(148, 163, 184, 0.08);
 }
 
 .login-link a {
@@ -690,19 +828,134 @@ body {
     text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-    .nav-menu {
-        gap: 15px;
-        flex-wrap: wrap;
+/* ============ Email Verification ============ */
+#verificationSection {
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.verification-info {
+    background: rgba(249, 115, 22, 0.08);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 25px;
+    text-align: center;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.verification-info p {
+    margin: 5px 0;
+}
+
+.message.info {
+    background-color: #dbeafe;
+    color: #0c4a6e;
+    border: 1px solid #bae6fd;
+    display: block;
+}
+
+.verification-help {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+.verification-help p {
+    margin: 8px 0;
+    color: var(--text-light);
+}
+
+.verification-help a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.verification-help a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* ============ Tablet Responsive (≤1024px) ============ */
+@media (max-width: 1024px) {
+    .nav-container {
+        padding: 0 15px;
     }
 
-    .nav-link {
-        font-size: 12px;
+    .logo-brand {
+        padding: 10px 16px;
+        font-size: 1rem;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
     }
 
     .hero {
         grid-template-columns: 1fr;
-        padding: 50px 20px;
+        padding: 60px 20px;
+        gap: 40px;
+    }
+
+    .hero-title {
+        font-size: 42px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============ Mobile Responsive (≤768px) ============ */
+@media (max-width: 768px) {
+    .nav-menu {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu li {
+        flex-wrap: wrap;
+    }
+
+    .nav-link {
+        font-size: 13px;
+        padding: 8px 0;
+    }
+
+    .logo-brand {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        gap: 10px;
+    }
+
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+
+    .hero {
+        padding: 40px 15px;
+        gap: 30px;
     }
 
     .hero-title {
@@ -710,39 +963,199 @@ body {
     }
 
     .hero-subtitle {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .courses {
-        padding: 60px 20px;
+        padding: 50px 15px;
+    }
+
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features {
+        padding: 50px 15px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .feature-item {
+        padding: 20px;
     }
 
     .cta {
-        padding: 40px 20px;
+        padding: 30px 20px;
+        margin: 60px 15px;
     }
 
     .cta-content h2 {
-        font-size: 28px;
+        font-size: 26px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .solutions {
+        padding: 50px 15px;
+    }
+
+    .solutions-grid {
+        grid-template-columns: 1fr;
     }
 }
 
+/* ============ Small Mobile (≤600px) ============ */
 @media (max-width: 600px) {
+    .container {
+        padding: 10px;
+        min-height: 100vh;
+    }
+
     .registration-box {
-        padding: 25px;
+        padding: 32px 20px;
+        border-radius: 20px;
+    }
+
+    .logo {
+        margin-bottom: 32px;
     }
 
     .logo h1 {
-        font-size: 22px;
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .logo p {
+        font-size: 13px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+        margin-bottom: 8px;
     }
 
     .form-group input,
     .form-group select {
-        padding: 10px;
+        padding: 14px;
         font-size: 16px;
+        border-radius: 10px;
+    }
+
+    .btn-register {
+        padding: 14px;
+        font-size: 15px;
+        margin-bottom: 16px;
+    }
+
+    .btn-register:hover {
+        transform: translateY(-1px);
+    }
+
+    .login-link {
+        font-size: 13px;
+        margin-top: 20px;
+        padding-top: 16px;
     }
 
     .btn {
         padding: 12px 24px;
         font-size: 14px;
+    }
+
+    .btn-large {
+        padding: 14px 30px;
+        font-size: 15px;
+    }
+
+    .hero-badges {
+        gap: 8px;
+    }
+
+    .hero-badges span {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .code-box {
+        max-width: 100%;
+        padding: 16px;
+    }
+
+    .code-text {
+        font-size: 11px;
+    }
+
+    .stat h3 {
+        font-size: 28px;
+    }
+
+    .stat p {
+        font-size: 14px;
+    }
+}
+
+/* ============ Extra Small Mobile (≤480px) ============ */
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 10px;
+    }
+
+    .logo-brand {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .logo-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    .logo-text {
+        font-size: 0.9rem;
+    }
+
+    .nav-link {
+        font-size: 11px;
+    }
+
+    .registration-box {
+        padding: 24px 16px;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .btn-register {
+        padding: 12px;
+    }
+
+    .hero-title {
+        font-size: 24px;
+    }
+
+    .section-header h2 {
+        font-size: 28px;
     }
 }

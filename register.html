@@ -7,55 +7,121 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-brand">
+                <span class="logo-icon">🎉</span>
+                <span class="logo-text">COUSERIASEMOR</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">← Back</a></li>
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li id="authLinks">
+                    <a href="login.html" class="nav-link">Login</a>
+                    <a href="register.html" class="nav-link">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
         <div class="registration-box">
-            <div class="logo">
-                <h1>COUSERIASEMOR</h1>
-                <p>Register for Programming Courses</p>
+            <!-- Registration Form -->
+            <div id="registrationSection">
+                <div class="logo">
+                    <h1>COUSERIASEMOR</h1>
+                    <p>Register for Programming Courses</p>
+                </div>
+
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="John Doe">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required placeholder="••••••••">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expertise">Programming Expertise</label>
+                        <select id="expertise" name="expertise" required>
+                            <option value="">Select your level</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                        <label for="agreeTerms">I agree to the Terms & Conditions</label>
+                    </div>
+
+                    <button type="submit" class="btn-register">Register</button>
+
+                    <div id="message" class="message"></div>
+                </form>
+
+                <div class="login-link">
+                    Already registered? <a href="login.html">Login here</a>
+                </div>
             </div>
 
-            <form id="registrationForm">
-                <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" required placeholder="John Doe">
+            <!-- Email Verification Form -->
+            <div id="verificationSection" style="display: none;">
+                <div class="logo">
+                    <h1>✉️ Verify Your Email</h1>
+                    <p>We've sent a code to your email</p>
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required placeholder="john@example.com">
+                <div class="verification-info">
+                    <p>Enter the 6-digit code we sent to:</p>
+                    <p id="verifyEmail" style="font-weight: bold; color: var(--color-orange); margin: 10px 0;"></p>
                 </div>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required placeholder="••••••••">
-                </div>
+                <form id="verificationForm">
+                    <div class="form-group">
+                        <label for="verificationCode">Verification Code</label>
+                        <input 
+                            type="text" 
+                            id="verificationCode" 
+                            name="verificationCode" 
+                            required 
+                            placeholder="000000"
+                            maxlength="6"
+                            pattern="[0-9]{6}"
+                            style="text-align: center; font-size: 24px; font-weight: bold; letter-spacing: 10px;"
+                        >
+                    </div>
 
-                <div class="form-group">
-                    <label for="expertise">Programming Expertise</label>
-                    <select id="expertise" name="expertise" required>
-                        <option value="">Select your level</option>
-                        <option value="beginner">Beginner</option>
-                        <option value="intermediate">Intermediate</option>
-                        <option value="advanced">Advanced</option>
-                    </select>
-                </div>
+                    <button type="submit" class="btn-register">Verify Email</button>
 
-                <div class="form-group checkbox">
-                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
-                    <label for="agreeTerms">I agree to the Terms & Conditions</label>
-                </div>
+                    <div id="verificationMessage" class="message"></div>
 
-                <button type="submit" class="btn-register">Register</button>
-
-                <div id="message" class="message"></div>
-            </form>
-
-            <div class="login-link">
-                Already registered? <a href="login.html">Login here</a>
+                    <div class="verification-help">
+                        <p>Didn't receive the code? <a href="#" onclick="resendCode(event)">Resend</a></p>
+                        <p><a href="#" onclick="goBackToRegister(event)">Back to Registration</a></p>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
+    <script>
+        const authLinks = document.getElementById('authLinks');
+        const token = localStorage.getItem('authToken');
+        const welcomeName = localStorage.getItem('welcomeName');
+
+        if (token && welcomeName) {
+            authLinks.innerHTML = `<a href="#" class="nav-link logout-link">Logout</a> <span class="nav-link">${welcomeName}</span>`;
+        }
+    </script>
 </body>
 </html>
