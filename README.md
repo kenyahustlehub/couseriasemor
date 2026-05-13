@@ -16,7 +16,9 @@ npm start
 
 3. **Open in browser:**
 ```
-http://localhost:3000
+Live: https://couseriasemor.onrender.com
+Local: http://localhost:3000
+Network: http://YOUR_IP_ADDRESS:3000
 ```
 
 ## 📁 Files

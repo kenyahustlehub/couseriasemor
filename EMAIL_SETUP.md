@@ -56,9 +56,11 @@ You should see:
 📧 Email verification enabled!
 ```
 
+> Your live site is available at: `https://couseriasemor.onrender.com`
+
 ## 🧪 Test It Out
 
-1. Go to **http://localhost:3000**
+1. Go to **https://couseriasemor.onrender.com**
 2. Click **Get Started** or go to **register.html**
 3. Fill in registration form with:
    - Full Name: Test User
