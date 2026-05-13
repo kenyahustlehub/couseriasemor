@@ -243,9 +243,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-app.listen(PORT, async () => {
+app.listen(PORT, '0.0.0.0', async () => {
   await initializeDatabase();
-  console.log(`\n✨ COUSERIASEMOR server is running at http://localhost:${PORT}`);
+  console.log(`\n✨ COUSERIASEMOR server is running at http://0.0.0.0:${PORT}`);
+  console.log(`🌐 Network access: http://YOUR_IP_ADDRESS:${PORT}`);
   console.log('📁 Backend logic is now isolated in /backend');
   console.log('⚡ Static files are served with compression and cache headers.');
   console.log('📧 Email verification enabled!');
