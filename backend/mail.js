@@ -1,12 +1,25 @@
 const nodemailer = require('nodemailer');
 
-// Create a transporter using Gmail
+// Create a transporter using Gmail SMTP
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.GMAIL_USER,
     pass: process.env.GMAIL_APP_PASSWORD,
   },
+  tls: {
+    rejectUnauthorized: false,
+  },
+});
+
+transporter.verify((error, success) => {
+  if (error) {
+    console.error('❌ Gmail transporter verification failed:', error.message);
+  } else {
+    console.log('✅ Gmail transporter is ready to send messages');
+  }
 });
 
 // Generate a random 6-digit verification code

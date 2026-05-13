@@ -87,6 +87,11 @@ app.post('/api/register', async (req, res) => {
     const emailSent = await sendVerificationEmail(email, verificationCode, fullName);
 
     if (!emailSent) {
+      if (usersCollection) {
+        await usersCollection.deleteOne({ email });
+      } else {
+        users = users.filter((u) => u.email !== email);
+      }
       return res.status(500).json({ 
         message: 'Registration failed: Could not send verification email. Please check your email configuration.' 
       });
@@ -181,6 +186,68 @@ app.post('/api/verify-email', async (req, res) => {
   }
 });
 
+// Resend verification code endpoint for unverified users
+app.post('/api/resend-verification', async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ message: 'Email is required to resend verification code' });
+  }
+
+  try {
+    let user;
+
+    if (usersCollection) {
+      user = await usersCollection.findOne({ email });
+    } else {
+      user = users.find((u) => u.email === email);
+    }
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (user.isVerified) {
+      return res.status(400).json({ message: 'Email is already verified' });
+    }
+
+    const verificationCode = generateVerificationCode();
+    const codeExpiresAt = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
+
+    if (usersCollection) {
+      await usersCollection.updateOne(
+        { email },
+        {
+          $set: {
+            verificationCode,
+            codeExpiresAt,
+            updatedAt: new Date().toISOString(),
+          },
+        }
+      );
+    } else {
+      user.verificationCode = verificationCode;
+      user.codeExpiresAt = codeExpiresAt;
+      user.updatedAt = new Date().toISOString();
+    }
+
+    const emailSent = await sendVerificationEmail(email, verificationCode, user.fullName);
+
+    if (!emailSent) {
+      return res.status(500).json({ message: 'Failed to resend verification email. Please try again later.' });
+    }
+
+    res.json({
+      message: 'Verification code resent! Check your inbox and spam folder.',
+      requiresVerification: true,
+      email,
+    });
+  } catch (error) {
+    console.error('Resend verification error:', error);
+    res.status(500).json({ message: 'Resend failed. Please try again.' });
+  }
+});
+
 // Login endpoint - checks if email is verified
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
@@ -241,6 +308,50 @@ app.get('/api/users', async (req, res) => {
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
+});
+
+// Debug endpoint to test email configuration
+app.get('/api/debug/test-email', async (req, res) => {
+  const testEmail = req.query.email || 'test@example.com';
+
+  console.log(`\n📧 Testing email configuration...`);
+  console.log(`Gmail User: ${process.env.GMAIL_USER}`);
+  console.log(`Gmail App Password: ${process.env.GMAIL_APP_PASSWORD ? '✓ Set' : '✗ Not set'}`);
+  console.log(`Test Email To: ${testEmail}`);
+
+  try {
+    const { sendVerificationEmail } = require('./mail');
+    const testCode = '123456';
+    const emailSent = await sendVerificationEmail(testEmail, testCode, 'Test User');
+
+    if (emailSent) {
+      res.json({
+        status: 'success',
+        message: '✅ Test email sent successfully!',
+        details: {
+          to: testEmail,
+          from: process.env.GMAIL_USER,
+          subject: '🎓 Verify Your COUSERIASEMOR Account (TEST)',
+          timestamp: new Date().toISOString(),
+        },
+      });
+    } else {
+      res.status(500).json({
+        status: 'failed',
+        message: '❌ Failed to send test email. Check server logs for details.',
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      message: '❌ Email configuration error',
+      error: error.message,
+      details: {
+        gmailUser: process.env.GMAIL_USER || 'NOT SET',
+        hasPassword: !!process.env.GMAIL_APP_PASSWORD,
+      },
+    });
+  }
 });
 
 app.listen(PORT, '0.0.0.0', async () => {
