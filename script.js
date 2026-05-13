@@ -132,29 +132,35 @@ function goBackToRegister(e) {
     document.getElementById('message').textContent = '';
 }
 
-function resendCode(e) {
+async function resendCode(e) {
     e.preventDefault();
+
+    if (!registrationData.email) {
+        showVerificationMessage('No registration email found. Please register again.', 'error');
+        return;
+    }
+
     showVerificationMessage('📧 Resending code to ' + registrationData.email + '...', 'info');
-    
-    // Re-register to get a new code
-    fetch('/api/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(registrationData),
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.requiresVerification) {
+
+    try {
+        const response = await fetch('/api/resend-verification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: registrationData.email }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.requiresVerification) {
             showVerificationMessage('✅ New code sent! Check your email.', 'success');
         } else {
-            showVerificationMessage('Failed to resend code', 'error');
+            showVerificationMessage(data.message || 'Failed to resend code', 'error');
         }
-    })
-    .catch(error => {
+    } catch (error) {
         showVerificationMessage('Error: ' + error.message, 'error');
-    });
+    }
 }
 
 // Logout functionality

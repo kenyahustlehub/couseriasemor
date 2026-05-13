@@ -36,14 +36,68 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
                     '📧 ' + data.message + '\n\nCheck your inbox and spam folder for the verification email.',
                     'error'
                 );
+                showResendOption(email);
             } else {
+                hideResendOption();
                 showMessage(data.message || 'Login failed', 'error');
             }
         }
     } catch (error) {
+        hideResendOption();
         showMessage('Error: ' + error.message, 'error');
     }
 });
+
+const resendVerificationLink = document.getElementById('resendVerificationLink');
+if (resendVerificationLink) {
+    resendVerificationLink.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value.trim();
+        if (!email) {
+            showMessage('Please enter your email to resend the verification code.', 'error');
+            return;
+        }
+        await resendVerificationCode(email);
+    });
+}
+
+async function resendVerificationCode(email) {
+    showMessage('📧 Resending verification email...', 'info');
+    try {
+        const response = await fetch('/api/resend-verification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+        if (response.ok && data.requiresVerification) {
+            showMessage('✅ Verification email resent! Check your inbox and spam folder.', 'success');
+            showResendOption(email);
+        } else {
+            hideResendOption();
+            showMessage(data.message || 'Failed to resend verification email', 'error');
+        }
+    } catch (error) {
+        showMessage('Error: ' + error.message, 'error');
+    }
+}
+
+function showResendOption(email) {
+    const resendHelp = document.getElementById('resendHelp');
+    if (resendHelp) {
+        resendHelp.style.display = 'block';
+    }
+}
+
+function hideResendOption() {
+    const resendHelp = document.getElementById('resendHelp');
+    if (resendHelp) {
+        resendHelp.style.display = 'none';
+    }
+}
 
 function showMessage(message, type) {
     const messageDiv = document.getElementById('message');
