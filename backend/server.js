@@ -5,7 +5,12 @@ const compression = require('compression');
 const bodyParser = require('body-parser');
 const path = require('path');
 const { connectToDatabase } = require('./db');
-const { generateVerificationCode, sendVerificationEmail, sendWelcomeEmail } = require('./mail');
+const {
+  generateVerificationCode,
+  sendVerificationEmail,
+  sendWelcomeEmail,
+  emailAvailable,
+} = require('./mail');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,12 +26,8 @@ app.use(express.static(publicPath, { maxAge: '30d' }));
 async function initializeDatabase() {
   if (!process.env.MONGODB_URI) {
     const message = '❌ MONGODB_URI is not set.';
-    if (process.env.NODE_ENV === 'development') {
-      console.warn(message + ' Running in fallback in-memory mode for local development.');
-      return;
-    }
-    console.error(message + ' Live deployment requires MongoDB.');
-    process.exit(1);
+    console.warn(message + ' Running in fallback in-memory mode.');
+    return;
   }
 
   try {
@@ -34,12 +35,8 @@ async function initializeDatabase() {
     console.log('✅ Connected to MongoDB successfully.');
   } catch (error) {
     console.error('❌ Failed to connect to MongoDB:', error.message);
-    if (process.env.NODE_ENV === 'development') {
-      console.warn('⚠️  Falling back to in-memory user storage for local development.');
-      return;
-    }
-    console.error('❌ Live deployment cannot continue without MongoDB connection.');
-    process.exit(1);
+    console.warn('⚠️  Falling back to in-memory user storage.');
+    usersCollection = null;
   }
 }
 
@@ -351,5 +348,5 @@ app.listen(PORT, '0.0.0.0', async () => {
   console.log(`🌐 Network access: http://YOUR_IP_ADDRESS:${PORT}`);
   console.log('📁 Backend logic is now isolated in /backend');
   console.log('⚡ Static files are served with compression and cache headers.');
-  console.log('📧 Email verification enabled!');
+  console.log(`📧 Email verification ${emailAvailable ? 'enabled' : 'disabled'}${emailAvailable ? '' : ' (will skip email sending until configured)'}`);
 });

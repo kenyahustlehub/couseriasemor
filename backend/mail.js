@@ -1,39 +1,49 @@
 const nodemailer = require('nodemailer');
 let transporter = null;
 let sendGridMail = null;
+let emailAvailable = false;
 const emailProvider = (process.env.EMAIL_PROVIDER || 'gmail').toLowerCase();
 
 if (emailProvider === 'sendgrid') {
   if (!process.env.SENDGRID_API_KEY) {
-    console.error('❌ EMAIL_PROVIDER=sendgrid is set but SENDGRID_API_KEY is missing');
+    console.warn('⚠️  EMAIL_PROVIDER=sendgrid is set but SENDGRID_API_KEY is missing. Email notifications disabled.');
+  } else {
+    sendGridMail = require('@sendgrid/mail');
+    sendGridMail.setApiKey(process.env.SENDGRID_API_KEY);
+    console.log('✅ SendGrid email provider enabled');
+    emailAvailable = true;
   }
-  sendGridMail = require('@sendgrid/mail');
-  sendGridMail.setApiKey(process.env.SENDGRID_API_KEY);
-  console.log('✅ SendGrid email provider enabled');
 } else {
   if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    console.error('❌ EMAIL_PROVIDER=gmail is set but Gmail credentials are missing');
-  }
-  transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
-  });
+    console.warn('⚠️  EMAIL_PROVIDER=gmail is set but Gmail credentials are missing. Email notifications disabled.');
+  } else {
+    transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+      connectionTimeout: 5000,
+      socketTimeout: 5000,
+    });
 
-  transporter.verify((error) => {
-    if (error) {
-      console.error('❌ Gmail transporter verification failed:', error.message);
-    } else {
-      console.log('✅ Gmail transporter is ready to send messages');
-    }
-  });
+    transporter.verify((error) => {
+      if (error) {
+        console.warn('⚠️  Gmail transporter verification failed:', error.message);
+        console.warn('📧 Email notifications will be disabled. Users can still register and login.');
+        transporter = null;
+        emailAvailable = false;
+      } else {
+        console.log('✅ Gmail transporter is ready to send messages');
+        emailAvailable = true;
+      }
+    });
+  }
 }
 
 function generateVerificationCode() {
@@ -42,6 +52,11 @@ function generateVerificationCode() {
 
 // Send verification email
 async function sendVerificationEmail(email, code, fullName) {
+  if (!emailAvailable) {
+    console.warn(`⚠️ Email is not available. Skipping verification email to ${email}.`);
+    return true;
+  }
+
   try {
     const mailOptions = {
       from: `"COUSERIASEMOR" <${process.env.SENDGRID_FROM_EMAIL || process.env.GMAIL_USER}>`,
@@ -106,6 +121,11 @@ async function sendVerificationEmail(email, code, fullName) {
 
 // Send welcome email after verification
 async function sendWelcomeEmail(email, fullName) {
+  if (!emailAvailable) {
+    console.warn(`⚠️ Email is not available. Skipping welcome email to ${email}.`);
+    return true;
+  }
+
   try {
     const mailOptions = {
       from: `"COUSERIASEMOR" <${process.env.SENDGRID_FROM_EMAIL || process.env.GMAIL_USER}>`,
@@ -174,4 +194,5 @@ module.exports = {
   generateVerificationCode,
   sendVerificationEmail,
   sendWelcomeEmail,
+  emailAvailable,
 };
