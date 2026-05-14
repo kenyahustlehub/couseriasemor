@@ -124,6 +124,40 @@ return future;</pre>
 
     document.getElementById('welcomeName').textContent = welcomeName;
 
+    // Auto-redirect to dashboard after 5 seconds
+    let countdown = 5;
+    const countdownElement = document.createElement('div');
+    countdownElement.id = 'redirect-countdown';
+    countdownElement.style.cssText = `
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(9, 12, 22, 0.96);
+      backdrop-filter: blur(22px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 15px 20px;
+      color: var(--text);
+      font-size: 14px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.3);
+      z-index: 1000;
+    `;
+    countdownElement.innerHTML = `🚀 Redirecting to dashboard in <strong>${countdown}</strong> seconds...`;
+    document.body.appendChild(countdownElement);
+
+    const countdownInterval = setInterval(() => {
+      countdown--;
+      countdownElement.innerHTML = `🚀 Redirecting to dashboard in <strong>${countdown}</strong> seconds...`;
+
+      if (countdown <= 0) {
+        clearInterval(countdownInterval);
+        countdownElement.innerHTML = '🚀 Redirecting now...';
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 500);
+      }
+    }, 1000);
+
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains('logout-link')) {
         e.preventDefault();

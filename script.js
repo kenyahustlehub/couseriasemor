@@ -1,5 +1,3 @@
-let registrationData = {};
-
 // Registration Form Handler
 document.getElementById('registrationForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -8,7 +6,6 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
     const expertise = document.getElementById('expertise').value;
-    const messageDiv = document.getElementById('message');
 
     // Validation
     if (!fullName || !email || !password || !expertise) {
@@ -43,7 +40,6 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
         const data = await response.json();
 
         if (response.ok) {
-            // Store token and welcome details
             if (data.token) {
                 localStorage.setItem('authToken', data.token);
             }
@@ -56,7 +52,7 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
 
             setTimeout(() => {
                 window.location.href = 'dashboard.html';
-            }, 1800);
+            }, 1600);
         } else {
             showMessage(data.message || 'Registration failed', 'error');
         }
