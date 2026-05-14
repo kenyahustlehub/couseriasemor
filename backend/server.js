@@ -20,8 +20,13 @@ app.use(express.static(publicPath, { maxAge: '30d' }));
 
 async function initializeDatabase() {
   if (!process.env.MONGODB_URI) {
-    console.log('⚠️  No MongoDB URI found. Running in fallback in-memory mode.');
-    return;
+    const message = '❌ MONGODB_URI is not set.';
+    if (process.env.NODE_ENV === 'development') {
+      console.warn(message + ' Running in fallback in-memory mode for local development.');
+      return;
+    }
+    console.error(message + ' Live deployment requires MongoDB.');
+    process.exit(1);
   }
 
   try {
@@ -29,7 +34,12 @@ async function initializeDatabase() {
     console.log('✅ Connected to MongoDB successfully.');
   } catch (error) {
     console.error('❌ Failed to connect to MongoDB:', error.message);
-    console.log('⚠️  Falling back to in-memory user storage.');
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('⚠️  Falling back to in-memory user storage for local development.');
+      return;
+    }
+    console.error('❌ Live deployment cannot continue without MongoDB connection.');
+    process.exit(1);
   }
 }
 
@@ -99,9 +109,10 @@ app.post('/api/register', async (req, res) => {
 
     res.status(201).json({
       message: 'Registration successful! Check your email for the verification code.',
-      email,
-      requiresVerification: true,
-    });
+        email,
+        requiresVerification: true,
+      });
+    }
   } catch (error) {
     console.error('Registration error:', error);
     res.status(500).json({ message: 'Registration failed. Please try again.' });

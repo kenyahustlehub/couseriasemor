@@ -1,28 +1,41 @@
 const nodemailer = require('nodemailer');
+let transporter = null;
+let sendGridMail = null;
+const emailProvider = (process.env.EMAIL_PROVIDER || 'gmail').toLowerCase();
 
-// Create a transporter using Gmail SMTP
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
-  tls: {
-    rejectUnauthorized: false,
-  },
-});
-
-transporter.verify((error, success) => {
-  if (error) {
-    console.error('❌ Gmail transporter verification failed:', error.message);
-  } else {
-    console.log('✅ Gmail transporter is ready to send messages');
+if (emailProvider === 'sendgrid') {
+  if (!process.env.SENDGRID_API_KEY) {
+    console.error('❌ EMAIL_PROVIDER=sendgrid is set but SENDGRID_API_KEY is missing');
   }
-});
+  sendGridMail = require('@sendgrid/mail');
+  sendGridMail.setApiKey(process.env.SENDGRID_API_KEY);
+  console.log('✅ SendGrid email provider enabled');
+} else {
+  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+    console.error('❌ EMAIL_PROVIDER=gmail is set but Gmail credentials are missing');
+  }
+  transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
 
-// Generate a random 6-digit verification code
+  transporter.verify((error) => {
+    if (error) {
+      console.error('❌ Gmail transporter verification failed:', error.message);
+    } else {
+      console.log('✅ Gmail transporter is ready to send messages');
+    }
+  });
+}
+
 function generateVerificationCode() {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
@@ -31,7 +44,7 @@ function generateVerificationCode() {
 async function sendVerificationEmail(email, code, fullName) {
   try {
     const mailOptions = {
-      from: `"COUSERIASEMOR" <${process.env.GMAIL_USER}>`,
+      from: `"COUSERIASEMOR" <${process.env.SENDGRID_FROM_EMAIL || process.env.GMAIL_USER}>`,
       to: email,
       subject: '🎓 Verify Your COUSERIASEMOR Account',
       html: `
@@ -69,7 +82,20 @@ async function sendVerificationEmail(email, code, fullName) {
       `,
     };
 
-    await transporter.sendMail(mailOptions);
+    if (emailProvider === 'sendgrid') {
+      if (!sendGridMail) {
+        throw new Error('SendGrid is not configured');
+      }
+      await sendGridMail.send({
+        to: email,
+        from: process.env.SENDGRID_FROM_EMAIL || process.env.GMAIL_USER,
+        subject: mailOptions.subject,
+        html: mailOptions.html,
+      });
+    } else {
+      await transporter.sendMail(mailOptions);
+    }
+
     console.log(`✅ Verification email sent to ${email}`);
     return true;
   } catch (error) {
@@ -82,7 +108,7 @@ async function sendVerificationEmail(email, code, fullName) {
 async function sendWelcomeEmail(email, fullName) {
   try {
     const mailOptions = {
-      from: `"COUSERIASEMOR" <${process.env.GMAIL_USER}>`,
+      from: `"COUSERIASEMOR" <${process.env.SENDGRID_FROM_EMAIL || process.env.GMAIL_USER}>`,
       to: email,
       subject: '🎉 Welcome to COUSERIASEMOR!',
       html: `
@@ -122,7 +148,20 @@ async function sendWelcomeEmail(email, fullName) {
       `,
     };
 
-    await transporter.sendMail(mailOptions);
+    if (emailProvider === 'sendgrid') {
+      if (!sendGridMail) {
+        throw new Error('SendGrid is not configured');
+      }
+      await sendGridMail.send({
+        to: email,
+        from: process.env.SENDGRID_FROM_EMAIL || process.env.GMAIL_USER,
+        subject: mailOptions.subject,
+        html: mailOptions.html,
+      });
+    } else {
+      await transporter.sendMail(mailOptions);
+    }
+
     console.log(`✅ Welcome email sent to ${email}`);
     return true;
   } catch (error) {

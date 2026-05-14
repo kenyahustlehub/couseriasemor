@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const uri = process.env.MONGODB_URI;
 let client;
@@ -9,8 +9,9 @@ async function connectToDatabase() {
   }
 
   client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    serverApi: ServerApiVersion.v1,
+    connectTimeoutMS: 10000,
+    socketTimeoutMS: 45000,
   });
 
   await client.connect();
