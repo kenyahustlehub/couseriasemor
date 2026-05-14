@@ -46,9 +46,6 @@ app.post('/api/register', async (req, res) => {
       email,
       password,
       expertise,
-      isVerified: true,
-      verificationCode: null,
-      verifiedAt: new Date().toISOString(),
     });
 
     console.log(`✅ User registered: ${email}`);
