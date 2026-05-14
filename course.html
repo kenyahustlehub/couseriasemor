@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course - COUSERIASEMOR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-brand">
+                <span class="logo-icon">🚀</span>
+                <span class="logo-text">COUSERIASEMOR</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="courses.html" class="nav-link">Courses</a></li>
+                <li><a href="#progress" class="nav-link">Progress</a></li>
+                <li id="authLinks"></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="course-header">
+        <div class="course-info">
+            <div class="course-category">AI & Automation</div>
+            <h1 class="course-title" id="courseTitle">AI Tools Mastery</h1>
+            <p class="course-description" id="courseDescription">Complete guide to AI productivity tools, ChatGPT, Midjourney, and workflow automation.</p>
+            <div class="course-stats">
+                <span class="stat-item">⭐ 4.8 (2.1k reviews)</span>
+                <span class="stat-item">👥 15,000+ students</span>
+                <span class="stat-item">⏱️ 8 hours total</span>
+                <span class="stat-item">📄 25 lessons</span>
+            </div>
+        </div>
+        <div class="course-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div class="progress-text">
+                <span id="progressPercent">0%</span> Complete
+            </div>
+        </div>
+    </div>
+
+    <div class="course-content">
+        <div class="course-sidebar">
+            <div class="sidebar-section">
+                <h3>Course Content</h3>
+                <div class="lessons-list" id="lessonsList">
+                    <!-- Lessons will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <div class="course-main">
+            <div class="lesson-player" id="lessonPlayer">
+                <div class="lesson-header">
+                    <h2 id="currentLessonTitle">Welcome to AI Tools Mastery</h2>
+                    <div class="lesson-meta">
+                        <span class="lesson-duration">5 min</span>
+                        <span class="lesson-type">Video</span>
+                    </div>
+                </div>
+
+                <div class="video-container" id="videoContainer">
+                    <div class="video-placeholder">
+                        <div class="play-button" onclick="playVideo()">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="white">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="video-info">
+                            <h3>Introduction to AI Tools</h3>
+                            <p>Get started with the fundamentals of AI productivity tools</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-content">
+                    <div class="lesson-description" id="lessonDescription">
+                        <p>Welcome to the AI Tools Mastery course! In this comprehensive program, you'll learn how to leverage artificial intelligence to supercharge your productivity and creativity.</p>
+
+                        <p>This course covers:</p>
+                        <ul>
+                            <li>Understanding AI fundamentals and capabilities</li>
+                            <li>Mastering ChatGPT for content creation and problem-solving</li>
+                            <li>Using Midjourney and DALL-E for visual content</li>
+                            <li>Building AI-powered workflows</li>
+                            <li>Ethical considerations and best practices</li>
+                        </ul>
+                    </div>
+
+                    <div class="lesson-resources" id="lessonResources">
+                        <h4>Resources</h4>
+                        <div class="resource-list">
+                            <div class="resource-item">
+                                <span class="resource-icon">📄</span>
+                                <a href="#" class="resource-link">Course Syllabus (PDF)</a>
+                            </div>
+                            <div class="resource-item">
+                                <span class="resource-icon">📋</span>
+                                <a href="#" class="resource-link">AI Tools Checklist</a>
+                            </div>
+                            <div class="resource-item">
+                                <span class="resource-icon">🔗</span>
+                                <a href="#" class="resource-link">Recommended AI Tools</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-navigation">
+                    <button class="btn-nav btn-prev" id="prevLesson" disabled>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                        </svg>
+                        Previous
+                    </button>
+                    <button class="btn-nav btn-next" id="nextLesson">
+                        Next
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="course.js"></script>
+</body>
+</html>

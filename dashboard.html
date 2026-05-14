@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - COUSERIASEMOR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-brand">
+                <span class="logo-icon">🚀</span>
+                <span class="logo-text">COUSERIASEMOR</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+                <li><a href="courses.html" class="nav-link">Courses</a></li>
+                <li><a href="#resources" class="nav-link">Resources</a></li>
+                <li><a href="#goals" class="nav-link">Progress</a></li>
+                <li id="authLinks"></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero welcome-hero">
+        <div class="hero-content">
+            <span class="badge">Member Hub</span>
+            <h1 class="hero-title">Hello, <span id="welcomeName">Learner</span></h1>
+            <p class="hero-subtitle">This is your COUSERIASEMOR dashboard. Access your learning path, quick-action resources, and growth progress in one place.</p>
+            <div class="hero-actions">
+                <a href="courses.html" class="btn btn-primary btn-large">Browse All Courses</a>
+                <a href="#progress" class="btn btn-outline">View My Progress</a>
+            </div>
+            <p class="hero-note">Your profile is saved locally so you can pick up where you left off. Stay focused on remote income, freelancing, and real projects.</p>
+        </div>
+        <div class="hero-image welcome-image">
+            <div class="code-box">
+                <div class="code-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <pre class="code-text">// COUSERIASEMOR Dashboard
+const mission = {
+  learn: true,
+  earn: true,
+  build: true,
+};
+
+return mission;</pre>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="solutions">
+        <div class="section-header">
+            <h2>My Learning Path</h2>
+            <p>Continue your courses and track your progress towards new skills.</p>
+        </div>
+        <div class="solutions-grid">
+            <div class="solution-card enrolled-course" onclick="openCourse('ai-mastery')">
+                <div class="course-progress-indicator">
+                    <div class="progress-circle">
+                        <span id="aiProgress">0%</span>
+                    </div>
+                </div>
+                <h3>AI Tools Mastery</h3>
+                <p>Master AI productivity tools, ChatGPT, Midjourney, and workflow automation.</p>
+                <div class="course-status">
+                    <span class="status-badge">In Progress</span>
+                    <span class="lessons-completed" id="aiCompleted">0/25 lessons</span>
+                </div>
+            </div>
+            <div class="solution-card available-course" onclick="openCourse('web-dev')">
+                <div class="course-icon-large">🌐</div>
+                <h3>Modern Web Development</h3>
+                <p>Build responsive websites with HTML, CSS, JavaScript, and modern frameworks.</p>
+                <div class="course-status">
+                    <span class="status-badge available">Available</span>
+                    <span class="course-duration">12 hours</span>
+                </div>
+            </div>
+            <div class="solution-card available-course" onclick="openCourse('freelance')">
+                <div class="course-icon-large">💸</div>
+                <h3>Freelancing Mastery</h3>
+                <p>Launch your freelance career with client acquisition, pricing, and project management.</p>
+                <div class="course-status">
+                    <span class="status-badge available">Available</span>
+                    <span class="course-duration">6 hours</span>
+                </div>
+            </div>
+            <div class="solution-card">
+                <div class="coming-soon-badge">Coming Soon</div>
+                <h3>Cybersecurity Essentials</h3>
+                <p>Learn essential security practices for remote work and digital safety.</p>
+                <div class="course-status">
+                    <span class="status-badge soon">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resources" class="features">
+        <div class="section-header">
+            <h2>Quick resources</h2>
+            <p>Download these guides and tools to move faster in your learning and income journey.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">📄</div>
+                <h3>Starter Guide</h3>
+                <p>Follow the onboarding checklist for remote earning, client work, and project goals.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🧠</div>
+                <h3>AI Prompt Pack</h3>
+                <p>Use these prompts to generate marketing copy, client proposals, and productivity workflows.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📈</div>
+                <h3>Progress Tracker</h3>
+                <p>Track the skills you’re developing and the work milestones you’ve already completed.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💼</div>
+                <h3>Freelance Checklist</h3>
+                <p>Use this list when you build your first service, set pricing, and deliver value to clients.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="goals" class="stats">
+        <div class="stats-container">
+            <div class="stat">
+                <h3 id="completedModules">3</h3>
+                <p>Modules completed</p>
+            </div>
+            <div class="stat">
+                <h3 id="activeProjects">1</h3>
+                <p>Active project goals</p>
+            </div>
+            <div class="stat">
+                <h3 id="weeklyHours">7</h3>
+                <p>Hours this week</p>
+            </div>
+            <div class="stat">
+                <h3 id="nextMilestone">Pitch ready</h3>
+                <p>Next milestone</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Keep moving forward</h2>
+            <p>Continue your growth with the next action on your path. Use the dashboard to focus on real work and remote income skills.</p>
+            <a href="#courses" class="btn btn-primary">Open Learning Path</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>COUSERIASEMOR</h4>
+                <p>Your workspace for practical skill growth, high-impact projects, and remote income success.</p>
+            </div>
+            <div class="footer-section">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="#">support@couseriasemor.com</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 COUSERIASEMOR. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

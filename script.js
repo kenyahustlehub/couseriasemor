@@ -43,16 +43,20 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
         const data = await response.json();
 
         if (response.ok) {
-            // Store registration data for verification
-            registrationData = { fullName, email, password, expertise };
-            
-            // Show verification form
-            document.getElementById('registrationSection').style.display = 'none';
-            document.getElementById('verificationSection').style.display = 'block';
-            document.getElementById('verifyEmail').textContent = email;
-            document.getElementById('verificationCode').focus();
-            
-            showVerificationMessage('✅ Check your email for the verification code!', 'success');
+            // Store token and welcome details
+            if (data.token) {
+                localStorage.setItem('authToken', data.token);
+            }
+            if (data.user && data.user.expertise) {
+                localStorage.setItem('authExpertise', data.user.expertise);
+            }
+            localStorage.setItem('welcomeName', data.user.fullName || 'Learner');
+
+            showMessage('🎉 Account created! Redirecting to your dashboard...', 'success');
+
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1800);
         } else {
             showMessage(data.message || 'Registration failed', 'error');
         }
@@ -61,60 +65,14 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
     }
 });
 
-// Email Verification Form Handler
-document.getElementById('verificationForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const email = registrationData.email;
-    const verificationCode = document.getElementById('verificationCode').value.trim();
-
-    if (!verificationCode || verificationCode.length !== 6) {
-        showVerificationMessage('Please enter a valid 6-digit code', 'error');
-        return;
-    }
-
-    try {
-        const response = await fetch('/api/verify-email', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email,
-                verificationCode,
-            }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            // Store token and welcome details
-            if (data.token) {
-                localStorage.setItem('authToken', data.token);
-            }
-            localStorage.setItem('welcomeName', data.user.fullName || 'Learner');
-            
-            showVerificationMessage('🎉 Email verified! Redirecting to your welcome page...', 'success');
-            
-            setTimeout(() => {
-                window.location.href = 'welcome.html';
-            }, 1800);
-        } else {
-            showVerificationMessage(data.message || 'Verification failed', 'error');
-        }
-    } catch (error) {
-        showVerificationMessage('Error: ' + error.message, 'error');
-    }
+// Google Signup Handler
+document.getElementById('googleSignup').addEventListener('click', () => {
+    // For now, just show a message that Google signup is coming soon
+    showMessage('Google signup coming soon! Please use the form below.', 'info');
 });
 
 function showMessage(message, type) {
     const messageDiv = document.getElementById('message');
-    messageDiv.textContent = message;
-    messageDiv.className = 'message ' + type;
-}
-
-function showVerificationMessage(message, type) {
-    const messageDiv = document.getElementById('verificationMessage');
     messageDiv.textContent = message;
     messageDiv.className = 'message ' + type;
 }
@@ -124,51 +82,13 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-function goBackToRegister(e) {
-    e.preventDefault();
-    document.getElementById('registrationSection').style.display = 'block';
-    document.getElementById('verificationSection').style.display = 'none';
-    document.getElementById('registrationForm').reset();
-    document.getElementById('message').textContent = '';
-}
-
-async function resendCode(e) {
-    e.preventDefault();
-
-    if (!registrationData.email) {
-        showVerificationMessage('No registration email found. Please register again.', 'error');
-        return;
-    }
-
-    showVerificationMessage('📧 Resending code to ' + registrationData.email + '...', 'info');
-
-    try {
-        const response = await fetch('/api/resend-verification', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: registrationData.email }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok && data.requiresVerification) {
-            showVerificationMessage('✅ New code sent! Check your email.', 'success');
-        } else {
-            showVerificationMessage(data.message || 'Failed to resend code', 'error');
-        }
-    } catch (error) {
-        showVerificationMessage('Error: ' + error.message, 'error');
-    }
-}
-
 // Logout functionality
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains('logout-link')) {
         e.preventDefault();
         localStorage.removeItem('authToken');
         localStorage.removeItem('welcomeName');
+        localStorage.removeItem('authExpertise');
         window.location.href = 'login.html';
     }
 });

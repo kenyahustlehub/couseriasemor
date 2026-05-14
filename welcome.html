@@ -17,6 +17,7 @@
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="register.html" class="nav-link">Register</a></li>
         <li><a href="login.html" class="nav-link">Login</a></li>
+        <li id="authLinks"></li>
       </ul>
     </div>
   </nav>
@@ -26,7 +27,8 @@
       <span class="badge">Welcome Aboard</span>
       <h1 class="hero-title">Welcome, <span id="welcomeName">Learner</span>!</h1>
       <p class="hero-subtitle">Your COUSERIASEMOR account is active. The platform is growing into a full remote income and employability learning hub.</p>
-      <a href="index.html" class="btn btn-primary btn-large">Explore the Launchpad</a>
+      <a href="dashboard.html" class="btn btn-primary btn-large">Open Your Dashboard</a>
+      <a href="index.html" class="btn btn-outline">Return to Home</a>
       <p class="hero-note">While the full platform is coming soon, your account is ready. Check your email for updates, resources, and early access news.</p>
     </div>
     <div class="hero-image welcome-image">
@@ -106,8 +108,31 @@ return future;</pre>
   </footer>
 
   <script>
+    const authLinks = document.getElementById('authLinks');
+    const authToken = localStorage.getItem('authToken');
     const welcomeName = localStorage.getItem('welcomeName') || 'Learner';
+
+    if (!authToken) {
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 3000);
+    }
+
+    if (authLinks && authToken) {
+      authLinks.innerHTML = `<a href="#" class="nav-link logout-link">Logout</a> <span class="nav-link">${welcomeName}</span>`;
+    }
+
     document.getElementById('welcomeName').textContent = welcomeName;
+
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('logout-link')) {
+        e.preventDefault();
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('welcomeName');
+        localStorage.removeItem('authExpertise');
+        window.location.href = 'login.html';
+      }
+    });
   </script>
 </body>
 </html>

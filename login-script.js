@@ -24,11 +24,15 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
-            localStorage.setItem('token', data.token);
-            showMessage('Login successful! Redirecting to dashboard...', 'success');
+            localStorage.setItem('authToken', data.token);
+            localStorage.setItem('welcomeName', data.user.fullName || 'Learner');
+            if (data.user && data.user.expertise) {
+                localStorage.setItem('authExpertise', data.user.expertise);
+            }
+            showMessage('Login successful! Redirecting to your dashboard...', 'success');
             setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 2000);
+                window.location.href = 'dashboard.html';
+            }, 1600);
         } else {
             // Check if this is an email verification error
             if (response.status === 403 && data.requiresVerification) {

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - COUSERIASEMOR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-brand">
+                <span class="logo-icon">🚀</span>
+                <span class="logo-text">COUSERIASEMOR</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="courses.html" class="nav-link active">Courses</a></li>
+                <li><a href="#resources" class="nav-link">Resources</a></li>
+                <li><a href="#progress" class="nav-link">Progress</a></li>
+                <li id="authLinks"></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">Learning Platform</span>
+            <h1 class="hero-title">Master New Skills</h1>
+            <p class="hero-subtitle">Access comprehensive courses with videos, interactive lessons, and downloadable resources. Learn at your own pace with modern, engaging content.</p>
+            <div class="hero-actions">
+                <a href="#courses" class="btn btn-primary btn-large">Browse Courses</a>
+                <a href="#categories" class="btn btn-outline">View Categories</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="launch-card">
+                <div class="launch-header">
+                    <span class="badge">Featured</span>
+                    <p>Complete courses with video lessons, practical exercises, and certification.</p>
+                </div>
+                <div class="launch-grid">
+                    <div>
+                        <h4>🎥 Video Lessons</h4>
+                        <p>High-quality video content with expert instructors</p>
+                    </div>
+                    <div>
+                        <h4>📚 Interactive Content</h4>
+                        <p>Quizzes, exercises, and hands-on projects</p>
+                    </div>
+                    <div>
+                        <h4>📄 Downloadable Resources</h4>
+                        <p>PDF guides, cheat sheets, and project templates</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="solutions">
+        <div class="section-header">
+            <h2>Course Categories</h2>
+            <p>Explore our comprehensive learning paths designed for different skill levels and career goals.</p>
+        </div>
+        <div class="solutions-grid">
+            <div class="solution-card category-card" data-category="ai">
+                <h3>🤖 AI & Automation</h3>
+                <p>Master AI tools, prompt engineering, and workflow automation for modern productivity.</p>
+                <div class="category-stats">
+                    <span>12 Courses</span>
+                    <span>Beginner to Advanced</span>
+                </div>
+            </div>
+            <div class="solution-card category-card" data-category="programming">
+                <h3>💻 Programming & Development</h3>
+                <p>Learn coding, web development, and software engineering with practical projects.</p>
+                <div class="category-stats">
+                    <span>18 Courses</span>
+                    <span>All Levels</span>
+                </div>
+            </div>
+            <div class="solution-card category-card" data-category="business">
+                <h3>💼 Business & Freelancing</h3>
+                <p>Build business skills, freelancing expertise, and entrepreneurial mindset.</p>
+                <div class="category-stats">
+                    <span>15 Courses</span>
+                    <span>Practical Focus</span>
+                </div>
+            </div>
+            <div class="solution-card category-card" data-category="design">
+                <h3>🎨 Design & Creative</h3>
+                <p>Master design tools, content creation, and visual communication skills.</p>
+                <div class="category-stats">
+                    <span>10 Courses</span>
+                    <span>Creative Focus</span>
+                </div>
+            </div>
+            <div class="solution-card category-card" data-category="data">
+                <h3>📊 Data & Analytics</h3>
+                <p>Learn data analysis, Excel mastery, and business intelligence tools.</p>
+                <div class="category-stats">
+                    <span>8 Courses</span>
+                    <span>Job Ready</span>
+                </div>
+            </div>
+            <div class="solution-card category-card" data-category="security">
+                <h3>🛡️ Cybersecurity</h3>
+                <p>Essential security knowledge for remote workers and digital professionals.</p>
+                <div class="category-stats">
+                    <span>6 Courses</span>
+                    <span>Security First</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="courses">
+        <div class="section-header">
+            <h2>Featured Courses</h2>
+            <p>Start with our most popular and highly-rated courses to build your skills foundation.</p>
+        </div>
+        <div class="courses-grid">
+            <div class="course-card featured-course" data-course="ai-mastery">
+                <div class="course-badge">Bestseller</div>
+                <div class="course-icon">🤖</div>
+                <h3>AI Tools Mastery</h3>
+                <p>Complete guide to AI productivity tools, ChatGPT, Midjourney, and workflow automation.</p>
+                <div class="course-meta">
+                    <span class="duration">8 hours</span>
+                    <span class="level">Beginner</span>
+                    <span class="rating">⭐ 4.8 (2.1k)</span>
+                </div>
+                <div class="course-price">
+                    <span class="original-price">$99</span>
+                    <span class="current-price">Free</span>
+                </div>
+                <button class="btn-course" onclick="openCourse('ai-mastery')">Start Course</button>
+            </div>
+
+            <div class="course-card featured-course" data-course="web-dev">
+                <div class="course-badge">Popular</div>
+                <div class="course-icon">🌐</div>
+                <h3>Modern Web Development</h3>
+                <p>Build responsive websites with HTML, CSS, JavaScript, and modern frameworks.</p>
+                <div class="course-meta">
+                    <span class="duration">12 hours</span>
+                    <span class="level">Intermediate</span>
+                    <span class="rating">⭐ 4.9 (1.8k)</span>
+                </div>
+                <div class="course-price">
+                    <span class="original-price">$149</span>
+                    <span class="current-price">Free</span>
+                </div>
+                <button class="btn-course" onclick="openCourse('web-dev')">Start Course</button>
+            </div>
+
+            <div class="course-card featured-course" data-course="freelance">
+                <div class="course-badge">New</div>
+                <div class="course-icon">💸</div>
+                <h3>Freelancing Mastery</h3>
+                <p>Launch your freelance career with client acquisition, pricing, and project management.</p>
+                <div class="course-meta">
+                    <span class="duration">6 hours</span>
+                    <span class="level">All Levels</span>
+                    <span class="rating">⭐ 4.7 (950)</span>
+                </div>
+                <div class="course-price">
+                    <span class="original-price">$79</span>
+                    <span class="current-price">Free</span>
+                </div>
+                <button class="btn-course" onclick="openCourse('freelance')">Start Course</button>
+            </div>
+
+            <div class="course-card featured-course" data-course="data-excel">
+                <div class="course-icon">📊</div>
+                <h3>Excel for Business</h3>
+                <p>Master Excel for data analysis, reporting, and business intelligence.</p>
+                <div class="course-meta">
+                    <span class="duration">10 hours</span>
+                    <span class="level">Beginner</span>
+                    <span class="rating">⭐ 4.6 (1.2k)</span>
+                </div>
+                <div class="course-price">
+                    <span class="original-price">$89</span>
+                    <span class="current-price">Free</span>
+                </div>
+                <button class="btn-course" onclick="openCourse('data-excel')">Start Course</button>
+            </div>
+
+            <div class="course-card featured-course" data-course="design-figma">
+                <div class="course-icon">🎨</div>
+                <h3>UI/UX Design with Figma</h3>
+                <p>Create beautiful user interfaces and user experiences with modern design tools.</p>
+                <div class="course-meta">
+                    <span class="duration">9 hours</span>
+                    <span class="level">Beginner</span>
+                    <span class="rating">⭐ 4.8 (890)</span>
+                </div>
+                <div class="course-price">
+                    <span class="original-price">$119</span>
+                    <span class="current-price">Free</span>
+                </div>
+                <button class="btn-course" onclick="openCourse('design-figma')">Start Course</button>
+            </div>
+
+            <div class="course-card featured-course" data-course="cybersecurity">
+                <div class="course-icon">🛡️</div>
+                <h3>Cybersecurity Essentials</h3>
+                <p>Learn essential security practices for remote work and digital safety.</p>
+                <div class="course-meta">
+                    <span class="duration">7 hours</span>
+                    <span class="level">Beginner</span>
+                    <span class="rating">⭐ 4.5 (650)</span>
+                </div>
+                <div class="course-price">
+                    <span class="original-price">$69</span>
+                    <span class="current-price">Free</span>
+                </div>
+                <button class="btn-course" onclick="openCourse('cybersecurity')">Start Course</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>COUSERIASEMOR</h4>
+                <p>Your complete learning platform for modern skills and remote income.</p>
+            </div>
+            <div class="footer-section">
+                <h5>Learning</h5>
+                <ul>
+                    <li><a href="#courses">All Courses</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#progress">My Progress</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 COUSERIASEMOR. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="courses.js"></script>
+</body>
+</html>
