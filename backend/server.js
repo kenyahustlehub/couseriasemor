@@ -4,47 +4,39 @@ const express = require('express');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const path = require('path');
-const { connectToDatabase } = require('./db');
 const {
-  generateVerificationCode,
   sendVerificationEmail,
   sendWelcomeEmail,
   emailAvailable,
 } = require('./mail');
+const {
+  loadUsers,
+  findUserByEmail,
+  createUser,
+  updateUser,
+} = require('./storage');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const publicPath = path.join(__dirname, '..');
 
-let users = [];
-let usersCollection = null;
+// Hardcoded verification code for easy management
+const VERIFICATION_CODE = '404315';
 
 app.use(compression());
 app.use(bodyParser.json());
 app.use(express.static(publicPath, { maxAge: '30d' }));
 
-async function initializeDatabase() {
-  if (!process.env.MONGODB_URI) {
-    const message = '❌ MONGODB_URI is not set.';
-    console.warn(message + ' Running in fallback in-memory mode.');
-    return;
-  }
-
-  try {
-    usersCollection = await connectToDatabase();
-    console.log('✅ Connected to MongoDB successfully.');
-  } catch (error) {
-    console.error('❌ Failed to connect to MongoDB:', error.message);
-    console.warn('⚠️  Falling back to in-memory user storage.');
-    usersCollection = null;
-  }
+function initializeStorage() {
+  console.log('✅ Using JSON file storage at backend/users.json');
+  console.log('📝 User registrations will be saved to JSON file.');
 }
 
 function createToken(user) {
   return Buffer.from(`${user.id}:${user.email}`).toString('base64');
 }
 
-// Register endpoint - creates user and auto-logs them in (skip verification for now)
+// Register endpoint - sends verification code 404315 and auto-verifies
 app.post('/api/register', async (req, res) => {
   const { fullName, email, password, expertise } = req.body;
 
@@ -54,41 +46,33 @@ app.post('/api/register', async (req, res) => {
 
   try {
     // Check if email already exists
-    if (usersCollection) {
-      const existingUser = await usersCollection.findOne({ email });
-      if (existingUser) {
-        return res.status(400).json({ message: 'Email already registered' });
-      }
-    } else {
-      if (users.find((u) => u.email === email)) {
-        return res.status(400).json({ message: 'Email already registered' });
-      }
+    const existingUser = findUserByEmail(email);
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email already registered' });
     }
 
-    // Create user (skip verification for now)
-    const user = {
+    // Send verification code 404315 to email
+    console.log(`📧 Sending verification code to ${email}...`);
+    await sendVerificationEmail(email, VERIFICATION_CODE, fullName);
+
+    // Create user and auto-verify (code is already in the email)
+    const user = createUser({
       fullName,
       email,
       password,
       expertise,
-      isVerified: true, // Skip verification
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    };
+      isVerified: true, // Auto-verify
+      verificationCode: VERIFICATION_CODE,
+      verifiedAt: new Date().toISOString(),
+    });
 
-    if (usersCollection) {
-      const result = await usersCollection.insertOne(user);
-      user.id = result.insertedId.toString();
-    } else {
-      user.id = Date.now().toString();
-      users.push(user);
-    }
+    console.log(`✅ User registered: ${email} (auto-verified)`);
 
     // Create token for auto-login
     const token = createToken({ id: user.id, email: user.email });
 
     res.status(201).json({
-      message: 'Account created successfully! Welcome to COUSERIASEMOR!',
+      message: 'Account created successfully! Verification code sent to your email. Welcome to COUSERIASEMOR!',
       token,
       user: {
         id: user.id,
@@ -243,7 +227,7 @@ app.post('/api/resend-verification', async (req, res) => {
   }
 });
 
-// Login endpoint - checks if email is verified (skip for now)
+// Login endpoint
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -252,26 +236,28 @@ app.post('/api/login', async (req, res) => {
   }
 
   try {
-    let user;
+    const user = findUserByEmail(email);
 
-    if (usersCollection) {
-      user = await usersCollection.findOne({ email, password });
-    } else {
-      user = users.find((u) => u.email === email && u.password === password);
-    }
-
-    if (!user) {
+    if (!user || user.password !== password) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // Skip verification check for now
-    const userId = user.id || (user._id ? user._id.toString() : null);
-    const token = createToken({ id: userId, email: user.email });
+    // Check if user is verified
+    if (!user.isVerified) {
+      return res.status(403).json({
+        message: 'Email not verified. Verification code ' + VERIFICATION_CODE + ' has been sent to your email.',
+        requiresVerification: true,
+        email,
+      });
+    }
+
+    const token = createToken({ id: user.id, email: user.email });
+    console.log(`✅ User logged in: ${email}`);
     res.json({
       message: 'Login successful',
       token,
       user: {
-        id: userId,
+        id: user.id,
         fullName: user.fullName,
         email: user.email,
         expertise: user.expertise,
@@ -283,15 +269,18 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-app.get('/api/users', async (req, res) => {
-  if (usersCollection) {
-    const allUsers = await usersCollection
-      .find({}, { projection: { password: 0, verificationCode: 0 } })
-      .toArray();
-    return res.json({ users: allUsers });
-  }
-
-  res.json({ users });
+app.get('/api/users', (req, res) => {
+  const allUsers = loadUsers();
+  // Don't send passwords or sensitive data
+  const safeUsers = allUsers.map((u) => ({
+    id: u.id,
+    fullName: u.fullName,
+    email: u.email,
+    expertise: u.expertise,
+    isVerified: u.isVerified,
+    createdAt: u.createdAt,
+  }));
+  res.json({ users: safeUsers, total: allUsers.length });
 });
 
 app.get('/', (req, res) => {
@@ -342,11 +331,12 @@ app.get('/api/debug/test-email', async (req, res) => {
   }
 });
 
-app.listen(PORT, '0.0.0.0', async () => {
-  await initializeDatabase();
+app.listen(PORT, '0.0.0.0', () => {
+  initializeStorage();
   console.log(`\n✨ COUSERIASEMOR server is running at http://0.0.0.0:${PORT}`);
   console.log(`🌐 Network access: http://YOUR_IP_ADDRESS:${PORT}`);
   console.log('📁 Backend logic is now isolated in /backend');
   console.log('⚡ Static files are served with compression and cache headers.');
   console.log(`📧 Email verification ${emailAvailable ? 'enabled' : 'disabled'}${emailAvailable ? '' : ' (will skip email sending until configured)'}`);
+  console.log(`🔐 Verification code: ${VERIFICATION_CODE}`);
 });
