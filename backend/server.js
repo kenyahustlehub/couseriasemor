@@ -47,7 +47,7 @@ function createToken(user) {
   return Buffer.from(`${user.id}:${user.email}`).toString('base64');
 }
 
-// Register endpoint - creates unverified user and sends verification email
+// Register endpoint - creates user and auto-logs them in (skip verification for now)
 app.post('/api/register', async (req, res) => {
   const { fullName, email, password, expertise } = req.body;
 
@@ -68,19 +68,13 @@ app.post('/api/register', async (req, res) => {
       }
     }
 
-    // Generate verification code
-    const verificationCode = generateVerificationCode();
-    const codeExpiresAt = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
-
-    // Create user with unverified status
+    // Create user (skip verification for now)
     const user = {
       fullName,
       email,
       password,
       expertise,
-      isVerified: false,
-      verificationCode,
-      codeExpiresAt,
+      isVerified: true, // Skip verification
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
@@ -93,26 +87,19 @@ app.post('/api/register', async (req, res) => {
       users.push(user);
     }
 
-    // Send verification email
-    const emailSent = await sendVerificationEmail(email, verificationCode, fullName);
-
-    if (!emailSent) {
-      if (usersCollection) {
-        await usersCollection.deleteOne({ email });
-      } else {
-        users = users.filter((u) => u.email !== email);
-      }
-      return res.status(500).json({ 
-        message: 'Registration failed: Could not send verification email. Please check your email configuration.' 
-      });
-    }
+    // Create token for auto-login
+    const token = createToken({ id: user.id, email: user.email });
 
     res.status(201).json({
-      message: 'Registration successful! Check your email for the verification code.',
-        email,
-        requiresVerification: true,
-      });
-    }
+      message: 'Account created successfully! Welcome to COUSERIASEMOR!',
+      token,
+      user: {
+        id: user.id,
+        fullName: user.fullName,
+        email: user.email,
+        expertise: user.expertise,
+      },
+    });
   } catch (error) {
     console.error('Registration error:', error);
     res.status(500).json({ message: 'Registration failed. Please try again.' });
@@ -259,7 +246,7 @@ app.post('/api/resend-verification', async (req, res) => {
   }
 });
 
-// Login endpoint - checks if email is verified
+// Login endpoint - checks if email is verified (skip for now)
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -280,14 +267,7 @@ app.post('/api/login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    if (!user.isVerified) {
-      return res.status(403).json({ 
-        message: 'Please verify your email first. Check your inbox for the verification code.',
-        email,
-        requiresVerification: true
-      });
-    }
-
+    // Skip verification check for now
     const userId = user.id || (user._id ? user._id.toString() : null);
     const token = createToken({ id: userId, email: user.email });
     res.json({
