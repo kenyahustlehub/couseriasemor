@@ -21,6 +21,7 @@ const courses = {
         title: 'AI Tools Mastery',
         description: 'Complete guide to AI productivity tools, ChatGPT, Midjourney, and workflow automation.',
         category: 'AI & Automation',
+        assetFolder: 'Ai tools mastery',
         totalLessons: 25,
         totalDuration: '8 hours',
         rating: '4.8',
@@ -29,15 +30,16 @@ const courses = {
         lessons: [
             {
                 id: 1,
-                title: 'Welcome to AI Tools Mastery',
-                duration: '5 min',
+                title: 'Write a Contract for Business',
+                duration: '8 min',
                 type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
                 completed: false,
-                videoUrl: 'https://example.com/video1.mp4',
-                description: 'Welcome to the AI Tools Mastery course! In this comprehensive program, you\'ll learn how to leverage artificial intelligence to supercharge your productivity and creativity.',
+                videoUrl: '008 Write a Contract for Business.mp4',
+                description: 'Learn how to draft a business contract clearly and confidently for your AI services and products.',
                 resources: [
-                    { type: 'pdf', name: 'Course Syllabus', url: 'syllabus.pdf' },
-                    { type: 'pdf', name: 'AI Tools Checklist', url: 'checklist.pdf' },
+                    { type: 'pdf', name: 'Course Syllabus', url: 'course-syllabus.pdf' },
+                    { type: 'pdf', name: 'AI Tools Checklist', url: 'ai-tools-checklist.pdf' },
                     { type: 'link', name: 'Recommended AI Tools', url: 'https://tools.example.com' }
                 ]
             },
@@ -46,11 +48,12 @@ const courses = {
                 title: 'Understanding AI Fundamentals',
                 duration: '12 min',
                 type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
                 completed: false,
-                videoUrl: 'https://example.com/video2.mp4',
+                videoUrl: 'lesson-2.mp4',
                 description: 'Learn the basics of artificial intelligence, machine learning, and how AI tools work behind the scenes.',
                 resources: [
-                    { type: 'pdf', name: 'AI Fundamentals Guide', url: 'ai-fundamentals.pdf' }
+                    { type: 'pdf', name: 'AI Fundamentals Guide', url: 'ai-fundamentals-guide.pdf' }
                 ]
             },
             {
@@ -58,11 +61,12 @@ const courses = {
                 title: 'Getting Started with ChatGPT',
                 duration: '15 min',
                 type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
                 completed: false,
-                videoUrl: 'https://example.com/video3.mp4',
+                videoUrl: 'lesson-3.mp4',
                 description: 'Master the art of prompt engineering and learn how to get the best results from ChatGPT.',
                 resources: [
-                    { type: 'pdf', name: 'Prompt Engineering Guide', url: 'prompt-guide.pdf' },
+                    { type: 'pdf', name: 'Prompt Engineering Guide', url: 'prompt-engineering-guide.pdf' },
                     { type: 'pdf', name: 'ChatGPT Templates', url: 'chatgpt-templates.pdf' }
                 ]
             },
@@ -71,11 +75,12 @@ const courses = {
                 title: 'Creating Content with AI',
                 duration: '18 min',
                 type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
                 completed: false,
-                videoUrl: 'https://example.com/video4.mp4',
+                videoUrl: 'lesson-4.mp4',
                 description: 'Use AI to generate blog posts, social media content, marketing copy, and more.',
                 resources: [
-                    { type: 'pdf', name: 'Content Creation Templates', url: 'content-templates.pdf' }
+                    { type: 'pdf', name: 'Content Creation Templates', url: 'content-creation-templates.pdf' }
                 ]
             },
             {
@@ -83,11 +88,12 @@ const courses = {
                 title: 'AI Image Generation with Midjourney',
                 duration: '20 min',
                 type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
                 completed: false,
-                videoUrl: 'https://example.com/video5.mp4',
+                videoUrl: 'lesson-5.mp4',
                 description: 'Create stunning visuals and artwork using AI-powered image generation tools.',
                 resources: [
-                    { type: 'pdf', name: 'Midjourney Prompt Guide', url: 'midjourney-guide.pdf' }
+                    { type: 'pdf', name: 'Midjourney Prompt Guide', url: 'midjourney-prompt-guide.pdf' }
                 ]
             }
         ]
@@ -96,6 +102,7 @@ const courses = {
         title: 'Modern Web Development',
         description: 'Build responsive websites with HTML, CSS, JavaScript, and modern frameworks.',
         category: 'Programming & Development',
+        assetFolder: 'Modern web development',
         totalLessons: 30,
         totalDuration: '12 hours',
         rating: '4.9',
@@ -108,10 +115,10 @@ const courses = {
                 duration: '8 min',
                 type: 'video',
                 completed: false,
-                videoUrl: 'https://example.com/web1.mp4',
+                videoUrl: 'lesson-1.mp4',
                 description: 'Learn what web development is and why it\'s an essential skill in today\'s digital world.',
                 resources: [
-                    { type: 'pdf', name: 'Web Dev Roadmap', url: 'web-roadmap.pdf' }
+                    { type: 'pdf', name: 'Web Dev Roadmap', url: 'web-dev-roadmap.pdf' }
                 ]
             }
         ]
@@ -120,6 +127,7 @@ const courses = {
         title: 'Freelancing Mastery',
         description: 'Launch your freelance career with client acquisition, pricing, and project management.',
         category: 'Business & Freelancing',
+        assetFolder: 'Freelancing mastery',
         totalLessons: 20,
         totalDuration: '6 hours',
         rating: '4.7',
@@ -132,10 +140,10 @@ const courses = {
                 duration: '10 min',
                 type: 'video',
                 completed: false,
-                videoUrl: 'https://example.com/freelance1.mp4',
+                videoUrl: 'lesson-1.mp4',
                 description: 'Develop the right mindset for freelancing success and learn what it takes to be a successful freelancer.',
                 resources: [
-                    { type: 'pdf', name: 'Freelancer Mindset Guide', url: 'freelance-mindset.pdf' }
+                    { type: 'pdf', name: 'Freelancer Mindset Guide', url: 'freelancer-mindset-guide.pdf' }
                 ]
             }
         ]
@@ -144,6 +152,36 @@ const courses = {
 
 let currentLessonIndex = 0;
 let courseProgress = JSON.parse(localStorage.getItem(`courseProgress_${courseId}`)) || {};
+
+function getAssetUrl(course, fileName, subfolder) {
+    if (!fileName) return '';
+    if (/^(https?:)?\/\//.test(fileName) || fileName.startsWith('/')) {
+        return fileName;
+    }
+
+    let folderPath = `assets/${course.assetFolder}`;
+    if (subfolder) {
+        folderPath += `/${subfolder}`;
+    }
+
+    return encodeURI(`${folderPath}/${fileName}`);
+}
+
+function getResourceUrl(course, resource, lesson) {
+    if (!resource || !resource.url) return '#';
+    if (resource.type === 'link' || /^(https?:)?\/\//.test(resource.url) || resource.url.startsWith('/')) {
+        return resource.url;
+    }
+    return getAssetUrl(course, resource.url, lesson?.topicFolder);
+}
+
+function formatTopicName(topicFolder) {
+    if (!topicFolder) return '';
+    return topicFolder
+        .replace(/_/g, ' ')
+        .replace(/\s+,\s+/g, ', ')
+        .trim();
+}
 
 function initializeCourse() {
     const course = courses[courseId];
@@ -209,11 +247,18 @@ function loadLesson(index) {
     document.querySelector('.lesson-duration').textContent = lesson.duration;
     document.querySelector('.lesson-type').textContent = lesson.type.charAt(0).toUpperCase() + lesson.type.slice(1);
 
+    const courseTopicEl = document.getElementById('courseTopic');
+    if (courseTopicEl) {
+        const topicName = formatTopicName(lesson.topicFolder || course.topicFolder);
+        courseTopicEl.textContent = topicName ? `Topic: ${topicName}` : '';
+    }
+
     // Update video container
+    const videoUrl = getAssetUrl(course, lesson.videoUrl, lesson.topicFolder);
     const videoContainer = document.getElementById('videoContainer');
     videoContainer.innerHTML = `
         <div class="video-placeholder">
-            <div class="play-button" onclick="playVideo('${lesson.videoUrl}')">
+            <div class="play-button" onclick="playVideo('${videoUrl}')">
                 <svg width="60" height="60" viewBox="0 0 24 24" fill="white">
                     <path d="M8 5v14l11-7z"/>
                 </svg>
@@ -237,7 +282,7 @@ function loadLesson(index) {
                 ${lesson.resources.map(resource => `
                     <div class="resource-item">
                         <span class="resource-icon">${getResourceIcon(resource.type)}</span>
-                        <a href="${resource.url}" class="resource-link" ${resource.type === 'link' ? 'target="_blank"' : ''}>${resource.name}</a>
+                        <a href="${getResourceUrl(course, resource, lesson)}" class="resource-link" ${resource.type === 'link' ? 'target="_blank"' : ''}>${resource.name}</a>
                     </div>
                 `).join('')}
             </div>
