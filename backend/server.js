@@ -5,10 +5,12 @@ const compression = require('compression');
 const bodyParser = require('body-parser');
 const path = require('path');
 const {
+  initializeDb,
   loadUsers,
   findUserByEmail,
   createUser,
-} = require('./storage');
+  dbPath,
+} = require('./db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,8 +27,9 @@ app.use((req, res, next) => {
 app.use(express.static(publicPath, { maxAge: 0 }));
 
 function initializeStorage() {
-  console.log('✅ Using JSON file storage at backend/users.json');
-  console.log('📝 User registrations will be saved to JSON file.');
+  initializeDb();
+  console.log(`✅ Using SQLite storage at backend/${path.basename(dbPath)}`);
+  console.log('📝 User registrations will be saved to SQLite database.');
 }
 
 function createToken(user) {
