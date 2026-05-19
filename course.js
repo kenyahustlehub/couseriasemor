@@ -135,6 +135,71 @@ const courses = {
                     { type: 'pdf', name: 'AI Tools Integration Guide', url: 'ai-tools-checklist.html' },
                     { type: 'pdf', name: 'Workflow Automation Tips', url: 'content-creation-templates.html' }
                 ]
+            },
+            {
+                id: 7,
+                title: 'AI Voice Generation with Murf.ai',
+                duration: '14 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779196324/001_Murf.ai_AI_Voice_Generation_b19krz.mp4',
+                description: 'Explore AI voice generation using Murf.ai to create professional audio for presentations, videos, and marketing assets.',
+                resources: [
+                    { type: 'pdf', name: 'AI Tools Checklist', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 8,
+                title: 'AI Voice Generation with WellSaid Labs',
+                duration: '16 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779196320/002_Wellsaid_Labs_Turn_Written_Scripts_Into_Voice_l7u34q.mp4',
+                description: 'Turn written scripts into natural-sounding AI voiceovers using WellSaid Labs for content, ads, and video narration.',
+                resources: [
+                    { type: 'pdf', name: 'AI Voice Production Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 9,
+                title: 'Clone Your Voice with ElevenLabs',
+                duration: '18 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779196276/003_Case_Study_Clone_Your_Voice_with_ElevenLabs_d8bpuh.mp4',
+                description: 'Learn how to clone your voice using ElevenLabs for custom narration, branding, and audio content creation.',
+                resources: [
+                    { type: 'pdf', name: 'AI Voice Production Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 10,
+                title: 'Text-to-Voice with Play.ht',
+                duration: '14 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779196255/005_Play.ht_Text_to_Voice_Generator_vjqb0i.mp4',
+                description: 'Use Play.ht to convert written scripts into realistic voiceovers for podcasts, videos, and marketing content.',
+                resources: [
+                    { type: 'pdf', name: 'AI Voice Production Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 11,
+                title: 'Fix Audio with Free AI Filters',
+                duration: '12 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779196330/006_Free_AI_Filter_To_Fix_Audio_eqiujr.mp4',
+                description: 'Learn how to clean and fix audio using free AI tools for better voice quality, noise removal, and production polish.',
+                resources: [
+                    { type: 'pdf', name: 'Audio Cleanup Guide', url: 'ai-tools-checklist.html' }
+                ]
             }
         ]
     },
