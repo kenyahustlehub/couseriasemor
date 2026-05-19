@@ -60,6 +60,10 @@
         const welcomeName = localStorage.getItem('welcomeName');
 
         if (token && welcomeName) {
+            window.location.href = 'dashboard.html';
+        }
+
+        if (token) {
             authLinks.innerHTML = `<a href="#" class="nav-link logout-link">Logout</a> <span class="nav-link">${welcomeName}</span>`;
         }
     </script>

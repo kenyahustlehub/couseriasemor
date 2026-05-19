@@ -1518,6 +1518,13 @@ body {
     margin-bottom: 20px;
 }
 
+.course-topic {
+    font-size: 14px;
+    color: rgba(248, 250, 252, 0.8);
+    margin: 8px 0 18px;
+    display: inline-block;
+}
+
 .course-stats {
     display: flex;
     flex-wrap: wrap;

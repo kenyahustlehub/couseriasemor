@@ -48,10 +48,10 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
             }
             localStorage.setItem('welcomeName', data.user.fullName || 'Learner');
 
-            showMessage('🎉 Account created! Redirecting to your dashboard...', 'success');
+            showMessage('🎉 Account created! Redirecting to your welcome page...', 'success');
 
             setTimeout(() => {
-                window.location.href = 'dashboard.html';
+                window.location.href = 'welcome.html';
             }, 1600);
         } else {
             showMessage(data.message || 'Registration failed', 'error');

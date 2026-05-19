@@ -257,18 +257,20 @@ function loadLesson(index) {
     const videoUrl = getAssetUrl(course, lesson.videoUrl, lesson.topicFolder);
     const videoContainer = document.getElementById('videoContainer');
     videoContainer.innerHTML = `
-        <div class="video-placeholder">
-            <div class="play-button" onclick="playVideo('${videoUrl}')">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="white">
-                    <path d="M8 5v14l11-7z"/>
-                </svg>
-            </div>
-            <div class="video-info">
-                <h3>${lesson.title}</h3>
-                <p>${lesson.description.split('.')[0]}</p>
-            </div>
+        <div class="video-player">
+            <video controls preload="metadata">
+                <source src="${videoUrl}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
     `;
+
+    const videoElement = videoContainer.querySelector('video');
+    if (videoElement) {
+        videoElement.addEventListener('ended', () => {
+            markLessonCompleted(currentLessonIndex);
+        });
+    }
 
     // Update lesson content
     document.getElementById('lessonDescription').innerHTML = lesson.description;
