@@ -30,6 +30,19 @@
                 <p>Login to Your Account</p>
             </div>
 
+            <div class="points-streak-card">
+                <div class="points-streak-header">
+                    <div>
+                        <h3>Saved points streak</h3>
+                        <p id="streakText">Your points and streak remain visible here before you sign in.</p>
+                    </div>
+                    <span id="streakPoints">0 pts</span>
+                </div>
+                <div class="points-streak-footer">
+                    <span id="streakReminder">Login daily to earn 10 points and keep your premium unlock progress.</span>
+                </div>
+            </div>
+
             <form id="loginForm">
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -43,11 +56,14 @@
 
                 <button type="submit" class="btn-register">Login</button>
 
-                <div id="message" class="message"></div>
+                <div id="message" class="message info">Keep your points count active: logging in daily adds rewards and your score will not restart.</div>
             </form>
 
             <div class="login-link">
                 Don't have an account? <a href="register.html">Register here</a>
+            </div>
+            <div class="login-link">
+                Forgot your password? <a href="forgot-password.html">Reset it here</a>
             </div>
         </div>
     </div>

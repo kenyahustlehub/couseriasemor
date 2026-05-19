@@ -16,6 +16,8 @@
             <ul class="nav-menu">
                 <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
                 <li><a href="courses.html" class="nav-link">Courses</a></li>
+                <li><a href="premium.html" class="nav-link">Premium</a></li>
+                <li><a href="profile.html" class="nav-link">Profile</a></li>
                 <li><a href="#resources" class="nav-link">Resources</a></li>
                 <li><a href="#goals" class="nav-link">Progress</a></li>
                 <li id="authLinks"></li>
@@ -28,9 +30,26 @@
             <span class="badge">Member Hub</span>
             <h1 class="hero-title">Hello, <span id="welcomeName">Learner</span></h1>
             <p class="hero-subtitle">This is your COUSERIASEMOR dashboard. Access your learning path, quick-action resources, and growth progress in one place.</p>
+            <div class="account-summary-grid">
+                <div class="summary-card">
+                    <h4>Total points</h4>
+                    <p id="totalPoints">0</p>
+                    <span>Earn 10 points for each daily login and unlock premium rewards.</span>
+                </div>
+                <div class="summary-card">
+                    <h4>Premium access</h4>
+                    <p id="premiumUnlock">Loading...</p>
+                    <span>300 points unlock premium courses and exclusive growth challenges.</span>
+                </div>
+                <div class="summary-card">
+                    <h4>Last login</h4>
+                    <p id="lastLogin">Today</p>
+                    <span>Stay active to keep earning daily rewards.</span>
+                </div>
+            </div>
             <div class="hero-actions">
                 <a href="courses.html" class="btn btn-primary btn-large">Browse All Courses</a>
-                <a href="#progress" class="btn btn-outline">View My Progress</a>
+                <a href="profile.html" class="btn btn-outline">View My Profile</a>
             </div>
             <p class="hero-note">Your profile is saved locally so you can pick up where you left off. Stay focused on remote income, freelancing, and real projects.</p>
         </div>

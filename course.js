@@ -15,6 +15,29 @@ if (!courseId) {
     window.location.href = 'courses.html';
 }
 
+async function fetchUserInfo() {
+    const authToken = localStorage.getItem('authToken');
+    if (!authToken) return null;
+
+    try {
+        const response = await fetch('/api/user-info', {
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+            },
+        });
+        if (!response.ok) return null;
+        return await response.json();
+    } catch {
+        return null;
+    }
+}
+
+async function ensurePremiumAccess() {
+    if (courseId !== 'premium') return true;
+    const user = await fetchUserInfo();
+    return user && user.totalPoints >= 300;
+}
+
 // Course data structure
 const courses = {
     'ai-mastery': {
@@ -38,8 +61,8 @@ const courses = {
                 videoUrl: '008 Write a Contract for Business.mp4',
                 description: 'Learn how to draft a business contract clearly and confidently for your AI services and products.',
                 resources: [
-                    { type: 'pdf', name: 'Course Syllabus', url: 'course-syllabus.pdf' },
-                    { type: 'pdf', name: 'AI Tools Checklist', url: 'ai-tools-checklist.pdf' },
+                    { type: 'pdf', name: 'Course Syllabus', url: 'course-syllabus.html' },
+                    { type: 'pdf', name: 'AI Tools Checklist', url: 'ai-tools-checklist.html' },
                     { type: 'link', name: 'Recommended AI Tools', url: 'https://tools.example.com' }
                 ]
             },
@@ -53,7 +76,8 @@ const courses = {
                 videoUrl: 'lesson-2.mp4',
                 description: 'Learn the basics of artificial intelligence, machine learning, and how AI tools work behind the scenes.',
                 resources: [
-                    { type: 'pdf', name: 'AI Fundamentals Guide', url: 'ai-fundamentals-guide.pdf' }
+                    { type: 'pdf', name: 'AI Fundamentals Guide', url: 'ai-fundamentals-guide.html' },
+                    { type: 'pdf', name: 'AI Fundamentals Cheat Sheet', url: 'ai-fundamentals-cheatsheet.html' }
                 ]
             },
             {
@@ -66,8 +90,8 @@ const courses = {
                 videoUrl: 'lesson-3.mp4',
                 description: 'Master the art of prompt engineering and learn how to get the best results from ChatGPT.',
                 resources: [
-                    { type: 'pdf', name: 'Prompt Engineering Guide', url: 'prompt-engineering-guide.pdf' },
-                    { type: 'pdf', name: 'ChatGPT Templates', url: 'chatgpt-templates.pdf' }
+                    { type: 'pdf', name: 'Prompt Engineering Guide', url: 'prompt-engineering-guide.html' },
+                    { type: 'pdf', name: 'ChatGPT Templates', url: 'chatgpt-templates.html' }
                 ]
             },
             {
@@ -80,7 +104,8 @@ const courses = {
                 videoUrl: 'lesson-4.mp4',
                 description: 'Use AI to generate blog posts, social media content, marketing copy, and more.',
                 resources: [
-                    { type: 'pdf', name: 'Content Creation Templates', url: 'content-creation-templates.pdf' }
+                    { type: 'pdf', name: 'Content Creation Templates', url: 'content-creation-templates.html' },
+                    { type: 'pdf', name: 'AI Copywriting Checklist', url: 'ai-copywriting-checklist.html' }
                 ]
             },
             {
@@ -93,7 +118,8 @@ const courses = {
                 videoUrl: 'lesson-5.mp4',
                 description: 'Create stunning visuals and artwork using AI-powered image generation tools.',
                 resources: [
-                    { type: 'pdf', name: 'Midjourney Prompt Guide', url: 'midjourney-prompt-guide.pdf' }
+                    { type: 'pdf', name: 'Midjourney Prompt Guide', url: 'midjourney-prompt-guide.html' },
+                    { type: 'pdf', name: 'AI Image Generation Tips', url: 'ai-image-generation-tips.html' }
                 ]
             }
         ]
@@ -147,6 +173,43 @@ const courses = {
                 ]
             }
         ]
+    },
+    'premium': {
+        title: 'Premium Growth Pass',
+        description: 'Unlock premium mastery modules with advanced projects, exclusive resources, and career acceleration tools.',
+        category: 'Premium & Career Growth',
+        assetFolder: 'Premium course',
+        totalLessons: 12,
+        totalDuration: '20 hours',
+        rating: '5.0',
+        reviews: '1.2k',
+        students: '3,500+',
+        lessons: [
+            {
+                id: 1,
+                title: 'Premium Launch Strategy',
+                duration: '15 min',
+                type: 'video',
+                completed: false,
+                videoUrl: '',
+                description: 'Learn how to package your skills, define premium offers, and set up a strong growth path.',
+                resources: [
+                    { type: 'pdf', name: 'Premium Launch Checklist', url: '#' }
+                ]
+            },
+            {
+                id: 2,
+                title: 'Premium Project Roadmap',
+                duration: '18 min',
+                type: 'video',
+                completed: false,
+                videoUrl: '',
+                description: 'Build your own high-value project roadmap that attracts real clients and remote income.',
+                resources: [
+                    { type: 'pdf', name: 'Premium Project Planner', url: '#' }
+                ]
+            }
+        ]
     }
 };
 
@@ -173,6 +236,14 @@ function getResourceUrl(course, resource, lesson) {
         return resource.url;
     }
     return getAssetUrl(course, resource.url, lesson?.topicFolder);
+}
+
+function getVideoSourceType(url) {
+    if (!url) return 'video/mp4';
+    const lowered = url.split('?')[0].toLowerCase();
+    if (lowered.endsWith('.m3u8')) return 'application/x-mpegURL';
+    if (lowered.endsWith('.mpd')) return 'application/dash+xml';
+    return 'video/mp4';
 }
 
 function formatTopicName(topicFolder) {
@@ -254,22 +325,35 @@ function loadLesson(index) {
     }
 
     // Update video container
-    const videoUrl = getAssetUrl(course, lesson.videoUrl, lesson.topicFolder);
+    const videoUrl = lesson.videoUrl ? getAssetUrl(course, lesson.videoUrl, lesson.topicFolder) : '';
     const videoContainer = document.getElementById('videoContainer');
-    videoContainer.innerHTML = `
-        <div class="video-player">
-            <video controls preload="metadata">
-                <source src="${videoUrl}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    `;
 
-    const videoElement = videoContainer.querySelector('video');
-    if (videoElement) {
-        videoElement.addEventListener('ended', () => {
-            markLessonCompleted(currentLessonIndex);
-        });
+    if (videoUrl) {
+        const sourceType = getVideoSourceType(videoUrl);
+        videoContainer.innerHTML = `
+            <div class="video-player">
+                <video controls preload="metadata">
+                    <source src="${videoUrl}" type="${sourceType}">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        `;
+
+        const videoElement = videoContainer.querySelector('video');
+        if (videoElement) {
+            videoElement.addEventListener('ended', () => {
+                markLessonCompleted(currentLessonIndex);
+            });
+        }
+    } else {
+        videoContainer.innerHTML = `
+            <div class="video-player video-placeholder">
+                <div class="placeholder-text">
+                    <h3>Premium lesson content is coming soon.</h3>
+                    <p>Check back for the full premium learning experience once you unlock access.</p>
+                </div>
+            </div>
+        `;
     }
 
     // Update lesson content
@@ -308,10 +392,11 @@ function getResourceIcon(type) {
 
 function playVideo(videoUrl) {
     const videoContainer = document.getElementById('videoContainer');
+    const sourceType = getVideoSourceType(videoUrl);
     videoContainer.innerHTML = `
         <div class="video-player">
             <video controls autoplay style="width: 100%; max-height: 400px; background: #000;">
-                <source src="${videoUrl}" type="video/mp4">
+                <source src="${videoUrl}" type="${sourceType}">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -365,4 +450,11 @@ document.addEventListener('click', (e) => {
 });
 
 // Initialize course when page loads
-document.addEventListener('DOMContentLoaded', initializeCourse);
+window.addEventListener('DOMContentLoaded', async () => {
+    const allowed = await ensurePremiumAccess();
+    if (!allowed) {
+        window.location.href = 'premium.html';
+        return;
+    }
+    initializeCourse();
+});

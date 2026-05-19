@@ -46,15 +46,19 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
             if (data.user && data.user.expertise) {
                 localStorage.setItem('authExpertise', data.user.expertise);
             }
+            if (data.user && typeof data.user.totalPoints !== 'undefined') {
+                localStorage.setItem('totalPoints', data.user.totalPoints);
+            }
             localStorage.setItem('welcomeName', data.user.fullName || 'Learner');
 
-            showMessage('🎉 Account created! Redirecting to your welcome page...', 'success');
+            showMessage('🎉 Welcome aboard! You earned 10 welcome points. Redirecting to your dashboard...', 'success');
 
             setTimeout(() => {
                 window.location.href = 'welcome.html';
             }, 1600);
         } else {
-            showMessage(data.message || 'Registration failed', 'error');
+            const messageText = data.message || 'Registration failed. Please try again or use a different email.';
+            showMessage(`${messageText} <a href="login.html">Already registered?</a>`, 'error');
         }
     } catch (error) {
         showMessage('Error: ' + error.message, 'error');

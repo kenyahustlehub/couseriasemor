@@ -16,6 +16,8 @@
             <ul class="nav-menu">
                 <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
                 <li><a href="courses.html" class="nav-link active">Courses</a></li>
+                <li><a href="premium.html" class="nav-link">Premium</a></li>
+                <li><a href="profile.html" class="nav-link">Profile</a></li>
                 <li><a href="#resources" class="nav-link">Resources</a></li>
                 <li><a href="#progress" class="nav-link">Progress</a></li>
                 <li id="authLinks"></li>
@@ -217,6 +219,21 @@
                     <span class="current-price">Free</span>
                 </div>
                 <button class="btn-course" onclick="openCourse('cybersecurity')">Start Course</button>
+            </div>
+            <div class="course-card featured-course premium-card" data-course="premium">
+                <div class="course-badge premium">Premium</div>
+                <div class="course-icon">🏆</div>
+                <h3>Premium Growth Pass</h3>
+                <p>Unlock exclusive advanced projects, premium resources, and high-value lessons.</p>
+                <div class="course-meta">
+                    <span class="duration">20+ hours</span>
+                    <span class="level">Advanced</span>
+                    <span class="rating">⭐ 5.0</span>
+                </div>
+                <div class="course-price">
+                    <span class="current-price">Unlock with 300 points</span>
+                </div>
+                <button class="btn-course" id="premiumCourseButton">View Premium</button>
             </div>
         </div>
     </section>
