@@ -45,12 +45,12 @@ app.post('/api/register', async (req, res) => {
   }
 
   try {
-    const existingUser = findUserByEmail(email);
+    const existingUser = await findUserByEmail(email);
     if (existingUser) {
       return res.status(400).json({ message: 'Email already registered' });
     }
 
-    const user = createUser({
+    const user = await createUser({
       fullName,
       email,
       password,
@@ -88,7 +88,7 @@ app.post('/api/login', async (req, res) => {
   }
 
   try {
-    const user = findUserByEmail(email);
+    const user = await findUserByEmail(email);
 
     if (!user || user.password !== password) {
       return res.status(401).json({ message: 'Invalid email or password' });
@@ -112,18 +112,23 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-app.get('/api/users', (req, res) => {
-  const allUsers = loadUsers();
-  // Don't send passwords or sensitive data
-  const safeUsers = allUsers.map((u) => ({
-    id: u.id,
-    fullName: u.fullName,
-    email: u.email,
-    expertise: u.expertise,
-    isVerified: u.isVerified,
-    createdAt: u.createdAt,
-  }));
-  res.json({ users: safeUsers, total: allUsers.length });
+app.get('/api/users', async (req, res) => {
+  try {
+    const allUsers = await loadUsers();
+    // Don't send passwords or sensitive data
+    const safeUsers = allUsers.map((u) => ({
+      id: u.id,
+      fullName: u.fullName,
+      email: u.email,
+      expertise: u.expertise,
+      isVerified: u.isVerified,
+      createdAt: u.createdAt,
+    }));
+    res.json({ users: safeUsers, total: allUsers.length });
+  } catch (error) {
+    console.error('Users listing error:', error);
+    res.status(500).json({ message: 'Unable to load users' });
+  }
 });
 
 app.get('/', (req, res) => {
