@@ -68,13 +68,13 @@ const courses = {
             },
             {
                 id: 2,
-                title: 'Understanding AI Fundamentals',
+                title: 'Bulk Marketing Emails',
                 duration: '12 min',
                 type: 'video',
                 topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
                 completed: false,
-                videoUrl: 'lesson-2.mp4',
-                description: 'Learn the basics of artificial intelligence, machine learning, and how AI tools work behind the scenes.',
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779190577/009_Bulk_Marketing_Emails_vthiv5.mp4',
+                description: 'Learn how to build high-converting bulk email campaigns using AI-powered copy, segmentation, and automation.',
                 resources: [
                     { type: 'pdf', name: 'AI Fundamentals Guide', url: 'ai-fundamentals-guide.html' },
                     { type: 'pdf', name: 'AI Fundamentals Cheat Sheet', url: 'ai-fundamentals-cheatsheet.html' }
@@ -343,6 +343,9 @@ function loadLesson(index) {
         if (videoElement) {
             videoElement.addEventListener('ended', () => {
                 markLessonCompleted(currentLessonIndex);
+            });
+            videoElement.play().catch(() => {
+                // autoplay may require additional user interaction in some browsers
             });
         }
     } else {
