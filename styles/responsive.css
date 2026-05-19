@@ -1,0 +1,210 @@
+@media (max-width: 1024px) {
+    .nav-container {
+        padding: 0 15px;
+    }
+
+    .logo-brand {
+        padding: 10px 16px;
+        font-size: 1rem;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 60px 20px;
+        gap: 40px;
+    }
+
+    .hero-title {
+        font-size: 42px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu li {
+        flex-wrap: wrap;
+    }
+
+    .nav-link {
+        font-size: 13px;
+        padding: 8px 0;
+    }
+
+    .logo-brand {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        gap: 10px;
+    }
+
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+
+    .hero {
+        padding: 40px 15px;
+        gap: 30px;
+    }
+
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .hero-subtitle {
+        font-size: 15px;
+    }
+
+    .courses {
+        padding: 50px 15px;
+    }
+
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features {
+        padding: 50px 15px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .feature-item {
+        padding: 20px;
+    }
+
+    .cta {
+        padding: 30px 20px;
+        margin: 60px 15px;
+    }
+
+    .cta-content h2 {
+        font-size: 26px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .solutions {
+        padding: 50px 15px;
+    }
+
+    .solutions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+        min-height: 100vh;
+    }
+
+    .registration-box {
+        padding: 32px 20px;
+        border-radius: 20px;
+    }
+
+    .logo {
+        margin-bottom: 32px;
+    }
+
+    .logo h1 {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .logo p {
+        font-size: 13px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 14px;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+
+    .btn-register {
+        padding: 14px;
+        font-size: 15px;
+        margin-bottom: 16px;
+    }
+
+    .btn-register:hover {
+        transform: translateY(-1px);
+    }
+
+    .login-link {
+        font-size: 13px;
+        margin-top: 20px;
+        padding-top: 16px;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    .btn-large {
+        padding: 14px 30px;
+        font-size: 15px;
+    }
+
+    .hero-badges {
+        gap: 8px;
+    }
+
+    .hero-badges span {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .code-box {
+        max-width: 100%;
+        padding: 16px;
+    }
+
+    .code-text {
+        font-size: 11px;
+    }
+
+    .stat h3 {
+        font-size: 28px;
+    }
+
+    .stat p {
+        font-size: 14px;
+    }
+}
