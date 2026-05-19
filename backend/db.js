@@ -16,7 +16,12 @@ function initializeDb() {
         password TEXT NOT NULL,
         expertise TEXT NOT NULL,
         createdAt TEXT NOT NULL,
-        updatedAt TEXT NOT NULL
+        updatedAt TEXT NOT NULL,
+        lastLogin TEXT,
+        totalPoints INTEGER NOT NULL DEFAULT 0,
+        lastRewardDate TEXT,
+        resetToken TEXT,
+        resetTokenExpires TEXT
       )
     `);
 
@@ -29,8 +34,12 @@ function initializeDb() {
         db.get('SELECT COUNT(1) AS count FROM users', (err, row) => {
           if (!err && row && row.count === 0 && users.length > 0) {
             const stmt = db.prepare(`
-              INSERT OR IGNORE INTO users (id, fullName, email, password, expertise, createdAt, updatedAt)
-              VALUES (?, ?, ?, ?, ?, ?, ?)
+              INSERT OR IGNORE INTO users (
+                id, fullName, email, password, expertise,
+                createdAt, updatedAt, lastLogin, totalPoints,
+                lastRewardDate, resetToken, resetTokenExpires
+              )
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             `);
 
             users.forEach((user) => {
@@ -41,7 +50,12 @@ function initializeDb() {
                 user.password || '',
                 user.expertise || '',
                 user.createdAt || new Date().toISOString(),
-                user.updatedAt || new Date().toISOString()
+                user.updatedAt || new Date().toISOString(),
+                user.lastLogin || null,
+                user.totalPoints || 0,
+                user.lastRewardDate || null,
+                user.resetToken || null,
+                user.resetTokenExpires || null
               );
             });
 
@@ -59,7 +73,7 @@ function initializeDb() {
 function loadUsers() {
   return new Promise((resolve, reject) => {
     db.all(
-      'SELECT id, fullName, email, expertise, createdAt, updatedAt FROM users',
+      'SELECT id, fullName, email, expertise, createdAt, updatedAt, lastLogin, totalPoints, lastRewardDate FROM users',
       (err, rows) => {
         if (err) return reject(err);
         resolve(rows || []);
@@ -71,8 +85,21 @@ function loadUsers() {
 function findUserByEmail(email) {
   return new Promise((resolve, reject) => {
     db.get(
-      'SELECT id, fullName, email, password, expertise, createdAt, updatedAt FROM users WHERE email = ?',
+      'SELECT id, fullName, email, password, expertise, createdAt, updatedAt, lastLogin, totalPoints, lastRewardDate, resetToken, resetTokenExpires FROM users WHERE email = ?',
       [email],
+      (err, row) => {
+        if (err) return reject(err);
+        resolve(row || null);
+      }
+    );
+  });
+}
+
+function findUserByResetToken(token) {
+  return new Promise((resolve, reject) => {
+    db.get(
+      'SELECT id, fullName, email, password, expertise, createdAt, updatedAt, lastLogin, totalPoints, lastRewardDate, resetToken, resetTokenExpires FROM users WHERE resetToken = ?',
+      [token],
       (err, row) => {
         if (err) return reject(err);
         resolve(row || null);
@@ -91,11 +118,20 @@ function createUser(userData) {
       expertise: userData.expertise,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      lastLogin: userData.lastLogin || null,
+      totalPoints: userData.totalPoints || 0,
+      lastRewardDate: userData.lastRewardDate || null,
+      resetToken: null,
+      resetTokenExpires: null,
     };
 
     db.run(
-      `INSERT INTO users (id, fullName, email, password, expertise, createdAt, updatedAt)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO users (
+         id, fullName, email, password, expertise,
+         createdAt, updatedAt, lastLogin, totalPoints, lastRewardDate,
+         resetToken, resetTokenExpires
+       )
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         user.id,
         user.fullName,
@@ -104,6 +140,11 @@ function createUser(userData) {
         user.expertise,
         user.createdAt,
         user.updatedAt,
+        user.lastLogin,
+        user.totalPoints,
+        user.lastRewardDate,
+        user.resetToken,
+        user.resetTokenExpires,
       ],
       function (err) {
         if (err) return reject(err);
@@ -119,26 +160,47 @@ function updateUser(email, updates) {
       .then((existingUser) => {
         if (!existingUser) return resolve(null);
 
-        const updatedUser = {
+        const allowedFields = [
+          'fullName',
+          'password',
+          'expertise',
+          'createdAt',
+          'updatedAt',
+          'lastLogin',
+          'totalPoints',
+          'lastRewardDate',
+          'resetToken',
+          'resetTokenExpires',
+        ];
+
+        const fields = [];
+        const params = [];
+        const updatedAt = updates.updatedAt || new Date().toISOString();
+
+        const merged = {
           ...existingUser,
           ...updates,
-          updatedAt: new Date().toISOString(),
+          updatedAt,
         };
 
-        db.run(
-          `UPDATE users SET fullName = ?, password = ?, expertise = ?, updatedAt = ? WHERE email = ?`,
-          [
-            updatedUser.fullName,
-            updatedUser.password,
-            updatedUser.expertise,
-            updatedUser.updatedAt,
-            email,
-          ],
-          function (err) {
-            if (err) return reject(err);
-            resolve(updatedUser);
+        allowedFields.forEach((key) => {
+          if (merged[key] !== undefined) {
+            fields.push(`${key} = ?`);
+            params.push(merged[key]);
           }
-        );
+        });
+
+        if (fields.length === 0) {
+          return resolve(existingUser);
+        }
+
+        const sql = `UPDATE users SET ${fields.join(', ')} WHERE email = ?`;
+        params.push(email);
+
+        db.run(sql, params, function (err) {
+          if (err) return reject(err);
+          resolve(merged);
+        });
       })
       .catch(reject);
   });
@@ -157,6 +219,7 @@ module.exports = {
   initializeDb,
   loadUsers,
   findUserByEmail,
+  findUserByResetToken,
   createUser,
   updateUser,
   deleteUser,
