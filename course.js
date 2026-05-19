@@ -87,7 +87,7 @@ const courses = {
                 type: 'video',
                 topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
                 completed: false,
-                videoUrl: 'lesson-3.mp4',
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779190570/010_Quickly_Respond_To_Emails_With_ChatGPT_ep8giq.mp4',
                 description: 'Master the art of prompt engineering and learn how to get the best results from ChatGPT.',
                 resources: [
                     { type: 'pdf', name: 'Prompt Engineering Guide', url: 'prompt-engineering-guide.html' },
@@ -101,7 +101,7 @@ const courses = {
                 type: 'video',
                 topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
                 completed: false,
-                videoUrl: 'lesson-4.mp4',
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779191154/011_Learning_Activity_Create_a_New_Product_nomtwy.mp4',
                 description: 'Use AI to generate blog posts, social media content, marketing copy, and more.',
                 resources: [
                     { type: 'pdf', name: 'Content Creation Templates', url: 'content-creation-templates.html' },
@@ -110,16 +110,30 @@ const courses = {
             },
             {
                 id: 5,
-                title: 'AI Image Generation with Midjourney',
+                title: 'Intro to Using Multiple AI Tools',
                 duration: '20 min',
                 type: 'video',
                 topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
                 completed: false,
-                videoUrl: 'lesson-5.mp4',
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779195084/001_Intro_to_Using_Multiple_AI_Tools_m2m0t6.mp4',
                 description: 'Create stunning visuals and artwork using AI-powered image generation tools.',
                 resources: [
                     { type: 'pdf', name: 'Midjourney Prompt Guide', url: 'midjourney-prompt-guide.html' },
                     { type: 'pdf', name: 'AI Image Generation Tips', url: 'ai-image-generation-tips.html' }
+                ]
+            },
+            {
+                id: 6,
+                title: 'Combining Multiple AI Tools',
+                duration: '22 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779195284/002_Combining_Multiple_AI_Tools_vgnfo3.mp4',
+                description: 'Learn how to integrate multiple AI tools for maximum productivity and creative power.',
+                resources: [
+                    { type: 'pdf', name: 'AI Tools Integration Guide', url: 'ai-tools-checklist.html' },
+                    { type: 'pdf', name: 'Workflow Automation Tips', url: 'content-creation-templates.html' }
                 ]
             }
         ]
