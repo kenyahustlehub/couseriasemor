@@ -45,7 +45,7 @@ const courses = {
         description: 'Complete guide to AI productivity tools, ChatGPT, Midjourney, and workflow automation.',
         category: 'AI & Automation',
         assetFolder: 'Ai tools mastery',
-        totalLessons: 25,
+        totalLessons: 32,
         totalDuration: '8 hours',
         rating: '4.8',
         reviews: '2.1k',
@@ -199,6 +199,277 @@ const courses = {
                 description: 'Learn how to clean and fix audio using free AI tools for better voice quality, noise removal, and production polish.',
                 resources: [
                     { type: 'pdf', name: 'Audio Cleanup Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 12,
+                title: 'Make Photos Speak with D-ID',
+                duration: '15 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779199155/001_D-ID.com_Make_Your_Photos_Speak_isgo3w.mp4',
+                description: 'Bring photos to life using D-ID to create AI-generated videos where images speak and present content.',
+                resources: [
+                    { type: 'pdf', name: 'Video Creation Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 13,
+                title: 'AI Image Editing with Playground AI',
+                duration: '16 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779199679/002_Playground_AI_Use_AI_to_Edit_Like_Photoshop_summxb.mp4',
+                description: 'Use Playground AI for professional image editing with AI-powered tools, filters, and Photoshop-like capabilities.',
+                resources: [
+                    { type: 'pdf', name: 'Image Editing Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 14,
+                title: 'Add Movement to Photos with LeiaPix',
+                duration: '14 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779199192/003_LeiaPix_Instantly_Add_Movement_to_Your_Photos_o5ub5i.mp4',
+                description: 'Transform static photos into dynamic videos with LeiaPix by adding realistic movement and animation effects.',
+                resources: [
+                    { type: 'pdf', name: 'Animation Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 15,
+                title: 'Remove Watermarks with WatermarkRemover.io',
+                duration: '9 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779198699/004_WatermarkRemover.io_Instantly_Remove_Watermarks_from_Images_zf45um.mp4',
+                description: 'Quickly remove watermarks and unwanted artifacts from images using WatermarkRemover.io for clean visuals.',
+                resources: [
+                    { type: 'pdf', name: 'Image Cleanup Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 16,
+                title: 'Create Photos Faster with PicFinder',
+                duration: '10 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779199394/005_PicFinder_Create_100_s_of_Photos_in_Seconds_tva7fq.mp4',
+                description: 'Generate hundreds of photos in seconds using PicFinder for fast image creation and ideation.',
+                resources: [
+                    { type: 'pdf', name: 'Fast Image Creation Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 17,
+                title: 'Module Introduction',
+                duration: '5 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779288341/01._Introduction_glsypq.mp4',
+                description: 'Introduction to the module and overview of upcoming lessons.',
+                resources: []
+            },
+            {
+                id: 18,
+                title: 'Top 10 AI Prompts',
+                duration: '7 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779288364/02._The_top_10_AI_prompts_pnkoum.mp4',
+                description: 'A curated list of the top 10 AI prompts for productivity, content, and idea generation.',
+                resources: [
+                    { type: 'pdf', name: 'Top AI Prompts Cheat Sheet', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 19,
+                title: 'What Makes a Good Prompt',
+                duration: '8 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779288369/03._What_makes_a_good_prompt_jhgi9j.mp4',
+                description: 'Learn the principles of a strong AI prompt and how to structure requests for better results.',
+                resources: [
+                    { type: 'pdf', name: 'Good Prompt Formula', url: 'prompt-engineering-guide.html' }
+                ]
+            },
+            {
+                id: 20,
+                title: 'Draft a Business Plan with AI',
+                duration: '12 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779290687/01._Using_AI_to_draft_a_business_plan_jipyf9.mp4',
+                description: 'Use AI to draft a business plan with structure, financials, and go-to-market strategy.',
+                resources: [
+                    { type: 'pdf', name: 'Business Plan Template', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 21,
+                title: 'AI Business Plan Demo',
+                duration: '11 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779291395/02._Demo_of_using_AI_to_draft_a_business_plan_rtcp46.mp4',
+                description: 'See a hands-on demo of using AI to draft a business plan with real examples and guidance.',
+                resources: [
+                    { type: 'pdf', name: 'Business Plan Demo Notes', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 22,
+                title: 'Analyze a Financial Report with AI',
+                duration: '10 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779290728/03._Using_AI_to_analyze_a_financial_report_nligvs.mp4',
+                description: 'Use AI to analyze a financial report and extract key insights for business decisions.',
+                resources: [
+                    { type: 'pdf', name: 'Financial Analysis Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 23,
+                title: 'Financial Report Analysis Demo',
+                duration: '9 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779291257/04._Demo_of_using_AI_to_analyze_a_financial_report_ee8sth.mp4',
+                description: 'Demo of using AI to analyze a financial report with practical examples and insights extraction.',
+                resources: [
+                    { type: 'pdf', name: 'Financial Report Demo Notes', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 24,
+                title: 'Create a SWOT Analysis with AI',
+                duration: '10 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779290733/05._Using_AI_to_create_a_SWOT_analysis_coeft0.mp4',
+                description: 'Use AI to create a SWOT analysis for business planning and decision-making.',
+                resources: [
+                    { type: 'pdf', name: 'SWOT Analysis Template', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 25,
+                title: 'SWOT Analysis Demo with AI',
+                duration: '11 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779291459/06._Demo_of_using_AI_to_create_a_SWOT_analysis_dz4mfx.mp4',
+                description: 'Watch a demo of using AI to create a SWOT analysis and interpret results for business strategy.',
+                resources: [
+                    { type: 'pdf', name: 'SWOT Analysis Demo Notes', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 26,
+                title: 'Use AI for Career Coaching',
+                duration: '10 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779290818/07._Using_AI_to_get_career_coaching_ssj9o4.mp4',
+                description: 'Learn how to use AI coaching tools to plan career growth, refine goals, and prepare for interviews.',
+                resources: [
+                    { type: 'pdf', name: 'Career Coaching Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 27,
+                title: 'Career Coaching Demo with AI',
+                duration: '11 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779291263/08._Demo_of_using_AI_to_get_career_coaching_gsg4c4.mp4',
+                description: 'Watch a demo of using AI for career coaching and learn how to apply AI guidance to job search and development.',
+                resources: [
+                    { type: 'pdf', name: 'Career Coaching Demo Notes', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 28,
+                title: 'Write a Project Proposal with AI',
+                duration: '12 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779290877/09._Using_AI_to_write_a_project_proposal_c8rpw8.mp4',
+                description: 'Use AI to draft a polished project proposal with scope, benefits, and delivery plans.',
+                resources: [
+                    { type: 'pdf', name: 'Project Proposal Template', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 29,
+                title: 'Project Proposal Demo Subtitles',
+                duration: '5 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/raw/upload/v1779290803/10._Demo_of_using_AI_to_write_a_project_proposal_miynqj.srt',
+                description: 'Supplementary SRT file with the project proposal demo transcript for AI-generated proposal writing.',
+                resources: [
+                    { type: 'pdf', name: 'Project Proposal Demo Notes', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 30,
+                title: 'Prepare for Your Annual Review with AI',
+                duration: '10 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779290889/11._Using_AI_to_prepare_for_your_annual_review_oyuaxc.mp4',
+                description: 'Learn how to use AI to prepare for your annual performance review with evidence, goals, and talking points.',
+                resources: [
+                    { type: 'pdf', name: 'Annual Review Prep Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 31,
+                title: 'Annual Review Demo with AI',
+                duration: '11 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779291417/12._Demo_of_using_AI_to_prepare_for_your_annual_review_go4vql.mp4',
+                description: 'Watch a demo of preparing for an annual review using AI, including evidence presentation and goal-setting.',
+                resources: [
+                    { type: 'pdf', name: 'Annual Review Demo Notes', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 32,
+                title: 'Summarize a Research Paper with AI',
+                duration: '10 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779290931/13._Using_AI_to_summarize_a_research_paper_ttfxcn.mp4',
+                description: 'Learn how to use AI to summarize research papers efficiently and extract key findings.',
+                resources: [
+                    { type: 'pdf', name: 'Research Summary Template', url: 'ai-tools-checklist.html' }
                 ]
             }
         ]
