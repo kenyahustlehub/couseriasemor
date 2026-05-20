@@ -45,7 +45,7 @@ const courses = {
         description: 'Complete guide to AI productivity tools, ChatGPT, Midjourney, and workflow automation.',
         category: 'AI & Automation',
         assetFolder: 'Ai tools mastery',
-        totalLessons: 32,
+        totalLessons: 41,
         totalDuration: '8 hours',
         rating: '4.8',
         reviews: '2.1k',
@@ -471,6 +471,123 @@ const courses = {
                 resources: [
                     { type: 'pdf', name: 'Research Summary Template', url: 'ai-tools-checklist.html' }
                 ]
+            },
+            {
+                id: 33,
+                title: 'Research Paper Summary Demo',
+                duration: '11 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779291194/14._Demo_of_using_AI_to_summarize_a_research_paper_bhodrb.mp4',
+                description: 'Watch a demo of how to use AI to summarize a research paper and capture the most important insights.',
+                resources: [
+                    { type: 'pdf', name: 'Research Summary Demo Notes', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 34,
+                title: 'Optimize a Process with AI',
+                duration: '12 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779290958/15._Using_AI_to_optimize_a_process_tr1yz6.mp4',
+                description: 'Learn how to use AI to optimize a business process, reduce waste, and improve efficiency.',
+                resources: [
+                    { type: 'pdf', name: 'Process Optimization Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 35,
+                title: 'Process Optimization Demo',
+                duration: '13 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779291140/16._Demo_of_using_AI_to_optimize_a_process_hvnoz9.mp4',
+                description: 'Watch a practical demo of using AI to optimize a process and improve operational performance.',
+                resources: [
+                    { type: 'pdf', name: 'Process Optimization Demo Notes', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 36,
+                title: 'Create a Data Analysis Report with AI',
+                duration: '12 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779290999/17._Using_AI_to_create_a_data_analysis_report_bpx2hq.mp4',
+                description: 'Learn how AI can help create a data analysis report and surface key findings quickly.',
+                resources: [
+                    { type: 'pdf', name: 'Data Analysis Report Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 37,
+                title: 'Data Analysis Report Demo',
+                duration: '13 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779291403/18._Demo_of_using_AI_to_create_a_data_analysis_report_usmxf0.mp4',
+                description: 'Watch a demo of AI creating a data analysis report with real examples and insights.',
+                resources: [
+                    { type: 'pdf', name: 'Data Analysis Report Demo Notes', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 38,
+                title: 'Create Training Material with AI',
+                duration: '12 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779291157/19._Using_AI_to_create_training_material_vredzc.mp4',
+                description: 'Learn how to use AI to create effective training materials quickly and consistently.',
+                resources: [
+                    { type: 'pdf', name: 'Training Material Guide', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 39,
+                title: 'Training Material Demo',
+                duration: '13 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779291428/20._Demo_of_using_AI_to_create_training_material_th4hth.mp4',
+                description: 'Watch a demo of using AI to create training materials with practical examples and templates.',
+                resources: [
+                    { type: 'pdf', name: 'Training Material Demo Notes', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 40,
+                title: 'Summary and Next Steps',
+                duration: '10 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779302061/01._Summary_and_next_steps_iuor8z.mp4',
+                description: 'Course summary and recommended next steps to apply AI tools in projects and workflows.',
+                resources: [
+                    { type: 'pdf', name: 'Course Next Steps', url: 'ai-tools-checklist.html' }
+                ]
+            },
+            {
+                id: 41,
+                title: 'Congratulations on Completing this Course',
+                duration: '8 min',
+                type: 'video',
+                topicFolder: 'Generative_AI_for_Business,_Marketing_Emails,_Ideation,_and_Productivity',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779303047/001_Congratulations_on_Completing_this_Course_ssrqvk.mp4',
+                description: 'Celebrate course completion and review the key takeaways for applying AI tools successfully.',
+                resources: [
+                    { type: 'pdf', name: 'Course Completion Guide', url: 'ai-tools-checklist.html' }
+                ]
             }
         ]
     },
@@ -487,14 +604,163 @@ const courses = {
         lessons: [
             {
                 id: 1,
-                title: 'Introduction to Web Development',
+                title: 'VS Code in 100 Seconds',
+                duration: '5 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779304861/VS_Code_in_100_Seconds_d7uovl.mp4',
+                description: 'Quick introduction to Visual Studio Code — the essential code editor for modern web development.',
+                resources: [
+                    { type: 'pdf', name: 'Web Dev Setup Guide', url: 'web-dev-setup.html' },
+                    { type: 'link', name: 'VS Code Official Site', url: 'https://code.visualstudio.com' }
+                ]
+            },
+            {
+                id: 2,
+                title: 'What You\'ll Get in This Course',
                 duration: '8 min',
                 type: 'video',
                 completed: false,
-                videoUrl: 'lesson-1.mp4',
-                description: 'Learn what web development is and why it\'s an essential skill in today\'s digital world.',
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779306211/001_What_You_ll_Get_in_This_Course_ykz9zd.mp4',
+                description: 'Overview of course content, learning outcomes, and skills you\'ll master in Modern Web Development.',
                 resources: [
-                    { type: 'pdf', name: 'Web Dev Roadmap', url: 'web-dev-roadmap.pdf' }
+                    { type: 'pdf', name: 'Course Roadmap', url: 'web-dev-roadmap.html' }
+                ]
+            },
+            {
+                id: 3,
+                title: 'How Does the Internet Actually Work',
+                duration: '12 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779307043/005_How_Does_the_Internet_Actually_Work_fab979.mp4',
+                description: 'Learn the fundamentals of how the internet works — DNS, HTTP, servers, and client-server architecture.',
+                resources: [
+                    { type: 'pdf', name: 'Internet Basics Guide', url: 'internet-guide.html' }
+                ]
+            },
+            {
+                id: 4,
+                title: 'How Do Websites Actually Work',
+                duration: '10 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779307120/006_How_Do_Websites_Actually_Work_eipj8s.mp4',
+                description: 'Understand how websites are built and served, including browsers, hosting, and HTML rendering.',
+                resources: [
+                    { type: 'pdf', name: 'Website Mechanics Guide', url: 'website-mechanics.html' }
+                ]
+            },
+            {
+                id: 5,
+                title: 'How to Get the Most Out of the Course',
+                duration: '9 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779307042/007_How_to_Get_the_Most_Out_of_the_Course_vofmqt.mp4',
+                description: 'Discover tips for staying engaged, practicing effectively, and getting the most value from this web development course.',
+                resources: [
+                    { type: 'pdf', name: 'Course Success Tips', url: 'course-success-tips.html' }
+                ]
+            },
+            {
+                id: 6,
+                title: 'How to Get Help When You\'re Stuck',
+                duration: '7 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779307035/008_How_to_Get_Help_When_You_re_Stuck_fwvezt.mp4',
+                description: 'Learn where to find help, use community resources, and overcome obstacles while learning web development.',
+                resources: [
+                    { type: 'link', name: 'Community Support Guide', url: 'https://developer.mozilla.org' }
+                ]
+            },
+            {
+                id: 7,
+                title: 'What is HTML',
+                duration: '10 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779308996/002_What_is_HTML_kmugwo.mp4',
+                description: 'Learn the basics of HTML and how it structures web pages for the browser.',
+                resources: [
+                    { type: 'pdf', name: 'HTML Basics Guide', url: 'html-basics.html' }
+                ]
+            },
+            {
+                id: 8,
+                title: 'How to Download the Course Resources',
+                duration: '6 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779308961/003_How_to_Download_the_Course_Resources_be5dvq.mp4',
+                description: 'Learn how to download and organize the course resources needed for web development practice.',
+                resources: [
+                    { type: 'pdf', name: 'Resource Download Guide', url: 'resource-downloads.html' }
+                ]
+            },
+            {
+                id: 9,
+                title: 'HTML Heading Elements',
+                duration: '7 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779309857/004_HTML_Heading_Elements_wby11n.mp4',
+                description: 'Learn how HTML heading elements work and how to structure page content semantically.',
+                resources: [
+                    { type: 'pdf', name: 'HTML Headings Guide', url: 'html-headings.html' }
+                ]
+            }
+            ,
+            {
+                id: 10,
+                title: 'HTML Paragraph Elements',
+                duration: '6 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779310538/005_HTML_Paragraph_Elements_oy3jzj.mp4',
+                description: 'Learn how to use paragraph tags and structure textual content semantically in HTML.',
+                resources: [
+                    { type: 'pdf', name: 'HTML Paragraphs Guide', url: 'html-paragraphs.html' }
+                ]
+            }
+            ,
+            {
+                id: 11,
+                title: 'Self-Closing Tags',
+                duration: '5 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779311258/006_Self_Closing_Tags_jvgka7.mp4',
+                description: 'Understand self-closing tags in HTML and when to use them effectively.',
+                resources: [
+                    { type: 'pdf', name: 'Self-Closing Tags Reference', url: 'self-closing-tags.html' }
+                ]
+            }
+            ,
+            {
+                id: 12,
+                title: 'Project: Movie Ranking',
+                duration: '14 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779311374/007_Project_Movie_Ranking_xws3xy.mp4',
+                description: 'Build a small movie ranking project to apply HTML structure and basic interactivity.',
+                resources: [
+                    { type: 'pdf', name: 'Project Starter Files', url: 'project-movie-ranking.zip' }
+                ]
+            }
+            ,
+            {
+                id: 13,
+                title: 'How to Ace this Course',
+                duration: '8 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779311809/008_How_to_Ace_this_Course_mizuvk.mp4',
+                description: 'Tips and strategies to get the most from this course and succeed in your projects and assessments.',
+                resources: [
+                    { type: 'pdf', name: 'Course Success Checklist', url: 'course-success-checklist.pdf' }
                 ]
             }
         ]
