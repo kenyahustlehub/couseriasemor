@@ -596,7 +596,7 @@ const courses = {
         description: 'Build responsive websites with HTML, CSS, JavaScript, and modern frameworks.',
         category: 'Programming & Development',
         assetFolder: 'Modern web development',
-        totalLessons: 30,
+        totalLessons: 39,
         totalDuration: '12 hours',
         rating: '4.9',
         reviews: '1.8k',
@@ -761,6 +761,257 @@ const courses = {
                 description: 'Tips and strategies to get the most from this course and succeed in your projects and assessments.',
                 resources: [
                     { type: 'pdf', name: 'Course Success Checklist', url: 'course-success-checklist.pdf' }
+                ]
+            }
+            ,
+            {
+                id: 14,
+                title: 'Why do we need CSS?',
+                duration: '10 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779350544/001_Why_do_we_need_CSS_qpzomh.mp4',
+                description: 'Understand why CSS is essential for styling web pages and separating content from presentation.',
+                resources: [
+                    { type: 'pdf', name: 'CSS Basics Guide', url: 'css-basics-guide.pdf' }
+                ]
+            }
+            ,
+            {
+                id: 15,
+                title: 'How to add CSS',
+                duration: '12 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779351202/002_How_to_add_CSS_olltqe.mp4',
+                description: 'Learn how to add CSS to your HTML pages using inline, internal, and external stylesheets.',
+                resources: [
+                    { type: 'pdf', name: 'CSS Linking Guide', url: 'css-linking-guide.pdf' }
+                ]
+            }
+            ,
+            {
+                id: 16,
+                title: 'CSS Selectors',
+                duration: '10 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779356485/004_CSS_Selectors_yc7lkl.mp4',
+                description: 'Learn CSS selectors and how to target HTML elements for styling efficiently.',
+                resources: [
+                    { type: 'pdf', name: 'CSS Selectors Cheat Sheet', url: 'css-selectors-cheat-sheet.pdf' }
+                ]
+            }
+            ,
+            {
+                id: 17,
+                title: 'Project: Colour Vocab Website',
+                duration: '14 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779351269/005_Project_Colour_Vocab_Website_o2shqb.mp4',
+                description: 'Build a colour vocabulary website project to practice CSS and layout for visual design.',
+                resources: [
+                    { type: 'pdf', name: 'Colour Vocab Project Guide', url: 'colour-vocab-project-guide.pdf' }
+                ]
+            }
+            ,
+            {
+                id: 18,
+                title: 'Tip from Angela - Dealing with Distractions',
+                duration: '9 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779351110/006_Tip_from_Angela_-_Dealing_with_Distractions_p3qcbv.mp4',
+                description: 'Learn practical tips from Angela on minimizing distractions and staying focused while learning web development.',
+                resources: [
+                    { type: 'pdf', name: 'Focus and Productivity Guide', url: 'focus-productivity-guide.pdf' }
+                ]
+            }
+            ,
+            {
+                id: 19,
+                title: 'CSS Display',
+                duration: '11 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779357838/001_CSS_Display_fcznib.mp4',
+                description: 'Learn how CSS display values control layout behavior and how to use them for page structure.',
+                resources: [
+                    { type: 'pdf', name: 'CSS Display Reference', url: 'css-display-reference.pdf' }
+                ]
+            }
+            ,
+            {
+                id: 20,
+                title: 'CSS Float',
+                duration: '9 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779358383/002_CSS_Float_urnxre.mp4',
+                description: 'Learn how CSS float works and how to use it to position elements on a page.',
+                resources: [
+                    { type: 'pdf', name: 'CSS Float Guide', url: 'css-float-guide.pdf' }
+                ]
+            }
+            ,
+            {
+                id: 21,
+                title: 'Media Queries',
+                duration: '10 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779358318/004_Media_Queries_hkhses.mp4',
+                description: 'Learn how to use media queries to make responsive layouts that adapt to different screen sizes.',
+                resources: [
+                    { type: 'pdf', name: 'Media Query Cheat Sheet', url: 'media-query-cheat-sheet.pdf' }
+                ]
+            }
+            ,
+            {
+                id: 22,
+                title: 'Project: Web Design Agency Website',
+                duration: '15 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779358319/005_Project_Web_Design_Agency_Website_eq33vd.mp4',
+                description: 'Build a web design agency website project to practice responsive layouts and visual styling.',
+                resources: [
+                    { type: 'pdf', name: 'Web Agency Project Guide', url: 'web-agency-project-guide.pdf' }
+                ]
+            }
+            ,
+            {
+                id: 23,
+                title: 'Introduction to JavaScript',
+                duration: '14 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779361692/002_Introduction_to_Javascript_jfav0g.mp4',
+                description: 'Get introduced to JavaScript: variables, functions, and how scripts add interactivity to web pages.',
+                resources: [
+                    { type: 'pdf', name: 'JS Quickstart', url: 'js-quickstart.pdf' }
+                ]
+            }
+            ,
+            {
+                id: 24,
+                title: 'Backend Tools and Technologies',
+                duration: '16 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779360096/002_Backend_Tools_and_Technologies_-_Which_one_to_learn_eiqppf.mp4',
+                description: 'Overview of backend tools and technologies and guidance on which to learn next.',
+                resources: [
+                    { type: 'pdf', name: 'Backend Tools Guide', url: 'backend-tools-guide.pdf' }
+                ]
+            },
+            {
+                id: 25,
+                title: 'Advanced JavaScript Patterns',
+                duration: '18 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779361692/002_Introduction_to_Javascript_jfav0g.mp4',
+                description: 'Explore advanced JavaScript patterns, best practices, and techniques for more maintainable, modular code.',
+                resources: [
+                    { type: 'pdf', name: 'Advanced JS Patterns', url: 'advanced-js-patterns.pdf' }
+                ]
+            },
+            {
+                id: 26,
+                title: 'JavaScript Alerts & Website Behavior',
+                duration: '12 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779365392/003_Javascript_Alerts_-_Adding_Behaviour_to_Websites_ccizix.mp4',
+                description: 'Learn how to use JavaScript alerts and add interactive behavior to web pages with event-driven scripting.',
+                resources: [
+                    { type: 'pdf', name: 'JavaScript Alerts Guide', url: 'js-alerts-guide.pdf' }
+                ]
+            },
+            {
+                id: 27,
+                title: 'JavaScript Data Types',
+                duration: '13 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779361323/004_Data_Types_mqrgdc.mp4',
+                description: 'Understand JavaScript data types and how to use them for reliable, bug-resistant code.',
+                resources: [
+                    { type: 'pdf', name: 'JavaScript Data Types Guide', url: 'js-data-types-guide.pdf' }
+                ]
+            },
+            {
+                id: 28,
+                title: 'JavaScript Variables',
+                duration: '11 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779361706/005_Javascript_Variables_fxxsra.mp4',
+                description: 'Learn how JavaScript variables work and how to store, update, and use values in your web apps.',
+                resources: [
+                    { type: 'pdf', name: 'JavaScript Variables Guide', url: 'js-variables-guide.pdf' }
+                ]
+            },
+            {
+                id: 29,
+                title: 'JavaScript Variables Exercise Start',
+                duration: '10 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779361263/006_Javascript_Variables_Exercise_Start_dorgb6.mp4',
+                description: 'Start the JavaScript variables exercise and practice using variables in a real coding challenge.',
+                resources: [
+                    { type: 'pdf', name: 'Variables Exercise Workbook', url: 'js-variables-exercise-workbook.pdf' }
+                ]
+            },
+            {
+                id: 30,
+                title: 'Naming and Naming Conventions for JavaScript Variables',
+                duration: '12 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779361722/009_Naming_and_Naming_Conventions_for_Javascript_Variables_r2gzda.mp4',
+                description: 'Learn how to name JavaScript variables clearly and consistently using naming conventions for cleaner code.',
+                resources: [
+                    { type: 'pdf', name: 'JS Naming Conventions Guide', url: 'js-naming-conventions-guide.pdf' }
+                ]
+            },
+            {
+                id: 31,
+                title: 'String Concatenation',
+                duration: '11 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779361574/011_String_Concatenation_z8j7qk.mp4',
+                description: 'Learn how to join strings in JavaScript and build dynamic text for your web applications.',
+                resources: [
+                    { type: 'pdf', name: 'String Concatenation Guide', url: 'js-string-concatenation-guide.pdf' }
+                ]
+            },
+            {
+                id: 32,
+                title: 'String Lengths and Character Count',
+                duration: '12 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779361677/012_String_Lengths_and_Retrieving_the_Number_of_Characters_ho5o2z.mp4',
+                description: 'Learn how to get string length in JavaScript and retrieve the number of characters in text values.',
+                resources: [
+                    { type: 'pdf', name: 'String Length Guide', url: 'js-string-length-guide.pdf' }
+                ]
+            },
+            {
+                id: 33,
+                title: 'String Slicing and Extraction',
+                duration: '13 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779361864/013_Slicing_and_Extracting_Parts_of_a_String_gccxug.mp4',
+                description: 'Discover how to extract parts of a string in JavaScript using slicing, substring, and related methods.',
+                resources: [
+                    { type: 'pdf', name: 'String Slicing Guide', url: 'js-string-slicing-guide.pdf' }
                 ]
             }
         ]
