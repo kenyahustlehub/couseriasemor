@@ -596,7 +596,7 @@ const courses = {
         description: 'Build responsive websites with HTML, CSS, JavaScript, and modern frameworks.',
         category: 'Programming & Development',
         assetFolder: 'Modern web development',
-        totalLessons: 39,
+        totalLessons: 44,
         totalDuration: '12 hours',
         rating: '4.9',
         reviews: '1.8k',
@@ -1013,6 +1013,90 @@ const courses = {
                 resources: [
                     { type: 'pdf', name: 'String Slicing Guide', url: 'js-string-slicing-guide.pdf' }
                 ]
+            },
+            {
+                id: 34,
+                title: 'Build a Drum Kit',
+                duration: '18 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779380554/001_What_We_ll_Make_Drum_Kit_iguzla.mp4',
+                description: 'Build an interactive drum kit web app using JavaScript event listeners and sound playback.',
+                resources: [
+                    { type: 'pdf', name: 'Drum Kit Project Guide', url: 'drum-kit-project-guide.pdf' }
+                ]
+            },
+            {
+                id: 35,
+                title: 'Adding Event Listeners to a Button',
+                duration: '10 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779433223/003_Adding_Event_Listeners_to_a_Button_nnkvcs.mp4',
+                description: 'Learn how to attach event listeners to buttons to handle clicks and other user interactions.',
+                resources: [
+                    { type: 'pdf', name: 'Event Listeners Guide', url: 'event-listeners-guide.pdf' }
+                ]
+            },
+            {
+                id: 36,
+                title: 'Higher-Order Functions',
+                duration: '14 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779433839/004_Higher_Order_Functions_and_Passing_Functions_as_Arguments_caqqma.mp4',
+                description: 'Understand higher-order functions and how to pass functions as arguments to other functions in JavaScript.',
+                resources: [
+                    { type: 'pdf', name: 'Higher-Order Functions Guide', url: 'higher-order-functions-guide.pdf' }
+                ]
+            },
+            {
+                id: 37,
+                title: 'Playing Sounds on a Website',
+                duration: '12 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779434523/006_How_to_Play_Sounds_on_a_Website_egcjzn.mp4',
+                description: 'Learn how to play sound effects and music on a website using the Web Audio API and HTML5 audio.',
+                resources: [
+                    { type: 'pdf', name: 'Playing Sounds Guide', url: 'playing-sounds-guide.pdf' }
+                ]
+            },
+            {
+                id: 38,
+                title: 'A Deeper Understanding of Javascript Objects',
+                duration: '15 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779434549/007_A_Deeper_Understanding_of_Javascript_Objects_btcolu.mp4',
+                description: 'Dive deeper into JavaScript objects, understanding their structure, methods, and how to work with them effectively.',
+                resources: [
+                    { type: 'pdf', name: 'JavaScript Objects Deep Dive', url: 'js-objects-deep-dive.pdf' }
+                ]
+            },
+            {
+                id: 39,
+                title: 'How to Use Switch Statements in Javascript',
+                duration: '12 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779434397/008_How_to_Use_Switch_Statements_in_Javascript_xhzhbx.mp4',
+                description: 'Learn how to control program flow using switch statements for cleaner conditional logic.',
+                resources: [
+                    { type: 'pdf', name: 'Switch Statements Guide', url: 'switch-statements-guide.pdf' }
+                ]
+            },
+            {
+                id: 40,
+                title: 'Objects, their Methods, and the Dot Notation',
+                duration: '13 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779434433/009_Objects_their_Methods_and_the_Dot_Notation_wfddtu.mp4',
+                description: 'Learn how to use object methods and dot notation to access and manipulate JavaScript object properties.',
+                resources: [
+                    { type: 'pdf', name: 'Object Methods Guide', url: 'object-methods-guide.pdf' }
+                ]
             }
         ]
     },
@@ -1074,6 +1158,128 @@ const courses = {
                 description: 'Build your own high-value project roadmap that attracts real clients and remote income.',
                 resources: [
                     { type: 'pdf', name: 'Premium Project Planner', url: '#' }
+                ]
+            }
+        ]
+    },
+    'cybersecurity': {
+        title: 'Cybersecurity Essentials',
+        description: 'Learn the fundamentals of cybersecurity, online safety, and threat awareness for the modern internet.',
+        category: 'Security & IT',
+        assetFolder: 'cybersecurity essentials',
+        totalLessons: 7,
+        totalDuration: '56 min',
+        rating: '4.6',
+        reviews: '1.1k',
+        students: '9,800+',
+        lessons: [
+            {
+                id: 1,
+                title: 'Introduction',
+                duration: '8 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779438969/001_Introduction_tzcjtg.mp4',
+                description: 'Get introduced to the fundamentals of cybersecurity, threat awareness, and safe online behavior.',
+                resources: [
+                    { type: 'pdf', name: 'Course Syllabus', url: 'course-syllabus.html' }
+                ]
+            },
+            {
+                id: 2,
+                title: 'Center for Internet Security',
+                duration: '8 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779438723/002_Center_for_Internet_Security_cxnmmm.mov',
+                description: 'Learn about the Center for Internet Security and how its controls help secure systems and networks.',
+                resources: [
+                    { type: 'pdf', name: 'CIS Controls Overview', url: 'cis-controls-overview.pdf' }
+                ]
+            },
+            {
+                id: 3,
+                title: 'Kali Linux installation',
+                duration: '8 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779439292/003_Kali_Linux_installation_hnq3nl.mp4',
+                description: 'Step-by-step Kali Linux installation and basic setup for security testing labs.',
+                resources: [
+                    { type: 'pdf', name: 'Kali Installation Guide', url: 'kali-installation-guide.pdf' }
+                ]
+            }
+            ,
+            {
+                id: 4,
+                title: 'Weaponizing Windows 1',
+                duration: '8 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779441749/004_Weaponizing_Windows_1_geku7a.mov',
+                description: 'Introductory techniques for weaponizing Windows in security testing labs.',
+                resources: [
+                    { type: 'pdf', name: 'Weaponizing Windows Guide', url: 'weaponizing-windows-guide.pdf' }
+                ]
+            },
+            {
+                id: 5,
+                title: 'NGROK: Connecting Servers To Internet',
+                duration: '8 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779442622/005_NGROK_Connecting_Servers_To_Internet_khtkgz.mp4',
+                description: 'Learn how to use NGROK to securely connect local servers to the internet for testing and remote access.',
+                resources: [
+                    { type: 'pdf', name: 'NGROK Setup Guide', url: 'ngrok-setup-guide.pdf' }
+                ]
+            },
+            {
+                id: 6,
+                title: 'Kali Linux features and functions for ethical hacking 1',
+                duration: '8 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779455482/006_Kali_Linux_features_and_functions_for_ethical_hacking_1_pzbfh2.mp4',
+                description: 'Explore the features and functions of Kali Linux for ethical hacking and penetration testing.',
+                resources: [
+                    { type: 'pdf', name: 'Kali Linux Features Guide', url: 'kali-linux-features-guide.pdf' }
+                ]
+            },
+            {
+                id: 7,
+                title: 'Install Kali Linux on Windows',
+                duration: '8 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779455767/007_Install_Kali_Linux_on_Windows_amx1p4.mp4',
+                description: 'Step-by-step guide to installing Kali Linux on Windows using WSL or virtualization.',
+                resources: [
+                    { type: 'pdf', name: 'Kali Windows Installation Guide', url: 'kali-windows-installation-guide.pdf' }
+                ]
+            },
+            {
+                id: 8,
+                title: 'Web Servers VS Applications',
+                duration: '8 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779457243/1.Web_Servers_VS_Applications_onan8s.mp4',
+                description: 'Understand the difference between web servers and web applications, and how they interact.',
+                resources: [
+                    { type: 'pdf', name: 'Web Servers vs Applications Guide', url: 'web-servers-vs-applications-guide.pdf' }
+                ]
+            },
+            {
+                id: 9,
+                title: 'Vulnerability Scanning with Acunetix',
+                duration: '8 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779457510/2.Vulnerability_Scanning_with_Acunetix_wr7hfv.mp4',
+                description: 'Learn how to scan for web vulnerabilities using Acunetix and interpret the results.',
+                resources: [
+                    { type: 'pdf', name: 'Acunetix Vulnerability Scanning Guide', url: 'acunetix-vulnerability-scanning-guide.pdf' }
                 ]
             }
         ]
