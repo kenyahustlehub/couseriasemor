@@ -3,8 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Sign in to COUSERIASEMOR to continue your learning path, track your progress, and access your digital skills courses.">
+    <meta name="keywords" content="login, sign in, online learning, course access, learner account">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Login - COUSERIASEMOR">
+    <meta property="og:description" content="Sign in to COUSERIASEMOR to continue your learning path, track your progress, and access your digital skills courses.">
+    <meta property="og:site_name" content="COUSERIASEMOR">
+    <meta property="og:url" content="https://couseriasemor.onrender.com/login.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Login - COUSERIASEMOR">
+    <meta name="twitter:description" content="Sign in to COUSERIASEMOR to continue your learning path, track your progress, and access your digital skills courses.">
+    <link rel="canonical" href="https://couseriasemor.onrender.com/login.html">
     <title>Login - COUSERIASEMOR</title>
     <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "COUSERIASEMOR",
+          "url": "https://couseriasemor.onrender.com"
+        },
+        {
+          "@type": "WebPage",
+          "url": "https://couseriasemor.onrender.com/login.html",
+          "name": "Login - COUSERIASEMOR",
+          "description": "Sign in to COUSERIASEMOR to continue your learning path, track your progress, and access your digital skills courses."
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <nav class="navbar">
@@ -20,6 +50,7 @@
                     <a href="login.html" class="nav-link">Login</a>
                     <a href="register.html" class="nav-link">Register</a>
                 </li>
+                <li class="nav-theme-toggle"><button id="themeToggle" class="nav-link" type="button">Light</button></li>
             </ul>
         </div>
     </nav>
@@ -69,6 +100,7 @@
     </div>
 
     <script src="login-script.js"></script>
+    <script src="theme-toggle.js"></script>
     <script src="auto-refresh.js"></script>
     <script>
         const authLinks = document.getElementById('authLinks');
@@ -80,7 +112,15 @@
         }
 
         if (token) {
-            authLinks.innerHTML = `<a href="#" class="nav-link logout-link">Logout</a> <span class="nav-link">${welcomeName}</span>`;
+            authLinks.innerHTML = `
+                <div class="nav-user-menu">
+                    <button type="button" class="nav-link nav-user-toggle">${welcomeName}</button>
+                    <div class="nav-user-dropdown">
+                        <a href="profile.html" class="nav-link nav-user-item">Profile</a>
+                        <a href="#" class="nav-link nav-user-item logout-link">Logout</a>
+                    </div>
+                </div>
+            `;
         }
     </script>
 </body>

@@ -3,8 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Continue your COUSERIASEMOR course with reading, video lessons, progress tracking, and a clear path to remote income skills.">
+    <meta name="keywords" content="course page, learning progress, lesson tracking, online course details, skill development">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Course - COUSERIASEMOR">
+    <meta property="og:description" content="Continue your COUSERIASEMOR course with reading, video lessons, progress tracking, and a clear path to remote income skills.">
+    <meta property="og:site_name" content="COUSERIASEMOR">
+    <meta property="og:url" content="https://couseriasemor.onrender.com/course.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Course - COUSERIASEMOR">
+    <meta name="twitter:description" content="Continue your COUSERIASEMOR course with reading, video lessons, progress tracking, and a clear path to remote income skills.">
+    <link rel="canonical" href="https://couseriasemor.onrender.com/course.html">
     <title>Course - COUSERIASEMOR</title>
     <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "COUSERIASEMOR",
+          "url": "https://couseriasemor.onrender.com"
+        },
+        {
+          "@type": "WebPage",
+          "url": "https://couseriasemor.onrender.com/course.html",
+          "name": "Course - COUSERIASEMOR",
+          "description": "Continue your COUSERIASEMOR course with reading, video lessons, progress tracking, and a clear path to remote income skills."
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <nav class="navbar">
@@ -18,6 +48,7 @@
                 <li><a href="courses.html" class="nav-link">Courses</a></li>
                 <li><a href="#progress" class="nav-link">Progress</a></li>
                 <li id="authLinks"></li>
+                <li class="nav-theme-toggle"><button id="themeToggle" class="nav-link" type="button">Light</button></li>
             </ul>
         </div>
     </nav>
@@ -80,6 +111,14 @@
                 </div>
 
                 <div class="lesson-content">
+                    <div class="lesson-preview" id="lessonPreview">
+                        <div class="lesson-preview-top">
+                            <span class="lesson-preview-label">Lesson Preview</span>
+                            <span class="lesson-preview-status">Quick outcomes</span>
+                        </div>
+                        <p id="lessonPreviewText">Learn what this lesson covers before you start watching.</p>
+                        <ul id="lessonPreviewPoints" class="lesson-preview-points"></ul>
+                    </div>
                     <div class="lesson-description" id="lessonDescription">
                         <p>Welcome to the AI Tools Mastery course! In this comprehensive program, you'll learn how to leverage artificial intelligence to supercharge your productivity and creativity.</p>
 
@@ -130,6 +169,7 @@
         </div>
     </div>
 
+    <script src="theme-toggle.js"></script>
     <script src="course.js"></script>
 </body>
 </html>

@@ -10,7 +10,15 @@ document.getElementById('welcomeName').textContent = welcomeName;
 
 const authLinks = document.getElementById('authLinks');
 if (authLinks) {
-    authLinks.innerHTML = `<a href="#" class="nav-link logout-link">Logout</a> <span class="nav-link">${welcomeName}</span>`;
+    authLinks.innerHTML = `
+        <div class="nav-user-menu">
+            <button type="button" class="nav-link nav-user-toggle">${welcomeName}</button>
+            <div class="nav-user-dropdown">
+                <a href="profile.html" class="nav-link nav-user-item">Profile</a>
+                <a href="#" class="nav-link nav-user-item logout-link">Logout</a>
+            </div>
+        </div>
+    `;
 }
 
 function openCourse(courseId) {

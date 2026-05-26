@@ -1113,14 +1113,98 @@ const courses = {
         lessons: [
             {
                 id: 1,
-                title: 'Freelancing Mindset',
+                title: 'Course Outline',
                 duration: '10 min',
                 type: 'video',
                 completed: false,
-                videoUrl: 'lesson-1.mp4',
-                description: 'Develop the right mindset for freelancing success and learn what it takes to be a successful freelancer.',
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779529511/01._Course_Outline_pp9pui.mp4',
+                description: 'Watch the Freelancing Mastery course outline to learn the program structure, key lessons, and how to start building a successful freelance career.',
                 resources: [
-                    { type: 'pdf', name: 'Freelancer Mindset Guide', url: 'freelancer-mindset-guide.pdf' }
+                    { type: 'pdf', name: 'Course Syllabus', url: 'course-syllabus.html' }
+                ]
+            },
+            {
+                id: 2,
+                title: 'Upwork Introduction & Fees',
+                duration: '12 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779535720/01._Upwork_Intro_Fees_gbbpqm.mp4',
+                description: 'Learn how Upwork works, understand platform fees, and get tips for pricing your freelance services on the marketplace.',
+                resources: [
+                    { type: 'pdf', name: 'Upwork Fee Guide', url: 'upwork-fee-guide.pdf' }
+                ]
+            },
+            {
+                id: 3,
+                title: 'Signing Up for Upwork',
+                duration: '10 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779535456/02._Signing_Up_For_Upwork_y90a1c.mp4',
+                description: 'Follow the step-by-step process for creating your Upwork profile, setting up your skills, and launching your first freelancing presence.',
+                resources: [
+                    { type: 'pdf', name: 'Upwork Signup Checklist', url: 'upwork-signup-checklist.pdf' }
+                ]
+            },
+            {
+                id: 4,
+                title: 'Understanding Upwork Profile Settings',
+                duration: '10 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779535633/04._Understanding_Upwork_Profile_Settings_z89b7d.mp4',
+                description: 'Learn how to optimize your Upwork profile settings, privacy options, and visibility to attract the right clients.',
+                resources: [
+                    { type: 'pdf', name: 'Upwork Profile Settings Guide', url: 'upwork-profile-settings-guide.pdf' }
+                ]
+            },
+            {
+                id: 5,
+                title: 'Building Highly Targeted Specialized Profiles',
+                duration: '10 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779535573/05._How_To_Build_Highly_Targeted_Specialized_Profiles_sq4iv6.mp4',
+                description: 'Discover how to build highly targeted Upwork profiles for specialized services that attract premium clients and increase hiring chances.',
+                resources: [
+                    { type: 'pdf', name: 'Targeted Profile Guide', url: 'targeted-profile-guide.pdf' }
+                ]
+            },
+            {
+                id: 6,
+                title: 'Build Your Upwork Profile Case Studies',
+                duration: '12 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779535788/06._Exercise_Build_Your_Upwork_Profile_Case_Studies_snwjoi.mp4',
+                description: 'Practice building profile case studies with real examples so your Upwork profile clearly highlights value and wins client trust.',
+                resources: [
+                    { type: 'pdf', name: 'Profile Case Study Exercise', url: 'profile-case-study-exercise.pdf' }
+                ]
+            },
+            {
+                id: 7,
+                title: 'Deals Module Introduction',
+                duration: '10 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779539809/01._Deals_Module_Introduction_deikh3.mp4',
+                description: 'Get introduced to the Deals module, including how to manage proposals, client negotiations, and project agreements on Upwork.',
+                resources: [
+                    { type: 'pdf', name: 'Deals Module Overview', url: 'deals-module-overview.pdf' }
+                ]
+            },
+            {
+                id: 8,
+                title: 'Profitable Freelance Sales Process',
+                duration: '11 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779540298/02._Profitable_Freelance_Sales_Process_qxxn2m.mp4',
+                description: 'Learn the profitable freelance sales process for closing high-value deals and maximizing your earnings on Upwork.',
+                resources: [
+                    { type: 'pdf', name: 'Sales Process Guide', url: 'sales-process-guide.pdf' }
                 ]
             }
         ]
@@ -1138,26 +1222,56 @@ const courses = {
         lessons: [
             {
                 id: 1,
-                title: 'Premium Launch Strategy',
+                title: 'Get Phone\'s GPS',
                 duration: '15 min',
                 type: 'video',
                 completed: false,
-                videoUrl: '',
-                description: 'Learn how to package your skills, define premium offers, and set up a strong growth path.',
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779538507/028_Get_Phone_s_GPS_lhkwyt.mp4',
+                description: 'Learn how to access your phone\'s GPS data and use location information for premium mobile learning workflows.',
+                preview: 'After watching, you\'ll master GPS access on Android and build location-aware premium workflows.',
+                previewHighlights: [
+                    'Build live GPS tracking into mobile apps and premium workflows',
+                    'Implement safe permission handling for location data access',
+                    'Deploy location-based features that work on production Android devices'
+                ],
                 resources: [
                     { type: 'pdf', name: 'Premium Launch Checklist', url: '#' }
                 ]
             },
             {
                 id: 2,
-                title: 'Premium Project Roadmap',
+                title: 'Ghost Framework',
                 duration: '18 min',
                 type: 'video',
                 completed: false,
-                videoUrl: '',
-                description: 'Build your own high-value project roadmap that attracts real clients and remote income.',
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779538575/029_Ghost_Framework_yqzf4o.mp4',
+                description: 'Explore the Ghost Framework and learn how to build lightweight, powerful premium workflows for freelance projects.',
+                preview: 'After watching, you\'ll architect lean automation systems and deliver premium projects faster with Ghost.',
+                previewHighlights: [
+                    'Design and code lightweight frameworks that scale without complexity',
+                    'Cut project delivery time by 40% using Ghost automation patterns',
+                    'Deliver premium systems clients pay 3x more for'
+                ],
                 resources: [
                     { type: 'pdf', name: 'Premium Project Planner', url: '#' }
+                ]
+            },
+            {
+                id: 3,
+                title: 'Reset Android Without Password',
+                duration: '20 min',
+                type: 'video',
+                completed: false,
+                videoUrl: 'https://res.cloudinary.com/dng0zi4lo/video/upload/v1779826004/030_Reset_Android_Without_Password_s27zsa.mp4',
+                description: 'Learn how to safely reset an Android device without a password and restore access while protecting your premium mobile workflows.',
+                preview: 'After watching, you\'ll confidently recover any Android device and safeguard user data like a pro.',
+                previewHighlights: [
+                    'Execute flawless device recovery without password or data loss',
+                    'Protect user privacy while regaining secure access to Android systems',
+                    'Troubleshoot and resolve access issues in premium mobile support workflows'
+                ],
+                resources: [
+                    { type: 'pdf', name: 'Android Reset Guide', url: '#' }
                 ]
             }
         ]
@@ -1390,6 +1504,25 @@ function loadLesson(index) {
     document.getElementById('currentLessonTitle').textContent = lesson.title;
     document.querySelector('.lesson-duration').textContent = lesson.duration;
     document.querySelector('.lesson-type').textContent = lesson.type.charAt(0).toUpperCase() + lesson.type.slice(1);
+
+    const previewText = document.getElementById('lessonPreviewText');
+    const previewPoints = document.getElementById('lessonPreviewPoints');
+    if (previewText) {
+        previewText.innerHTML = lesson.preview || lesson.description;
+    }
+    if (previewPoints) {
+        previewPoints.innerHTML = '';
+        if (lesson.previewHighlights && lesson.previewHighlights.length) {
+            lesson.previewHighlights.forEach((point) => {
+                const li = document.createElement('li');
+                li.textContent = point;
+                previewPoints.appendChild(li);
+            });
+            previewPoints.style.display = 'block';
+        } else {
+            previewPoints.style.display = 'none';
+        }
+    }
 
     const courseTopicEl = document.getElementById('courseTopic');
     if (courseTopicEl) {

@@ -3,8 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Browse COUSERIASEMOR course categories and featured programs for AI, web development, freelancing, cybersecurity, Excel, and premium learning.">
+    <meta name="keywords" content="online courses, AI training, web development, freelancing, cybersecurity, Excel, premium learning">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Courses - COUSERIASEMOR">
+    <meta property="og:description" content="Browse COUSERIASEMOR course categories and featured programs for AI, web development, freelancing, cybersecurity, Excel, and premium learning.">
+    <meta property="og:site_name" content="COUSERIASEMOR">
+    <meta property="og:url" content="https://couseriasemor.onrender.com/courses.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Courses - COUSERIASEMOR">
+    <meta name="twitter:description" content="Browse COUSERIASEMOR course categories and featured programs for AI, web development, freelancing, cybersecurity, Excel, and premium learning.">
+    <link rel="canonical" href="https://couseriasemor.onrender.com/courses.html">
     <title>Courses - COUSERIASEMOR</title>
     <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "COUSERIASEMOR",
+          "url": "https://couseriasemor.onrender.com"
+        },
+        {
+          "@type": "WebPage",
+          "url": "https://couseriasemor.onrender.com/courses.html",
+          "name": "Courses - COUSERIASEMOR",
+          "description": "Browse COUSERIASEMOR course categories and featured programs for AI, web development, freelancing, cybersecurity, Excel, and premium learning."
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <nav class="navbar">
@@ -17,10 +47,10 @@
                 <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
                 <li><a href="courses.html" class="nav-link active">Courses</a></li>
                 <li><a href="premium.html" class="nav-link">Premium</a></li>
-                <li><a href="profile.html" class="nav-link">Profile</a></li>
                 <li><a href="#resources" class="nav-link">Resources</a></li>
                 <li><a href="#progress" class="nav-link">Progress</a></li>
                 <li id="authLinks"></li>
+                <li class="nav-theme-toggle"><button id="themeToggle" class="nav-link" type="button">Light</button></li>
             </ul>
         </div>
     </nav>
@@ -87,22 +117,6 @@
                 <div class="category-stats">
                     <span>15 Courses</span>
                     <span>Practical Focus</span>
-                </div>
-            </div>
-            <div class="solution-card category-card" data-category="design">
-                <h3>🎨 Design & Creative</h3>
-                <p>Master design tools, content creation, and visual communication skills.</p>
-                <div class="category-stats">
-                    <span>10 Courses</span>
-                    <span>Creative Focus</span>
-                </div>
-            </div>
-            <div class="solution-card category-card" data-category="data">
-                <h3>📊 Data & Analytics</h3>
-                <p>Learn data analysis, Excel mastery, and business intelligence tools.</p>
-                <div class="category-stats">
-                    <span>8 Courses</span>
-                    <span>Job Ready</span>
                 </div>
             </div>
             <div class="solution-card category-card" data-category="security">
@@ -238,6 +252,35 @@
         </div>
     </section>
 
+    <section id="resources" class="features">
+        <div class="section-header">
+            <h2>Resources</h2>
+            <p>Downloadable guides and tools to support your learning journey and speed up course progress.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">📄</div>
+                <h3>Starter Guide</h3>
+                <p>Step-by-step onboarding checklist for remote earning and online learning.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🧠</div>
+                <h3>AI Prompt Pack</h3>
+                <p>Ready-to-use prompts for course projects, copywriting, and productivity workflows.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📈</div>
+                <h3>Progress Tracker</h3>
+                <p>Track your learning goals, completed lessons, and milestones in one place.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💼</div>
+                <h3>Freelance Checklist</h3>
+                <p>Follow this checklist to build your first service, find clients, and deliver results.</p>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
@@ -266,6 +309,7 @@
         </div>
     </footer>
 
+    <script src="theme-toggle.js"></script>
     <script src="courses.js"></script>
 </body>
 </html>

@@ -3,8 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Manage your COUSERIASEMOR profile, view rewards, learning streaks, premium status, and personalized growth progress.">
+    <meta name="keywords" content="learner profile, progress overview, premium rewards, account management, learning dashboard">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Profile - COUSERIASEMOR">
+    <meta property="og:description" content="Manage your COUSERIASEMOR profile, view rewards, learning streaks, premium status, and personalized growth progress.">
+    <meta property="og:site_name" content="COUSERIASEMOR">
+    <meta property="og:url" content="https://couseriasemor.onrender.com/profile.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Profile - COUSERIASEMOR">
+    <meta name="twitter:description" content="Manage your COUSERIASEMOR profile, view rewards, learning streaks, premium status, and personalized growth progress.">
+    <link rel="canonical" href="https://couseriasemor.onrender.com/profile.html">
     <title>Profile - COUSERIASEMOR</title>
     <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "COUSERIASEMOR",
+          "url": "https://couseriasemor.onrender.com"
+        },
+        {
+          "@type": "WebPage",
+          "url": "https://couseriasemor.onrender.com/profile.html",
+          "name": "Profile - COUSERIASEMOR",
+          "description": "Manage your COUSERIASEMOR profile, view rewards, learning streaks, premium status, and personalized growth progress."
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <nav class="navbar">
@@ -19,6 +49,7 @@
                 <li><a href="premium.html" class="nav-link">Premium</a></li>
                 <li><a href="profile.html" class="nav-link active">Profile</a></li>
                 <li id="authLinks"></li>
+                <li class="nav-theme-toggle"><button id="themeToggle" class="nav-link" type="button">Light</button></li>
             </ul>
         </div>
     </nav>
@@ -101,6 +132,7 @@ return account;</pre>
         </div>
     </section>
 
+    <script src="theme-toggle.js"></script>
     <script src="profile.js"></script>
 </body>
 </html>

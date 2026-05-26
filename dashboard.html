@@ -3,8 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Your COUSERIASEMOR dashboard gives you progress tracking, premium unlock status, learning performance, and quick access to active courses.">
+    <meta name="keywords" content="learning dashboard, progress tracking, course status, premium unlock, online learning">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dashboard - COUSERIASEMOR">
+    <meta property="og:description" content="Your COUSERIASEMOR dashboard gives you progress tracking, premium unlock status, learning performance, and quick access to active courses.">
+    <meta property="og:site_name" content="COUSERIASEMOR">
+    <meta property="og:url" content="https://couseriasemor.onrender.com/dashboard.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Dashboard - COUSERIASEMOR">
+    <meta name="twitter:description" content="Your COUSERIASEMOR dashboard gives you progress tracking, premium unlock status, learning performance, and quick access to active courses.">
+    <link rel="canonical" href="https://couseriasemor.onrender.com/dashboard.html">
     <title>Dashboard - COUSERIASEMOR</title>
     <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "COUSERIASEMOR",
+          "url": "https://couseriasemor.onrender.com"
+        },
+        {
+          "@type": "WebPage",
+          "url": "https://couseriasemor.onrender.com/dashboard.html",
+          "name": "Dashboard - COUSERIASEMOR",
+          "description": "Your COUSERIASEMOR dashboard gives you progress tracking, premium unlock status, learning performance, and quick access to active courses."
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <nav class="navbar">
@@ -17,10 +47,10 @@
                 <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
                 <li><a href="courses.html" class="nav-link">Courses</a></li>
                 <li><a href="premium.html" class="nav-link">Premium</a></li>
-                <li><a href="profile.html" class="nav-link">Profile</a></li>
                 <li><a href="#resources" class="nav-link">Resources</a></li>
                 <li><a href="#goals" class="nav-link">Progress</a></li>
                 <li id="authLinks"></li>
+                <li class="nav-theme-toggle"><button id="themeToggle" class="nav-link" type="button">Light</button></li>
             </ul>
         </div>
     </nav>
@@ -68,6 +98,27 @@ const mission = {
 };
 
 return mission;</pre>
+            </div>
+        </div>
+    </section>
+
+    <section id="goals" class="stats">
+        <div class="stats-container">
+            <div class="stat">
+                <h3 id="completedModules">3</h3>
+                <p>Modules completed</p>
+            </div>
+            <div class="stat">
+                <h3 id="activeProjects">1</h3>
+                <p>Active project goals</p>
+            </div>
+            <div class="stat">
+                <h3 id="weeklyHours">7</h3>
+                <p>Hours this week</p>
+            </div>
+            <div class="stat">
+                <h3 id="nextMilestone">Pitch ready</h3>
+                <p>Next milestone</p>
             </div>
         </div>
     </section>
@@ -149,27 +200,6 @@ return mission;</pre>
         </div>
     </section>
 
-    <section id="goals" class="stats">
-        <div class="stats-container">
-            <div class="stat">
-                <h3 id="completedModules">3</h3>
-                <p>Modules completed</p>
-            </div>
-            <div class="stat">
-                <h3 id="activeProjects">1</h3>
-                <p>Active project goals</p>
-            </div>
-            <div class="stat">
-                <h3 id="weeklyHours">7</h3>
-                <p>Hours this week</p>
-            </div>
-            <div class="stat">
-                <h3 id="nextMilestone">Pitch ready</h3>
-                <p>Next milestone</p>
-            </div>
-        </div>
-    </section>
-
     <section class="cta">
         <div class="cta-content">
             <h2>Keep moving forward</h2>
@@ -198,6 +228,7 @@ return mission;</pre>
     </footer>
 
     <script src="dashboard.js"></script>
+    <script src="theme-toggle.js"></script>
     <script src="auto-refresh.js"></script>
 </body>
 </html>
