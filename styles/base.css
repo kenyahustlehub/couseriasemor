@@ -367,6 +367,22 @@ body {
     align-items: center;
 }
 
+/* Modern visual tweaks */
+.card-soft {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 12px 30px rgba(2,6,23,0.45);
+}
+
+.glass-cta {
+    background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 18px 26px;
+    border-radius: 12px;
+}
+
 .hero-content {
     display: flex;
     flex-direction: column;

@@ -23,6 +23,31 @@
     box-shadow: 0 28px 70px rgba(15, 23, 42, 0.22);
 }
 
+.light-theme .solution-card {
+    background: #ffffff;
+    border-color: rgba(15, 23, 42, 0.08);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.light-theme .solution-card h3,
+.light-theme .solution-card p {
+    color: var(--text);
+}
+
+.light-theme .course-card {
+    background: #ffffff;
+    border-color: rgba(15, 23, 42, 0.08);
+}
+
+.light-theme .course-card:hover {
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+}
+
+.light-theme .course-card h3,
+.light-theme .course-card p {
+    color: var(--text);
+}
+
 .solution-card h3 {
     font-size: 22px;
     margin-bottom: 14px;
