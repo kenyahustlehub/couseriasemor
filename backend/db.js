@@ -1,6 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 
 const dbPath = path.join(__dirname, 'database.sqlite');
 const usersJsonPath = path.join(__dirname, 'users.json');
@@ -25,7 +26,7 @@ function initializeDb() {
       )
     `);
 
-    if (fs.existsSync(usersJsonPath)) {
+        if (fs.existsSync(usersJsonPath)) {
       try {
         const data = fs.readFileSync(usersJsonPath, 'utf8');
         const json = JSON.parse(data);
@@ -46,7 +47,7 @@ function initializeDb() {
               stmt.run(
                 user.id || Date.now().toString(),
                 user.fullName || '',
-                user.email || '',
+                (user.email || '').toString().trim().toLowerCase(),
                 user.password || '',
                 user.expertise || '',
                 user.createdAt || new Date().toISOString(),
@@ -84,9 +85,10 @@ function loadUsers() {
 
 function findUserByEmail(email) {
   return new Promise((resolve, reject) => {
+    const normalized = String(email || '').trim().toLowerCase();
     db.get(
       'SELECT id, fullName, email, password, expertise, createdAt, updatedAt, lastLogin, totalPoints, lastRewardDate, resetToken, resetTokenExpires FROM users WHERE email = ?',
-      [email],
+      [normalized],
       (err, row) => {
         if (err) return reject(err);
         resolve(row || null);
@@ -111,9 +113,9 @@ function findUserByResetToken(token) {
 function createUser(userData) {
   return new Promise((resolve, reject) => {
     const user = {
-      id: Date.now().toString(),
+      id: (crypto.randomUUID && crypto.randomUUID()) || Date.now().toString(),
       fullName: userData.fullName,
-      email: userData.email,
+      email: String(userData.email || '').trim().toLowerCase(),
       password: userData.password,
       expertise: userData.expertise,
       createdAt: new Date().toISOString(),
@@ -147,7 +149,13 @@ function createUser(userData) {
         user.resetTokenExpires,
       ],
       function (err) {
-        if (err) return reject(err);
+        if (err) {
+          // Handle duplicate email gracefully
+          if (err.message && err.message.includes('UNIQUE constraint failed')) {
+            return reject(new Error('Email already registered'));
+          }
+          return reject(err);
+        }
         resolve(user);
       }
     );

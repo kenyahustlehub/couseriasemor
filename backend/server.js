@@ -68,30 +68,59 @@ function getCurrentDate() {
   return new Date().toISOString().split('T')[0];
 }
 
+function getClientDate(clientDate) {
+  if (!clientDate) {
+    return getCurrentDate();
+  }
+
+  const normalizedDate = String(clientDate).trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(normalizedDate)) {
+    return normalizedDate;
+  }
+
+  const parsed = new Date(normalizedDate);
+  if (!Number.isNaN(parsed.getTime())) {
+    return parsed.toISOString().split('T')[0];
+  }
+
+  console.warn(`⚠️ Invalid localDate received from client: ${JSON.stringify(clientDate)}. Using server date fallback.`);
+
+  return getCurrentDate();
+}
+
 // Register endpoint
 app.post('/api/register', async (req, res) => {
-  const { fullName, email, password, expertise } = req.body;
+  const { fullName, email, password, expertise, localDate } = req.body;
 
   if (!fullName || !email || !password || !expertise) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
   try {
-    const existingUser = await findUserByEmail(email);
+    const normalizedEmail = String(email || '').trim().toLowerCase();
+    const existingUser = await findUserByEmail(normalizedEmail);
     if (existingUser) {
       return res.status(400).json({ message: 'Looks like this email is already registered. Try signing in or resetting your password.' });
     }
 
-    const today = getCurrentDate();
-    const user = await createUser({
-      fullName,
-      email,
-      password,
-      expertise,
-      lastLogin: new Date().toISOString(),
-      totalPoints: 10,
-      lastRewardDate: today,
-    });
+    const today = getClientDate(localDate);
+    let user;
+    try {
+      user = await createUser({
+        fullName,
+        email: normalizedEmail,
+        password,
+        expertise,
+        lastLogin: new Date().toISOString(),
+        totalPoints: 10,
+        lastRewardDate: today,
+      });
+    } catch (err) {
+      if (err && err.message && err.message.includes('Email already registered')) {
+        return res.status(400).json({ message: 'Looks like this email is already registered. Try signing in or resetting your password.' });
+      }
+      throw err;
+    }
 
     console.log(`✅ User registered: ${email}`);
 
@@ -124,26 +153,27 @@ app.post('/api/login', async (req, res) => {
   }
 
   try {
-    const user = await findUserByEmail(email);
+    const normalizedEmail = String(email || '').trim().toLowerCase();
+    const user = await findUserByEmail(normalizedEmail);
 
     if (!user || user.password !== password) {
       return res.status(401).json({ message: 'Invalid email or password. Forgot your password? Reset it now.' });
     }
 
-    const today = getCurrentDate();
+    const today = getClientDate(req.body.localDate);
     let pointsEarned = 0;
     let updatedUser = user;
 
     if (user.lastRewardDate !== today) {
       const newTotal = (user.totalPoints || 0) + 10;
-      updatedUser = await updateUser(email, {
+      updatedUser = await updateUser(normalizedEmail, {
         lastLogin: new Date().toISOString(),
         totalPoints: newTotal,
         lastRewardDate: today,
       });
       pointsEarned = 10;
     } else {
-      updatedUser = await updateUser(email, {
+      updatedUser = await updateUser(normalizedEmail, {
         lastLogin: new Date().toISOString(),
       });
     }
@@ -183,7 +213,8 @@ app.post('/api/password-reset/request', async (req, res) => {
   }
 
   try {
-    const user = await findUserByEmail(email);
+    const normalizedEmail = String(email || '').trim().toLowerCase();
+    const user = await findUserByEmail(normalizedEmail);
     if (!user) {
       return res.status(404).json({ message: 'We could not find an account with that email.' });
     }
@@ -191,7 +222,7 @@ app.post('/api/password-reset/request', async (req, res) => {
     const resetToken = crypto.randomBytes(18).toString('hex');
     const resetTokenExpires = new Date(Date.now() + 30 * 60 * 1000).toISOString();
 
-    await updateUser(email, {
+    await updateUser(normalizedEmail, {
       resetToken,
       resetTokenExpires,
     });
