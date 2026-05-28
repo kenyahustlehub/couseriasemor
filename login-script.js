@@ -1,13 +1,16 @@
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById('email').value.trim();
+    let email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
 
     if (!email || !password) {
         showMessage('Email and password are required', 'error');
         return;
     }
+
+    // Normalize email to match server-side normalization
+    email = email.toLowerCase();
 
     try {
         const response = await fetch('/api/login', {
@@ -18,6 +21,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             body: JSON.stringify({
                 email,
                 password,
+                localDate: new Date().toISOString().split('T')[0],
             }),
         });
 

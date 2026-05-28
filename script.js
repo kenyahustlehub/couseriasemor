@@ -3,7 +3,7 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
     e.preventDefault();
 
     const fullName = document.getElementById('fullName').value.trim();
-    const email = document.getElementById('email').value.trim();
+    let email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
     const expertise = document.getElementById('expertise').value;
 
@@ -23,6 +23,9 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
         return;
     }
 
+    // normalize email to prevent duplicate registrations (server also normalizes)
+    email = email.toLowerCase();
+
     try {
         const response = await fetch('/api/register', {
             method: 'POST',
@@ -34,6 +37,7 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
                 email,
                 password,
                 expertise,
+                localDate: new Date().toISOString().split('T')[0],
             }),
         });
 
