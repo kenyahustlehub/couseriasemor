@@ -180,14 +180,16 @@ body {
 
 .nav-theme-toggle .nav-link {
     padding: 8px 14px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 999px;
+    background: transparent;
+    color: inherit;
     transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
 .nav-theme-toggle .nav-link:hover,
 .nav-theme-toggle .nav-link:focus {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.16);
 }
 
 .light-theme .nav-theme-toggle .nav-link {
