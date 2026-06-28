@@ -14,7 +14,7 @@ npm start
 ```
 3. Open in browser:
 ```bash
-http://localhost:3000
+http://localhost:3002
 ```
 
 ## 📁 Key Files
