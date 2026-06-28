@@ -1,0 +1,21 @@
+<!-- Top Information Bar component -->
+<link rel="stylesheet" href="/components/topbar/topbar.css">
+<script src="/topbar-config.js"></script>
+<div id="top-info-bar" class="topbar" role="region" aria-label="Top information bar">
+  <div class="topbar-inner">
+    <div class="topbar-left" id="topbar-weather" aria-live="polite">
+      <div class="weather-item weather-icon" id="weather-icon">☀</div>
+      <div class="weather-item" id="weather-temp">--°C</div>
+      <div class="weather-item" id="weather-city">Nairobi</div>
+      <div class="weather-item divider" id="weather-humidity">💧 --%</div>
+      <div class="weather-item" id="weather-wind">🌬 -- km/h</div>
+      <div class="weather-item divider" id="weather-time">🕒 --:--</div>
+    </div>
+    <div class="topbar-right">
+      <div class="ticker-container" id="news-ticker" aria-live="off" aria-label="Live news ticker">
+        <div class="ticker-track" id="ticker-track"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module" src="/components/topbar/topbar.js"></script>
