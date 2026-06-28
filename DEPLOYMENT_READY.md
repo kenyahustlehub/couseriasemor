@@ -17,7 +17,7 @@ npm install
 npm start
 ```
 
-Open: `http://localhost:3000`
+Open: `http://localhost:3002`
 
 ## 📁 Current Key Files
 
