@@ -22,7 +22,7 @@ This folder contains the backend server and user storage for COUSERIASEMOR.
 
 3. Open in browser:
    ```
-   http://localhost:3000
+   http://localhost:3002
    ```
 
 ## API Endpoints

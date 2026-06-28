@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const compression = require('compression');
 const bodyParser = require('body-parser');
+const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const {
@@ -16,7 +17,7 @@ const {
 } = require('./db');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 const publicPath = path.join(__dirname, '..');
 
 app.use(compression());
@@ -27,7 +28,67 @@ app.use((req, res, next) => {
   res.set('Expires', '0');
   next();
 });
-app.use(express.static(publicPath, { maxAge: 0 }));
+
+const topbarTemplate = fs.readFileSync(path.join(publicPath, 'components', 'topbar', 'topbar.html'), 'utf8');
+const topbarHeadMarkup = '<link rel="stylesheet" href="/components/topbar/topbar.css">\n<script src="/topbar-config.js"></script>';
+const topbarBodyMarkup = topbarTemplate
+  .replace(/<link[^>]+>\s*/i, '')
+  .replace(/<script[^>]+src="\/topbar-config\.js"[^>]*><\/script>\s*/i, '')
+  .trim();
+
+app.use(async (req, res, next) => {
+  if (req.method !== 'GET') return next();
+  if (req.path.startsWith('/api') || req.path === '/topbar-config.js') return next();
+  const isHtml = req.path === '/' || req.path.endsWith('.html');
+  if (!isHtml) return next();
+
+  const targetPath = req.path === '/'
+    ? path.join(publicPath, 'index.html')
+    : path.join(publicPath, decodeURIComponent(req.path));
+
+  if (!targetPath.startsWith(publicPath)) return next();
+  if (!fs.existsSync(targetPath)) return next();
+
+  console.log(`[topbar] injecting into ${req.path} -> ${targetPath}`);
+  let html = fs.readFileSync(targetPath, 'utf8');
+  if (html.includes('id="top-info-bar"') || html.includes('/components/topbar/topbar.css')) {
+    res.set('Content-Type', 'text/html; charset=utf-8');
+    return res.send(html);
+  }
+
+  if (topbarHeadMarkup && /<\/head>/i.test(html)) {
+    html = html.replace(/<\/head>/i, `${topbarHeadMarkup}\n</head>`);
+  }
+  if (/<body[^>]*>/i.test(html)) {
+    html = html.replace(/<body([^>]*)>/i, `<body$1>\n${topbarBodyMarkup}`);
+  }
+
+  res.set('Content-Type', 'text/html; charset=utf-8');
+  res.send(html);
+});
+
+app.use(express.static(publicPath));
+
+// Serve topbar config from environment as a small JS payload.
+// This allows keeping API keys out of static HTML and injecting them at runtime from the server.
+app.get('/topbar-config.js', (req, res) => {
+  const newsdataApiKey = process.env.NEWDATA_API_KEY || '';
+  const mediastackApiKey = process.env.MEDIASTACK_API_KEY || '';
+  const defaultCityName = process.env.TOPBAR_DEFAULT_CITY_NAME || 'Nairobi';
+  const defaultLat = parseFloat(process.env.TOPBAR_DEFAULT_LAT) || -1.286389;
+  const defaultLon = parseFloat(process.env.TOPBAR_DEFAULT_LON) || 36.817223;
+
+  const payload = `window.TOPBAR_CONFIG = window.TOPBAR_CONFIG || {` +
+    `newsdataApiKey: ${JSON.stringify(newsdataApiKey)},` +
+    `mediastackApiKey: ${JSON.stringify(mediastackApiKey)},` +
+    `defaultCity: ${JSON.stringify({ name: defaultCityName, lat: defaultLat, lon: defaultLon })}` +
+  `};`;
+
+  res.set('Content-Type', 'application/javascript; charset=utf-8');
+  // Avoid aggressive caching so changes to .env are reflected on reload during development
+  res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.send(payload);
+});
 
 function initializeStorage() {
   initializeDb();
