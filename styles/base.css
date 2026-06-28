@@ -474,12 +474,13 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #f8fafc;
-    background: rgba(248, 113, 20, 0.12);
-    border: 1px solid rgba(248, 113, 20, 0.18);
+    color: #92400e;
+    background: rgba(249, 115, 22, 0.16);
+    border: 1px solid rgba(249, 115, 22, 0.36);
     border-radius: 999px;
     padding: 10px 14px;
     font-size: 13px;
+    font-weight: 600;
 }
 
 .launch-card {
@@ -512,8 +513,26 @@ body {
     width: fit-content;
 }
 
+.launch-card {
+    background: rgba(11, 18, 40, 0.98);
+    border: 1px solid rgba(249, 115, 22, 0.18);
+    border-radius: 28px;
+    padding: 28px;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: 0 30px 80px rgba(15, 23, 42, 0.35);
+    color: #f8fafc;
+}
+
+.launch-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
 .launch-header p {
-    color: var(--text-light);
+    color: rgba(248, 250, 252, 0.8);
     font-size: 14px;
     line-height: 1.7;
 }
@@ -526,11 +545,12 @@ body {
 .launch-grid h4 {
     font-size: 18px;
     margin-bottom: 6px;
+    color: #f8fafc;
 }
 
 .launch-grid p {
     font-size: 14px;
-    color: var(--text-light);
+    color: rgba(248, 250, 252, 0.75);
     line-height: 1.7;
 }
 

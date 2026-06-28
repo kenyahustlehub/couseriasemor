@@ -86,6 +86,12 @@
     line-height: 1.5;
 }
 
+@media (max-width: 900px) {
+    .points-streak-header {
+        gap: 12px;
+    }
+}
+
 .light-theme .form-group input,
 .light-theme .form-group select {
     background: #ffffff;
@@ -201,6 +207,7 @@
     border-radius: 18px;
     padding: 20px 22px;
     margin-bottom: 24px;
+    color: #f8fafc;
 }
 
 .points-streak-header {
@@ -214,20 +221,20 @@
 .points-streak-header h3 {
     margin: 0 0 8px 0;
     font-size: 1rem;
-    color: var(--text);
+    color: #f8fafc;
 }
 
 .points-streak-header p {
     margin: 0;
-    color: var(--text-light);
+    color: rgba(248, 250, 252, 0.82);
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.8;
     max-width: 420px;
 }
 
 .points-streak-footer {
     margin-top: 16px;
-    color: var(--text-light);
+    color: rgba(248, 250, 252, 0.78);
     font-size: 13px;
     line-height: 1.7;
 }

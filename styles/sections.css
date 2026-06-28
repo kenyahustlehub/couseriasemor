@@ -162,7 +162,8 @@
     border-radius: 18px;
     transition: all 0.3s ease;
     background: rgba(12, 19, 38, 0.95);
-    border: 1px solid rgba(249, 115, 22, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #f8fafc;
 }
 
 .feature-item:hover {
@@ -180,11 +181,11 @@
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 10px;
-    color: var(--text);
+    color: #f8fafc;
 }
 
 .feature-item p {
-    color: var(--text-light);
+    color: rgba(248, 250, 252, 0.78);
     font-size: 14px;
     line-height: 1.6;
 }
