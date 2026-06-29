@@ -27,17 +27,20 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
     email = email.toLowerCase();
 
     try {
-        const response = await fetch('/api/register', {
+        const nameParts = fullName.split(' ').filter(Boolean);
+        const firstName = nameParts.shift() || '';
+        const lastName = nameParts.join(' ');
+
+        const response = await fetch('/api/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                fullName,
                 email,
                 password,
-                expertise,
-                localDate: new Date().toISOString().split('T')[0],
+                firstName,
+                lastName,
             }),
         });
 
@@ -47,13 +50,7 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
             if (data.token) {
                 localStorage.setItem('authToken', data.token);
             }
-            if (data.user && data.user.expertise) {
-                localStorage.setItem('authExpertise', data.user.expertise);
-            }
-            if (data.user && typeof data.user.totalPoints !== 'undefined') {
-                localStorage.setItem('totalPoints', data.user.totalPoints);
-            }
-            localStorage.setItem('welcomeName', data.user.fullName || 'Learner');
+            saveUserState(data.user);
 
             showMessage('🎉 Welcome aboard! You earned 10 welcome points. Redirecting to your dashboard...', 'success');
 
@@ -86,13 +83,3 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-// Logout functionality
-document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('logout-link')) {
-        e.preventDefault();
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('welcomeName');
-        localStorage.removeItem('authExpertise');
-        window.location.href = 'login.html';
-    }
-});
