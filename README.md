@@ -1,72 +1,35 @@
-# COUSERIASEMOR - Coding & Programming Learning Platform
+# COUSERIASEMOR
 
-Simple learning portal with registration and login backed by JSON file storage.
+COUSERIASEMOR is a learning platform rebuilt to use Supabase for authentication, course progress, points, certificates, and achievements.
 
-## 🚀 Quick Start
+## Run locally
 
 1. Install dependencies:
 ```bash
 npm install
 ```
-2. Start the app:
+2. Create a `.env` file in the project root with:
+```env
+SUPABASE_URL=https://your-supabase-url.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
+3. Start the backend:
 ```bash
 npm start
 ```
-3. Open in browser:
+4. Open the app in a browser:
 ```bash
-http://localhost:3002
+http://localhost:3005
 ```
 
-## 📁 Key Files
+## What is included
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Landing page |
-| `register.html` | Registration page |
-| `login.html` | Login page |
-| `dashboard.html` | User dashboard |
-| `script.js` | Registration form logic |
-| `login-script.js` | Login form logic |
-| `style.css` | App styling |
-| `server.js` | App entrypoint |
-| `backend/server.js` | Express API and static file hosting |
-| `backend/storage.js` | JSON-based user storage |
-| `backend/users.json` | Persisted user data |
+- Supabase-backed API routes in `backend/supabase-routes.js`
+- Supabase client helpers in `backend/supabase-client.js`
+- Auth pages: login, register, profile, dashboard, courses, premium
+- Shared auth helper in `auth-client.js`
+- Minimal CSS and JavaScript for frontend navigation
 
-## 🎯 Features
+## Notes
 
-- User registration without email verification
-- Login with email and password
-- Redirects to `dashboard.html` after login
-- Persistent user storage in `backend/users.json`
-- Responsive design for desktop and mobile
-- Clean, minimal backend with Express
-
-## 🔌 API Endpoints
-
-```
-POST /api/register - Register a new user
-POST /api/login    - Login an existing user
-GET /api/users     - List users (demo only)
-```
-
-## 🗄️ Storage
-
-Users are stored locally in `backend/users.json`. No external database is required.
-
-## 🛠️ Notes
-
-- The app uses `dotenv` for optional environment variables.
-- No email verification is used.
-- No MongoDB or email provider dependencies are required.
-
-## 💡 Next Improvements
-
-1. Add password hashing
-2. Add a proper session or JWT token flow
-3. Expand dashboard course content
-4. Add account recovery and profile management
-
----
-
-**COUSERIASEMOR**
+This rebuild is Supabase-only and does not use local SQLite or JSON storage.

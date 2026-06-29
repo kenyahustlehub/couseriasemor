@@ -1,127 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-    <meta name="description" content="Sign in to COUSERIASEMOR to continue your learning path, track your progress, and access your digital skills courses.">
-    <meta name="keywords" content="login, sign in, online learning, course access, learner account">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Login - COUSERIASEMOR">
-    <meta property="og:description" content="Sign in to COUSERIASEMOR to continue your learning path, track your progress, and access your digital skills courses.">
-    <meta property="og:site_name" content="COUSERIASEMOR">
-    <meta property="og:url" content="https://couseriasemor.onrender.com/login.html">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Login - COUSERIASEMOR">
-    <meta name="twitter:description" content="Sign in to COUSERIASEMOR to continue your learning path, track your progress, and access your digital skills courses.">
-    <link rel="canonical" href="https://couseriasemor.onrender.com/login.html">
-    <title>Login - COUSERIASEMOR</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "name": "COUSERIASEMOR",
-          "url": "https://couseriasemor.onrender.com"
-        },
-        {
-          "@type": "WebPage",
-          "url": "https://couseriasemor.onrender.com/login.html",
-          "name": "Login - COUSERIASEMOR",
-          "description": "Sign in to COUSERIASEMOR to continue your learning path, track your progress, and access your digital skills courses."
-        }
-      ]
-    }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - COUSERIASEMOR</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo-brand">
-                <span class="logo-icon">🎉</span>
-                <span class="logo-text">COUSERIASEMOR</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">← Back</a></li>
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li id="authLinks">
-                    <a href="login.html" class="nav-link">Login</a>
-                    <a href="register.html" class="nav-link">Register</a>
-                </li>
-                <li class="nav-theme-toggle"><button id="themeToggle" class="nav-link" type="button">Light</button></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="registration-box">
-            <div class="logo">
-                <h1>COUSERIASEMOR</h1>
-                <p>Login to Your Account</p>
-            </div>
+  <div class="page-shell">
+    <header>
+      <h1>Login</h1>
+      <p>Enter your email and password to continue.</p>
+    </header>
 
-            <div class="points-streak-card">
-                <div class="points-streak-header">
-                    <div>
-                        <h3>Saved points streak</h3>
-                        <p id="streakText">Your points and streak remain visible here before you sign in.</p>
-                    </div>
-                    <span id="streakPoints">0 pts</span>
-                </div>
-                <div class="points-streak-footer">
-                    <span id="streakReminder">Login daily to earn 10 points and keep your premium unlock progress.</span>
-                </div>
-            </div>
+    <form id="loginForm">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required>
 
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required placeholder="john@example.com">
-                </div>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required placeholder="••••••••">
-                </div>
+      <button type="submit">Login</button>
+    </form>
 
-                <button type="submit" class="btn-register">Login</button>
-
-                <div id="message" class="message info">Keep your points count active: logging in daily adds rewards and your score will not restart.</div>
-            </form>
-
-            <div class="login-link">
-                Don't have an account? <a href="register.html">Register here</a>
-            </div>
-            <div class="login-link">
-                Forgot your password? <a href="forgot-password.html">Reset it here</a>
-            </div>
-        </div>
-    </div>
-
-    <script src="login-script.js"></script>
-    <script src="theme-toggle.js"></script>
-    <script src="auto-refresh.js"></script>
-    <script>
-        const authLinks = document.getElementById('authLinks');
-        const token = localStorage.getItem('authToken');
-        const welcomeName = localStorage.getItem('welcomeName');
-
-        if (token && welcomeName) {
-            window.location.href = 'dashboard.html';
-        }
-
-        if (token) {
-            authLinks.innerHTML = `
-                <div class="nav-user-menu">
-                    <button type="button" class="nav-link nav-user-toggle">${welcomeName}</button>
-                    <div class="nav-user-dropdown">
-                        <a href="profile.html" class="nav-link nav-user-item">Profile</a>
-                        <a href="#" class="nav-link nav-user-item logout-link">Logout</a>
-                    </div>
-                </div>
-            `;
-        }
-    </script>
+    <p>Don't have an account? <a href="/register.html">Register</a></p>
+  </div>
+  <script type="module" src="/login-script.js"></script>
 </body>
 </html>
