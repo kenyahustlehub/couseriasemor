@@ -1,3 +1,8 @@
+const getApiUrl = (path) => {
+    const isLocalPreview = window.location.hostname === '127.0.0.1' && window.location.port === '3000';
+    return isLocalPreview ? `http://127.0.0.1:3005${path}` : path;
+};
+
 // Registration Form Handler
 document.getElementById('registrationForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -27,20 +32,17 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
     email = email.toLowerCase();
 
     try {
-        const nameParts = fullName.split(' ').filter(Boolean);
-        const firstName = nameParts.shift() || '';
-        const lastName = nameParts.join(' ');
-
-        const response = await fetch('/api/auth/register', {
+        const response = await fetch(getApiUrl('/api/register'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+                fullName,
                 email,
                 password,
-                firstName,
-                lastName,
+                expertise,
+                localDate: new Date().toISOString().split('T')[0],
             }),
         });
 
@@ -50,7 +52,13 @@ document.getElementById('registrationForm').addEventListener('submit', async (e)
             if (data.token) {
                 localStorage.setItem('authToken', data.token);
             }
-            saveUserState(data.user);
+            if (data.user && data.user.expertise) {
+                localStorage.setItem('authExpertise', data.user.expertise);
+            }
+            if (data.user && typeof data.user.totalPoints !== 'undefined') {
+                localStorage.setItem('totalPoints', data.user.totalPoints);
+            }
+            localStorage.setItem('welcomeName', data.user.fullName || 'Learner');
 
             showMessage('🎉 Welcome aboard! You earned 10 welcome points. Redirecting to your dashboard...', 'success');
 
@@ -83,3 +91,13 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
+// Logout functionality
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('logout-link')) {
+        e.preventDefault();
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('welcomeName');
+        localStorage.removeItem('authExpertise');
+        window.location.href = 'login.html';
+    }
+});

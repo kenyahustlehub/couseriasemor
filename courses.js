@@ -1,19 +1,90 @@
-import { requireAuth } from './auth-client.js';
+const getApiUrl = (path) => {
+    const isLocalPreview = window.location.hostname === '127.0.0.1' && window.location.port === '3000';
+    return isLocalPreview ? `http://127.0.0.1:3005${path}` : path;
+};
 
-requireAuth();
+const authToken = localStorage.getItem('authToken');
+const welcomeName = localStorage.getItem('welcomeName') || 'Learner';
 
-const container = document.getElementById('coursesList');
-if (!container) throw new Error('Courses list not found');
+if (!authToken) {
+    window.location.href = 'login.html';
+}
 
-const courses = [
-  { title: 'Modern Web Development', description: 'Learn HTML, CSS, and JavaScript.' },
-  { title: 'AI Tools Mastery', description: 'Use AI to improve writing and productivity.' },
-  { title: 'Cybersecurity Essentials', description: 'Protect systems and data securely.' },
-];
+document.getElementById('authLinks').innerHTML = `
+        <div class="nav-user-menu">
+            <button type="button" class="nav-link nav-user-toggle">${welcomeName}</button>
+            <div class="nav-user-dropdown">
+                <a href="profile.html" class="nav-link nav-user-item">Profile</a>
+                <a href="#" class="nav-link nav-user-item logout-link">Logout</a>
+            </div>
+        </div>
+    `;
 
-container.innerHTML = courses.map(course => `
-  <section class="course-card card">
-    <h3>${course.title}</h3>
-    <p>${course.description}</p>
-  </section>
-`).join('');
+function openCourse(courseId) {
+    localStorage.setItem('selectedCourse', courseId);
+    window.location.href = `course.html?id=${courseId}`;
+}
+
+async function fetchUserInfo() {
+    try {
+        const response = await fetch(getApiUrl('/api/user-info'), {
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+            },
+        });
+        if (!response.ok) {
+            throw new Error('Unable to load user info');
+        }
+        return await response.json();
+    } catch (error) {
+        return null;
+    }
+}
+
+function updatePremiumCard(user) {
+    const premiumButton = document.getElementById('premiumCourseButton');
+    if (!premiumButton) return;
+
+    if (user?.totalPoints >= 300) {
+        premiumButton.textContent = 'Open Premium';
+        premiumButton.onclick = () => {
+            window.location.href = 'course.html?id=premium';
+        };
+    } else {
+        premiumButton.textContent = 'Unlock with points';
+        premiumButton.onclick = () => {
+            window.location.href = 'premium.html';
+        };
+    }
+}
+
+async function initCourses() {
+    const user = await fetchUserInfo();
+
+    if (user) {
+        updatePremiumCard(user);
+    } else {
+        updatePremiumCard({ totalPoints: Number(localStorage.getItem('totalPoints') || 0) });
+    }
+}
+
+// Category filtering
+document.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('click', () => {
+        document.getElementById('courses').scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+// Logout functionality
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('logout-link')) {
+        e.preventDefault();
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('welcomeName');
+        localStorage.removeItem('authExpertise');
+        localStorage.removeItem('selectedCourse');
+        window.location.href = 'login.html';
+    }
+});
+
+initCourses();

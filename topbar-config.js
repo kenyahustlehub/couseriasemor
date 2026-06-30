@@ -1,0 +1,1 @@
+window.TOPBAR_CONFIG = window.TOPBAR_CONFIG || {newsdataApiKey: "pub_2b16158deae84afa9f157eaf5cb48327",mediastackApiKey: "310e64f60021cda74f4325fe9b8ba7f9",defaultCity: {"name":"Nairobi","lat":-1.286389,"lon":36.817223}};

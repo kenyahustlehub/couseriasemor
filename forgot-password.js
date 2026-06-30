@@ -1,3 +1,8 @@
+const getApiUrl = (path) => {
+    const isLocalPreview = window.location.hostname === '127.0.0.1' && window.location.port === '3000';
+    return isLocalPreview ? `http://127.0.0.1:3005${path}` : path;
+};
+
 document.getElementById('forgotForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -10,7 +15,7 @@ document.getElementById('forgotForm').addEventListener('submit', async (e) => {
     }
 
     try {
-        const response = await fetch('/api/password-reset/request', {
+        const response = await fetch(getApiUrl('/api/password-reset/request'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email }),

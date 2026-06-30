@@ -1,20 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Courses - COUSERIASEMOR</title>
-  <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Browse COUSERIASEMOR course categories and featured programs for AI, web development, freelancing, cybersecurity, Excel, and premium learning.">
+    <meta name="keywords" content="online courses, AI training, web development, freelancing, cybersecurity, Excel, premium learning">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Courses - COUSERIASEMOR">
+    <meta property="og:description" content="Browse COUSERIASEMOR course categories and featured programs for AI, web development, freelancing, cybersecurity, Excel, and premium learning.">
+    <meta property="og:site_name" content="COUSERIASEMOR">
+    <meta property="og:url" content="https://couseriasemor.onrender.com/courses.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Courses - COUSERIASEMOR">
+    <meta name="twitter:description" content="Browse COUSERIASEMOR course categories and featured programs for AI, web development, freelancing, cybersecurity, Excel, and premium learning.">
+    <link rel="canonical" href="https://couseriasemor.onrender.com/courses.html">
+    <title>Courses - COUSERIASEMOR</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "COUSERIASEMOR",
+          "url": "https://couseriasemor.onrender.com"
+        },
+        {
+          "@type": "WebPage",
+          "url": "https://couseriasemor.onrender.com/courses.html",
+          "name": "Courses - COUSERIASEMOR",
+          "description": "Browse COUSERIASEMOR course categories and featured programs for AI, web development, freelancing, cybersecurity, Excel, and premium learning."
+        }
+      ]
+    }
+    </script>
+<link rel="stylesheet" href="/components/topbar/topbar.css">
+<script src="/topbar-config.js"></script>
 </head>
 <body>
-  <div class="page-shell">
-    <header>
-      <h1>Courses</h1>
-      <p>Browse available courses and continue learning.</p>
-    </header>
-
-    <section id="coursesList" class="grid grid-2"></section>
+<!-- Top Information Bar component -->
+<div id="top-info-bar" class="topbar" role="region" aria-label="Top information bar">
+  <div class="topbar-inner">
+    <div class="topbar-left" id="topbar-weather" aria-live="polite">
+      <div class="weather-item weather-icon" id="weather-icon">☀</div>
+      <div class="weather-item" id="weather-temp">--°C</div>
+      <div class="weather-item" id="weather-city">Nairobi</div>
+      <div class="weather-item divider" id="weather-humidity">💧 --%</div>
+      <div class="weather-item" id="weather-wind">🌬 -- km/h</div>
+      <div class="weather-item divider" id="weather-time">🕒 --:--</div>
+    </div>
+    <div class="topbar-right">
+      <div class="ticker-container" id="news-ticker" aria-live="off" aria-label="Live news ticker">
+        <div class="ticker-track" id="ticker-track"></div>
+      </div>
+    </div>
   </div>
-  <script type="module" src="/courses.js"></script>
+</div>
+<script type="module" src="/components/topbar/topbar.js"></script>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-brand">
+                <span class="logo-icon">🚀</span>
+                <span class="logo-text">COUSERIASEMOR</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="courses.html" class="nav-link active">Courses</a></li>
+                <li><a href="premium.html" class="nav-link">Premium</a></li>
+                <li><a href="#resources" class="nav-link">Resources</a></li>
+                <li><a href="#progress" class="nav-link">Progress</a></li>
+                <li id="authLinks"></li>
+                <li class="nav-theme-toggle"><button id="themeToggle" class="nav-link" type="button">Light</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">Learning Platform</span>
+            <h1 class="hero-title">Master New Skills</h1>
+            <p class="hero-subtitle">Access comprehensive courses with videos, interactive lessons, and downloadable resources. Learn at your own pace with modern, engaging content.</p>
+            <div class="hero-actions">
+                <a href="#courses" class="btn btn-primary btn-large">Browse Courses</a>
+                <a href="#categories" class="btn btn-outline">View Categories</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="launch-card">
+                <div class="launch-header">
+                    <span class="badge">Featured</span>
+                    <p>Complete courses with video lessons, practical exercises, and certification.</p>
+                </div>
+                <div class="launch-grid">
+                    <div>
+                        <h4>🎥 Video Lessons</h4>
+                        <p>High-quality video content with expert instructors</p>
+                    </div>
+                    <div>
+                        <h4>📚 Interactive Content</h4>
+                        <p>Quizzes, exercises, and hands-on projects</p>
+                    </div>
+                    <div>
+                        <h4>📄 Downloadable Resources</h4>
+                        <p>PDF guides, cheat sheets, and project templates</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="solutions">
+        <div class="section-header">
+            <h2>Course Categories</h2>
+            <p>Explore our comprehensive learning paths designed for different skill levels and career goals.</p>
+        </div>
+        <div class="solutions-grid">
+            <div class="solution-card category-card" data-category="ai">
+                <h3>🤖 AI & Automation</h3>
+                <p>Master AI tools, prompt engineering, and workflow automation for modern productivity.</p>
+                <div class="category-stats">
+                    <span>12 Courses</span>
+                    <span>Beginner to Advanced</span>
+                </div>
+            </div>
+            <div class="solution-card category-card" data-category="programming">
+                <h3>💻 Programming & Development</h3>
+                <p>Learn coding, web development, and software engineering with practical projects.</p>
+                <div class="category-stats">
+                    <span>18 Courses</span>
+                    <span>All Levels</span>
+                </div>
+            </div>
+            <div class="solution-card category-card" data-category="business">
+                <h3>💼 Business & Freelancing</h3>
+                <p>Build business skills, freelancing expertise, and entrepreneurial mindset.</p>
+                <div class="category-stats">
+                    <span>15 Courses</span>
+                    <span>Practical Focus</span>
+                </div>
+            </div>
+            <div class="solution-card category-card" data-category="security">
+                <h3>🛡️ Cybersecurity</h3>
+                <p>Essential security knowledge for remote workers and digital professionals.</p>
+                <div class="category-stats">
+                    <span>6 Courses</span>
+                    <span>Security First</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="courses">
+        <div class="section-header">
+            <h2>Featured Courses</h2>
+            <p>Start with our most popular and highly-rated courses to build your skills foundation.</p>
+        </div>
+        <div class="courses-grid">
+            <div class="course-card featured-course" data-course="ai-mastery">
+                <div class="course-badge">Bestseller</div>
+                <div class="course-icon">🤖</div>
+                <h3>AI Tools Mastery</h3>
+                <p>Complete guide to AI productivity tools, ChatGPT, Midjourney, and workflow automation.</p>
+                <div class="course-meta">
+                    <span class="duration">8 hours</span>
+                    <span class="level">Beginner</span>
+                    <span class="rating">⭐ 4.8 (2.1k)</span>
+                </div>
+                <div class="course-price">
+                    <span class="original-price">$99</span>
+                    <span class="current-price">Free</span>
+                </div>
+                <button class="btn-course" onclick="openCourse('ai-mastery')">Start Course</button>
+            </div>
+
+            <div class="course-card featured-course" data-course="web-dev">
+                <div class="course-badge">Popular</div>
+                <div class="course-icon">🌐</div>
+                <h3>Modern Web Development</h3>
+                <p>Build responsive websites with HTML, CSS, JavaScript, and modern frameworks.</p>
+                <div class="course-meta">
+                    <span class="duration">12 hours</span>
+                    <span class="level">Intermediate</span>
+                    <span class="rating">⭐ 4.9 (1.8k)</span>
+                </div>
+                <div class="course-price">
+                    <span class="original-price">$149</span>
+                    <span class="current-price">Free</span>
+                </div>
+                <button class="btn-course" onclick="openCourse('web-dev')">Start Course</button>
+            </div>
+
+            <div class="course-card featured-course" data-course="freelance">
+                <div class="course-badge">New</div>
+                <div class="course-icon">💸</div>
+                <h3>Freelancing Mastery</h3>
+                <p>Launch your freelance career with client acquisition, pricing, and project management.</p>
+                <div class="course-meta">
+                    <span class="duration">6 hours</span>
+                    <span class="level">All Levels</span>
+                    <span class="rating">⭐ 4.7 (950)</span>
+                </div>
+                <div class="course-price">
+                    <span class="original-price">$79</span>
+                    <span class="current-price">Free</span>
+                </div>
+                <button class="btn-course" onclick="openCourse('freelance')">Start Course</button>
+            </div>
+
+            <div class="course-card featured-course" data-course="data-excel">
+                <div class="course-icon">📊</div>
+                <h3>Excel for Business</h3>
+                <p>Master Excel for data analysis, reporting, and business intelligence.</p>
+                <div class="course-meta">
+                    <span class="duration">10 hours</span>
+                    <span class="level">Beginner</span>
+                    <span class="rating">⭐ 4.6 (1.2k)</span>
+                </div>
+                <div class="course-price">
+                    <span class="original-price">$89</span>
+                    <span class="current-price">Free</span>
+                </div>
+                <button class="btn-course" onclick="openCourse('data-excel')">Start Course</button>
+            </div>
+
+            <div class="course-card featured-course" data-course="design-figma">
+                <div class="course-icon">🎨</div>
+                <h3>UI/UX Design with Figma</h3>
+                <p>Create beautiful user interfaces and user experiences with modern design tools.</p>
+                <div class="course-meta">
+                    <span class="duration">9 hours</span>
+                    <span class="level">Beginner</span>
+                    <span class="rating">⭐ 4.8 (890)</span>
+                </div>
+                <div class="course-price">
+                    <span class="original-price">$119</span>
+                    <span class="current-price">Free</span>
+                </div>
+                <button class="btn-course" onclick="openCourse('design-figma')">Start Course</button>
+            </div>
+
+            <div class="course-card featured-course" data-course="cybersecurity">
+                <div class="course-icon">🛡️</div>
+                <h3>Cybersecurity Essentials</h3>
+                <p>Learn essential security practices for remote work and digital safety.</p>
+                <div class="course-meta">
+                    <span class="duration">7 hours</span>
+                    <span class="level">Beginner</span>
+                    <span class="rating">⭐ 4.5 (650)</span>
+                </div>
+                <div class="course-price">
+                    <span class="original-price">$69</span>
+                    <span class="current-price">Free</span>
+                </div>
+                <button class="btn-course" onclick="openCourse('cybersecurity')">Start Course</button>
+            </div>
+            <div class="course-card featured-course premium-card" data-course="premium">
+                <div class="course-badge premium">Premium</div>
+                <div class="course-icon">🏆</div>
+                <h3>Premium Growth Pass</h3>
+                <p>Unlock exclusive advanced projects, premium resources, and high-value lessons.</p>
+                <div class="course-meta">
+                    <span class="duration">20+ hours</span>
+                    <span class="level">Advanced</span>
+                    <span class="rating">⭐ 5.0</span>
+                </div>
+                <div class="course-price">
+                    <span class="current-price">Unlock with 300 points</span>
+                </div>
+                <button class="btn-course" id="premiumCourseButton">View Premium</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="resources" class="features">
+        <div class="section-header">
+            <h2>Resources</h2>
+            <p>Downloadable guides and tools to support your learning journey and speed up course progress.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">📄</div>
+                <h3>Starter Guide</h3>
+                <p>Step-by-step onboarding checklist for remote earning and online learning.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🧠</div>
+                <h3>AI Prompt Pack</h3>
+                <p>Ready-to-use prompts for course projects, copywriting, and productivity workflows.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📈</div>
+                <h3>Progress Tracker</h3>
+                <p>Track your learning goals, completed lessons, and milestones in one place.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💼</div>
+                <h3>Freelance Checklist</h3>
+                <p>Follow this checklist to build your first service, find clients, and deliver results.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>COUSERIASEMOR</h4>
+                <p>Your complete learning platform for modern skills and remote income.</p>
+            </div>
+            <div class="footer-section">
+                <h5>Learning</h5>
+                <ul>
+                    <li><a href="#courses">All Courses</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#progress">My Progress</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 COUSERIASEMOR. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="theme-toggle.js"></script>
+    <script src="courses.js"></script>
 </body>
 </html>

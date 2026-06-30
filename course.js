@@ -20,7 +20,7 @@ async function fetchUserInfo() {
     if (!authToken) return null;
 
     try {
-        const response = await fetch('/api/user-info', {
+        const response = await fetch(getApiUrl('/api/user-info'), {
             headers: {
                 Authorization: `Bearer ${authToken}`,
             },
