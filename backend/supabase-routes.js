@@ -16,7 +16,7 @@ const {
   getUserDashboardStats,
   setResetToken,
   updateUserPassword,
-  updateLastLogin,
+  applyDailyLoginReward,
 } = require('./supabase-client');
 
 const router = express.Router();
@@ -92,13 +92,67 @@ async function loginHandler(req, res) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    const user = await getUserById(rawUser.id);
-    await updateLastLogin(rawUser.id);
+    const user = await applyDailyLoginReward(rawUser.id);
     const token = Buffer.from(`${rawUser.id}:${rawUser.email}`).toString('base64');
     res.json({ message: 'Login successful', token, user: createUserResponse(user) });
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ message: error.message || 'Login failed' });
+  }
+}
+
+async function googleAuthHandler(req, res) {
+  try {
+    const { idToken } = req.body;
+    if (!idToken) {
+      return res.status(400).json({ message: 'Google ID token is required' });
+    }
+
+    if (!process.env.GOOGLE_CLIENT_ID) {
+      return res.status(500).json({ message: 'Google authentication is not configured on the server.' });
+    }
+
+    const tokenInfoUrl = `https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(idToken)}`;
+    const googleResponse = await fetch(tokenInfoUrl);
+    if (!googleResponse.ok) {
+      return res.status(401).json({ message: 'Invalid Google ID token' });
+    }
+
+    const profile = await googleResponse.json();
+    if (profile.aud !== process.env.GOOGLE_CLIENT_ID) {
+      return res.status(401).json({ message: 'Google client ID mismatch' });
+    }
+
+    if (profile.iss !== 'https://accounts.google.com' && profile.iss !== 'accounts.google.com') {
+      return res.status(401).json({ message: 'Invalid Google token issuer' });
+    }
+
+    if (!profile.email_verified) {
+      return res.status(401).json({ message: 'Google email address is not verified' });
+    }
+
+    const email = String(profile.email || '').trim().toLowerCase();
+    if (!email) {
+      return res.status(400).json({ message: 'Google profile did not return an email address' });
+    }
+
+    const fullName = profile.name || email.split('@')[0];
+    const existingUserRaw = await getUserByEmailRaw(email);
+    let user;
+
+    if (existingUserRaw) {
+      user = await applyDailyLoginReward(existingUserRaw.id);
+    } else {
+      const randomPassword = crypto.randomBytes(32).toString('hex');
+      const passwordHash = await bcrypt.hash(randomPassword, 10);
+      user = await createUser(email, passwordHash, fullName, 'Beginner', 10);
+    }
+
+    const token = Buffer.from(`${user.id}:${user.email}`).toString('base64');
+    res.json({ message: 'Signed in with Google', token, user: createUserResponse(user) });
+  } catch (error) {
+    console.error('Google auth error:', error);
+    res.status(500).json({ message: error.message || 'Google sign-in failed' });
   }
 }
 
@@ -125,6 +179,10 @@ router.post('/register', registerHandler);
 router.post('/auth/register', registerHandler);
 router.post('/login', loginHandler);
 router.post('/auth/login', loginHandler);
+router.post('/auth/google', googleAuthHandler);
+router.get('/google-config', (req, res) => {
+  res.json({ clientId: process.env.GOOGLE_CLIENT_ID || null });
+});
 router.get('/user-info', userInfoHandler);
 router.get('/user/profile', userInfoHandler);
 

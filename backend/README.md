@@ -14,11 +14,12 @@ This backend serves the Supabase-backed API for COUSERIASEMOR.
    ```bash
    npm install
    ```
-2. Create `.env` in the backend directory with Supabase keys:
+2. Create `.env` in the backend directory with Supabase keys and Google configuration:
    ```bash
    SUPABASE_URL=https://your-project.supabase.co
    SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
    VITE_SUPABASE_ANON_KEY=your-anon-key
+   GOOGLE_CLIENT_ID=your-google-oauth-client-id
    NEWDATA_API_KEY=your-newsdata-key
    MEDIASTACK_API_KEY=your-mediastack-key
    TOPBAR_DEFAULT_CITY_NAME=Nairobi

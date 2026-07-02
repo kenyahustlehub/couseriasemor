@@ -116,7 +116,7 @@ async function getUserByEmail(email) {
 }
 
 async function getUserById(id) {
-  if (!id || !isValidUuid(id)) return null;
+  if (!id) return null;
 
   if (supabaseReady) {
     try {
@@ -133,6 +133,65 @@ async function getUserById(id) {
   }
 
   return normalizeSqliteUserById(id);
+}
+
+function getIsoDate(dateValue) {
+  if (!dateValue) return null;
+  const date = new Date(dateValue);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toISOString().split('T')[0];
+}
+
+async function applyDailyLoginReward(userId) {
+  const user = await getUserById(userId);
+  if (!user) return null;
+
+  const today = getIsoDate(new Date());
+  const lastRewardDay = getIsoDate(user.lastRewardDate);
+  const shouldGrantReward = lastRewardDay !== today;
+  const nowIso = new Date().toISOString();
+
+  const updates = {
+    lastLogin: nowIso,
+    lastRewardDate: nowIso,
+  };
+
+  if (shouldGrantReward) {
+    updates.totalPoints = (user.totalPoints || 0) + 10;
+  }
+
+  if (supabaseReady) {
+    const payload = {
+      last_login: updates.lastLogin,
+      last_reward_date: updates.lastRewardDate,
+    };
+
+    if (updates.totalPoints !== undefined) {
+      payload.total_points = updates.totalPoints;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('users')
+        .update(payload)
+        .eq('id', userId)
+        .select()
+        .maybeSingle();
+
+      if (!error && data) {
+        return normalizeUser(data);
+      }
+
+      console.warn('Supabase applyDailyLoginReward failed, using SQLite fallback:', error?.message || 'unknown error');
+    } catch (error) {
+      console.warn('Supabase applyDailyLoginReward failed, using SQLite fallback:', error.message);
+    }
+  }
+
+  const sqliteUser = await normalizeSqliteUserById(userId);
+  if (!sqliteUser) return null;
+  const updated = await sqliteDb.updateUser(sqliteUser.email, updates);
+  return normalizeUser(updated);
 }
 
 async function setResetToken(userId, token, expiresAt) {
@@ -371,4 +430,5 @@ module.exports = {
   getUserByResetToken,
   updateUserPassword,
   updateLastLogin,
+  applyDailyLoginReward,
 };
