@@ -48,10 +48,17 @@ app.use(async (req, res, next) => {
 
   let html = fs.readFileSync(targetPath, 'utf8');
   if (topbarHeadMarkup && /<\/head>/i.test(html)) {
-    html = html.replace(/<\/head>/i, `${topbarHeadMarkup}\n</head>`);
+    const hasTopbarCss = /<link[^>]+topbar\.css/i.test(html);
+    const hasTopbarScript = /<script[^>]+topbar\.js/i.test(html);
+    if (!hasTopbarCss || !hasTopbarScript) {
+      html = html.replace(/<\/head>/i, `${topbarHeadMarkup}\n</head>`);
+    }
   }
   if (topbarBodyMarkup && /<body[^>]*>/i.test(html)) {
-    html = html.replace(/<body([^>]*)>/i, `<body$1>\n${topbarBodyMarkup}`);
+    const hasTopbar = /id=["']top-info-bar["']/i.test(html) || /class=["']topbar["']/i.test(html);
+    if (!hasTopbar) {
+      html = html.replace(/<body([^>]*)>/i, `<body$1>\n${topbarBodyMarkup}`);
+    }
   }
 
   res.set('Content-Type', 'text/html; charset=utf-8');
